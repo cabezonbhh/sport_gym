@@ -1,0 +1,9 @@
+D:\Programacion\C#\sport_gym\SportGym\SportGym\bin\Debug\SportGym.exe.config
+D:\Programacion\C#\sport_gym\SportGym\SportGym\bin\Debug\SportGym.exe
+D:\Programacion\C#\sport_gym\SportGym\SportGym\bin\Debug\SportGym.pdb
+D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csprojAssemblyReference.cache
+D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.Properties.Resources.resources
+D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.GenerateResource.cache
+D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.CoreCompileInputs.cache
+D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.exe
+D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.pdb

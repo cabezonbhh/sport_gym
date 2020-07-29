@@ -7,3 +7,4 @@ D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.Generat
 D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.CoreCompileInputs.cache
 D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.exe
 D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.pdb
+D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_prueba.resources

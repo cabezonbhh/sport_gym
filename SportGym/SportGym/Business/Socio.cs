@@ -15,7 +15,6 @@ namespace SportGym.Business
         public string Celular { get; set; }
         public string Email { get; set; }
         public string Dni { get; set; }
-        public IList<Venta> Ventas { get; set; }
         public Inscripcion Inscripcion { get; set; }
 
         public Socio()
@@ -28,7 +27,7 @@ namespace SportGym.Business
             this.Celular = "N/D";
             this.Email = "N/D";
             this.Inscripcion = new Inscripcion();
-            this.Ventas = new List<Venta>();
+
         }
 
     }

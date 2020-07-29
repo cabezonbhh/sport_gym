@@ -13,12 +13,32 @@ namespace SportGym.Business
         public DateTime FechaFin { get; set; }
         public double Monto { get; set; }
         public int NroCuota { get; set; }
+        public int CodInscripcion { get; set; }
 
         public bool esVencida()
         {
-            //DateTime fechaActual = new DateTime();
-            //fechaActual = DateTime.Now;
-            return FechaFin > DateTime.Now;
+            return FechaFin.Date < DateTime.Now.Date;
+        }
+
+        public bool venceHoy()
+        {
+            return FechaFin.Date == DateTime.Now.Date;
+        }
+
+        public int getEstado()
+        {
+            if (venceHoy() == true)
+            {
+                return 0;
+            }
+            else
+            {
+                if (esVencida() == true)
+                    return -1;
+                else
+                    return 1;
+            }
+            
         }
 
     }

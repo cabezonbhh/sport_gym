@@ -17,7 +17,7 @@ namespace SportGym
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frm_principal());
+            Application.Run(new frm_prueba());
         }
     }
 }

@@ -8,20 +8,31 @@ using System.Threading.Tasks;
 
 namespace SportGym.Mapper
 {
-    public class mapperCuota
+    public class MapperCuota
     {
         public DTO_Cuota getDtoCuota(Cuota cuota)
         {
             DTO_Cuota dto = new DTO_Cuota();
             dto.NroCuota = cuota.NroCuota.ToString();
-            dto.FechaPago = cuota.FechaPago.ToString();
-            dto.FechaInicio = cuota.FechaInicio.ToString();
-            dto.FechaFin = cuota.FechaFin.ToString();
+            dto.FechaPago = cuota.FechaPago.Date.ToString();
+            dto.FechaInicio = cuota.FechaInicio.Date.ToString();
+            dto.FechaFin = cuota.FechaFin.Date.ToString();
             dto.Monto = cuota.Monto.ToString();
-            if (cuota.esVencida() == true)
-                dto.Estado = "VENCIDA";
-            else
-                dto.Estado = "VIGENTE";
+            switch (cuota.getEstado())
+            {
+                case 0:
+                    dto.Estado = "VENCE HOY";
+                    break;
+                case 1:
+                    dto.Estado = "VIGENTE";
+                    break;
+                case -1:
+                    dto.Estado = "VENCIDA";
+                    break;
+                default:
+                    dto.Estado = "SIN VENCIMIENTO";
+                    break;
+            }
             return dto;
         }
 

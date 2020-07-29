@@ -8,6 +8,7 @@ namespace SportGym.Interface
 {
     public interface IDAO_Cuota<Cuota>
     {
-        IList<Cuota> getCuotas();
+        IList<Cuota> getCuotas(int nroInscripcion);
+        
     }
 }

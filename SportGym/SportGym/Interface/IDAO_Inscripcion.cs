@@ -8,6 +8,7 @@ namespace SportGym.Interface
 {
     public interface IDAO_Inscripcion <Inscripcion>
     {
-        IList<Inscripcion> getInscripciones();
+        Inscripcion getInscripcionActiva(int nroSocio);
+        IList<Inscripcion> getInscripcionesActivas();
     }
 }

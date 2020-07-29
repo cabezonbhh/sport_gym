@@ -12,6 +12,8 @@ namespace SportGym.Data
     public class DAO_Socio : IDAO_Socio<Socio>
     {
         DBHelper helper = DBHelper.getDBHelper();
+        IList<Socio> listaSocios = null;
+
         public bool darBajaSocio(Socio socio)
         {
             throw new NotImplementedException();
@@ -19,12 +21,27 @@ namespace SportGym.Data
 
         public Socio getSocioPorNumero(int nro)
         {
-            throw new NotImplementedException();
+            listaSocios = new List<Socio>();
+            listaSocios = getSocios();
+            Socio socioRetornado = new Socio();
+            foreach (Socio socio in listaSocios)
+            {
+                if (socio.NumeroSocio == nro)
+                    socioRetornado = socio;
+            }
+            return socioRetornado;
         }
 
         public IList<Socio> getSocios()
         {
-            throw new NotImplementedException();
+            DataTable tabla = helper.getSocios();
+
+            listaSocios = new List<Socio>();
+            foreach (DataRow fila in tabla.Rows)
+            {
+                listaSocios.Add(mapper(fila));
+            }
+            return listaSocios;
         }
 
         public IList<Socio> getSociosPorApellido(string apellido)
@@ -49,6 +66,7 @@ namespace SportGym.Data
 
         private Socio mapper(DataRow fila)
         {
+            DAO_Inscripcion dao = new DAO_Inscripcion();
             Socio socio = new Socio();
             socio.NumeroSocio = Convert.ToInt32(fila[0].ToString());
             socio.Nombre = fila[1].ToString();
@@ -57,6 +75,7 @@ namespace SportGym.Data
             socio.Telefono = fila[4].ToString();
             socio.Celular = fila[5].ToString();
             socio.Dni = fila[6].ToString();
+            socio.Inscripcion = dao.getInscripcionActiva(socio.NumeroSocio);
             return socio;
         }
     }

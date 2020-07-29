@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace SportGym.Mapper
 {
-    public class mapperSocio
+    public class MapperSocio
     {
-        public DTO_Socio getDtoSocio(Socio socio, int inscripcion)
+        public DTO_Socio getDtoSocio(Socio socio)
         {
             DTO_Socio dto = new DTO_Socio();
             dto.NumeroSocio = socio.NumeroSocio.ToString();
@@ -20,11 +20,11 @@ namespace SportGym.Mapper
             dto.Email = socio.Email;
             dto.Telefono = socio.Telefono;
             dto.Celular = socio.Celular;
-            dto.NroInscripcion = socio.Inscripcion.CodInscripcion.ToString();
+            dto.Inscripcion = socio.Inscripcion.CodInscripcion.ToString();
             return dto;
         }
 
-        public Socio getSocio(DTO_Socio dto)
+        public Socio getSocio(DTO_Socio dto, Inscripcion inscripcion)
         {
             Socio socio = new Socio();
             socio.NumeroSocio = Convert.ToInt32(dto.NumeroSocio);
@@ -32,7 +32,9 @@ namespace SportGym.Mapper
             socio.Apellido = dto.Apellido;
             socio.Dni = dto.Dni;
             socio.Email = dto.Email;
-
+            socio.Telefono = dto.Telefono;
+            socio.Celular = dto.Celular;
+            socio.Inscripcion = inscripcion;
             return socio;
         }
     }

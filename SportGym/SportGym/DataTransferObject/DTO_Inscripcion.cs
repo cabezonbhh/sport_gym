@@ -12,6 +12,11 @@ namespace SportGym.DataTransferObject
         public string FechaAlta { get; set; }
         public string FechaBaja { get; set; }
         public string NroSocio { get; set; }
-        public IList<DTO_Cuota> Cuotas { get; set; }
+        public string UltimoPago { get; set; }
+        public string UltimoVencimiento { get; set; }
+        public string EstadoCuota { get; set; }
+        public string NombreSocio { get; set; }
+        public string ApellidoSocio { get; set; }
+
     }
 }

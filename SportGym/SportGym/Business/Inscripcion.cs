@@ -10,13 +10,21 @@ namespace SportGym.Business
     {
         public int CodInscripcion { get; set; }
         public DateTime FechaAlta { get; set; }
-        public DateTime FechaBaja { get; set; }
         public int NroSocio { get; set; }
         public IList<Cuota> Cuotas { get; set; }
 
         public Cuota getUltimoPago()
         {
-            return null;
+            DateTime mayor = new DateTime(2000, 1, 1, 0, 0, 0);
+            Cuota cuota = new Cuota();
+            foreach (Cuota c in Cuotas)
+            {
+                if (c.FechaPago > mayor)
+                {
+                    cuota = c;
+                }
+            }
+            return cuota;
         }
 
         public IList<Cuota> getHistorialPago(int nroSocio)
@@ -33,6 +41,8 @@ namespace SportGym.Business
         {
             return false;
         }
+
+       
 
     }
 }

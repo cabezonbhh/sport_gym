@@ -15,16 +15,12 @@ namespace SportGym.Service
     {
         private IDAO_Socio<Socio> dao;
         private MapperSocio mapSocio;
-        private MapperInscripcion mapInscripcion;
-        private MapperCuota mapCuota;
         public DTO_Socio SocioSeleccionado { get; set; }
 
         public Service_socio()
         {
             dao = new DAO_Socio();
             mapSocio = new MapperSocio();
-            mapInscripcion = new MapperInscripcion();
-            mapCuota = new MapperCuota();
         }
 
         public IList<DTO_Socio> getSocios()
@@ -44,6 +40,11 @@ namespace SportGym.Service
         public DTO_Socio getSocio(int nroSocio)
         {
             return mapSocio.getDtoSocio(dao.getSocioPorNumero(nroSocio));
+        }
+
+        public bool registrarSocio(DTO_Socio dto)
+        {
+            return dao.registrarSocio(mapSocio.getSocio(dto));
         }
     }
 }

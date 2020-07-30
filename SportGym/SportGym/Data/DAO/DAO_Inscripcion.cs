@@ -3,6 +3,7 @@ using SportGym.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,11 @@ namespace SportGym.Data
         DBHelper helper = DBHelper.getDBHelper();
         public Inscripcion getInscripcionActiva(int nroSocio)
         {
-            DataTable tabla = helper.getInscripcion(nroSocio);
+            string sp = "sp_get_inscripcion_socio";
+            var parametro = new SqlParameter("@nroSocio", nroSocio);
+            parametro.SqlDbType = SqlDbType.Int;
+
+            DataTable tabla = helper.ejecutarStoredProcedureConUnParametro(sp,parametro);
             Inscripcion inscripcion = new Inscripcion();
             foreach (DataRow fila in tabla.Rows)
             {
@@ -26,7 +31,7 @@ namespace SportGym.Data
         public IList<Inscripcion> getInscripcionesActivas()
         {
             IList<Inscripcion> listaInscripciones = new List<Inscripcion>();
-            DataTable tabla = helper.getInscripciones();
+            DataTable tabla = helper.ejecutarStoredProcedure("sp_listar_inscripciones_activas");
             Inscripcion inscripcion = new Inscripcion();
             foreach (DataRow fila in tabla.Rows)
             {

@@ -3,6 +3,7 @@ using SportGym.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,12 @@ namespace SportGym.Data
         public IList<Cuota> getCuotas(int nroInscripcion)
         {
             Cuota cuota = new Cuota();
-            DataTable tabla = helper.getCuotas(nroInscripcion);
+
+            string sp = "sp_listar_cuotas_por_inscripcion";
+            var parametro = new SqlParameter("codInscripcion", nroInscripcion);
+            parametro.SqlDbType = SqlDbType.Int;
+
+            DataTable tabla = helper.ejecutarStoredProcedureConUnParametro(sp,parametro);
             IList<Cuota> listaCuotas = new List<Cuota>();
             foreach (DataRow fila in tabla.Rows)
             {

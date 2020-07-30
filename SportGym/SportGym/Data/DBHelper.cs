@@ -23,7 +23,6 @@ namespace SportGym.Data
         private DBHelper()
         {
             string_conexion = notebook;
-
         }
 
         public static DBHelper getDBHelper()
@@ -59,6 +58,45 @@ namespace SportGym.Data
                 this.CloseConnection(cnn);
             }
         }
+        public int ejecutarSQL(string strSql)
+        {
+            int afectadas = 0;
+
+            SqlConnection cnn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlTransaction t = null;
+
+            try
+            {
+                cnn.ConnectionString = string_conexion;
+                cnn.Open();
+                //comienzo de transaccion...
+                t = cnn.BeginTransaction();
+                cmd.Connection = cnn;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = strSql;
+                cmd.Transaction = t;
+                afectadas = cmd.ExecuteNonQuery();
+                //Commit de transacción...
+                t.Commit();
+            }
+            catch (Exception ex)
+            {
+                if (t != null)
+                {
+                    t.Rollback();
+                    afectadas = 0;
+                }
+                MessageBox.Show("EXPLOTO EL HELPER", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw ex;
+            }
+            finally
+            {
+                this.CloseConnection(cnn);
+            }
+
+            return afectadas;
+        }
         private void CloseConnection(SqlConnection cnn)
         {
             if (cnn.State == ConnectionState.Open)
@@ -67,20 +105,23 @@ namespace SportGym.Data
                 cnn.Dispose();
             }
         }
+        
 
-        public DataTable getSocios()
+        
+        public DataTable ejecutarStoredProcedureConParametros(string sp, SqlParameter[] sqlParameters)
         {
             SqlConnection cnn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             DataTable tabla = new DataTable();
-            
+
             try
             {
                 cnn.ConnectionString = string_conexion;
                 cnn.Open();
                 cmd.Connection = cnn;
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "sp_listar_socios_activos";
+                cmd.CommandText = sp;
+                cmd.Parameters.AddRange(sqlParameters);
                 tabla.Load(cmd.ExecuteReader());
                 return tabla;
             }
@@ -94,7 +135,7 @@ namespace SportGym.Data
                 this.CloseConnection(cnn);
             }
         }
-        public DataTable getInscripcion(int nroSocio)
+        public DataTable ejecutarStoredProcedureConUnParametro(string sp, SqlParameter parametro)
         {
             SqlConnection cnn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
@@ -106,8 +147,8 @@ namespace SportGym.Data
                 cnn.Open();
                 cmd.Connection = cnn;
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "sp_get_inscripcion_socio";
-                cmd.Parameters.AddWithValue("nroSocio",nroSocio);
+                cmd.CommandText = sp;
+                cmd.Parameters.Add(parametro);
                 tabla.Load(cmd.ExecuteReader());
                 return tabla;
             }
@@ -121,7 +162,7 @@ namespace SportGym.Data
                 this.CloseConnection(cnn);
             }
         }
-        public DataTable getCuotas(int inscripcion)
+        public DataTable ejecutarStoredProcedure(string sp)
         {
             SqlConnection cnn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
@@ -133,8 +174,7 @@ namespace SportGym.Data
                 cnn.Open();
                 cmd.Connection = cnn;
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "sp_listar_cuotas_por_inscripcion";
-                cmd.Parameters.AddWithValue("codInscripcion",inscripcion);
+                cmd.CommandText = sp;
                 tabla.Load(cmd.ExecuteReader());
                 return tabla;
             }
@@ -148,31 +188,6 @@ namespace SportGym.Data
                 this.CloseConnection(cnn);
             }
         }
-        public DataTable getInscripciones()
-        {
-            SqlConnection cnn = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
-            DataTable tabla = new DataTable();
-
-            try
-            {
-                cnn.ConnectionString = string_conexion;
-                cnn.Open();
-                cmd.Connection = cnn;
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "sp_listar_inscripciones_activas";
-                tabla.Load(cmd.ExecuteReader());
-                return tabla;
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("EXPLOTO EL HELPER", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw (ex);
-            }
-            finally
-            {
-                this.CloseConnection(cnn);
-            }
-        }
+       
     }
 }

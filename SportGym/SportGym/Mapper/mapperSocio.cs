@@ -24,7 +24,7 @@ namespace SportGym.Mapper
             return dto;
         }
 
-        public Socio getSocio(DTO_Socio dto, Inscripcion inscripcion)
+        public Socio getSocio(DTO_Socio dto)
         {
             Socio socio = new Socio();
             socio.NumeroSocio = Convert.ToInt32(dto.NumeroSocio);
@@ -34,7 +34,6 @@ namespace SportGym.Mapper
             socio.Email = dto.Email;
             socio.Telefono = dto.Telefono;
             socio.Celular = dto.Celular;
-            socio.Inscripcion = inscripcion;
             return socio;
         }
     }

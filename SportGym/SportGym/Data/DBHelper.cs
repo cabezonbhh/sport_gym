@@ -108,7 +108,7 @@ namespace SportGym.Data
         
 
         
-        public DataTable ejecutarStoredProcedureConParametros(string sp, SqlParameter[] sqlParameters)
+        public DataTable consultarStoredProcedureConParametros(string sp, SqlParameter[] sqlParameters)
         {
             SqlConnection cnn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
@@ -135,7 +135,7 @@ namespace SportGym.Data
                 this.CloseConnection(cnn);
             }
         }
-        public DataTable ejecutarStoredProcedureConUnParametro(string sp, SqlParameter parametro)
+        public DataTable consultarStoredProcedureConUnParametro(string sp, SqlParameter parametro)
         {
             SqlConnection cnn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
@@ -162,7 +162,7 @@ namespace SportGym.Data
                 this.CloseConnection(cnn);
             }
         }
-        public DataTable ejecutarStoredProcedure(string sp)
+        public DataTable consultarStoredProcedure(string sp)
         {
             SqlConnection cnn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
@@ -188,6 +188,104 @@ namespace SportGym.Data
                 this.CloseConnection(cnn);
             }
         }
-       
+        public int ejecutarStoredProcedure(string sp)
+        {
+            int resultado = 0;
+            SqlConnection cnn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlTransaction transaction = null;
+         
+            try
+            {
+                cnn.ConnectionString = string_conexion;
+                cnn.Open();
+
+                transaction = cnn.BeginTransaction();
+
+                cmd.Connection = cnn;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = sp;
+                cmd.Transaction = transaction;
+                resultado = cmd.ExecuteNonQuery();
+                transaction.Commit();            
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("EXPLOTO EL HELPER", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw (ex);
+            }
+            finally
+            {
+                this.CloseConnection(cnn);
+            }
+            return resultado;
+        }
+
+        public int ejecutarStoredProcedureConUnParametro(string sp, SqlParameter parametro)
+        {
+            int resultado = 0;
+            SqlConnection cnn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlTransaction transaction = null;
+
+            try
+            {
+                cnn.ConnectionString = string_conexion;
+                cnn.Open();
+
+                transaction = cnn.BeginTransaction();
+
+                cmd.Connection = cnn;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = sp;
+                cmd.Parameters.Add(parametro);
+                cmd.Transaction = transaction;
+                resultado = cmd.ExecuteNonQuery();
+                transaction.Commit();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("EXPLOTO EL HELPER", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw (ex);
+            }
+            finally
+            {
+                this.CloseConnection(cnn);
+            }
+            return resultado;
+        }
+        public int ejecutarStoredProcedureConParametros(string sp, SqlParameter[] parametros)
+        {
+            int resultado = 0;
+            SqlConnection cnn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+            SqlTransaction transaction = null;
+
+            try
+            {
+                cnn.ConnectionString = string_conexion;
+                cnn.Open();
+
+                transaction = cnn.BeginTransaction();
+
+                cmd.Connection = cnn;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = sp;
+                cmd.Parameters.AddRange(parametros);
+                cmd.Transaction = transaction;
+                resultado = cmd.ExecuteNonQuery();
+                transaction.Commit();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("EXPLOTO EL HELPER", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw (ex);
+            }
+            finally
+            {
+                this.CloseConnection(cnn);
+            }
+            return resultado;
+        }
     }
 }

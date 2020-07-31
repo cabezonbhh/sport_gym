@@ -33,7 +33,7 @@ namespace SportGym.Data
 
         public IList<Socio> getSocios()
         {
-            DataTable tabla = helper.ejecutarStoredProcedure("sp_listar_socios_activos");
+            DataTable tabla = helper.consultarStoredProcedure("sp_listar_socios_activos");
 
             IList<Socio>listaSocios = new List<Socio>();
             foreach (DataRow fila in tabla.Rows)
@@ -60,7 +60,12 @@ namespace SportGym.Data
 
         public bool registrarSocio(Socio socio)
         {
-            return false; ;
+            string sp = "sp_registrar_socio";
+            var param1 = new SqlParameter("@nroSocio", nroSocio);
+            parametro.SqlDbType = SqlDbType.Int;
+
+
+            return helper.ejecutarStoredProcedureConParametros(sp,parametro);
         }
 
         private Socio mapper(DataRow fila)

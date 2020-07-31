@@ -19,7 +19,7 @@ namespace SportGym.Data
             var parametro = new SqlParameter("@nroSocio", nroSocio);
             parametro.SqlDbType = SqlDbType.Int;
 
-            DataTable tabla = helper.ejecutarStoredProcedureConUnParametro(sp,parametro);
+            DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp,parametro);
             Inscripcion inscripcion = new Inscripcion();
             foreach (DataRow fila in tabla.Rows)
             {
@@ -31,7 +31,7 @@ namespace SportGym.Data
         public IList<Inscripcion> getInscripcionesActivas()
         {
             IList<Inscripcion> listaInscripciones = new List<Inscripcion>();
-            DataTable tabla = helper.ejecutarStoredProcedure("sp_listar_inscripciones_activas");
+            DataTable tabla = helper.consultarStoredProcedure("sp_listar_inscripciones_activas");
             Inscripcion inscripcion = new Inscripcion();
             foreach (DataRow fila in tabla.Rows)
             {

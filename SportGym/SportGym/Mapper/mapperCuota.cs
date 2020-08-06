@@ -18,21 +18,7 @@ namespace SportGym.Mapper
             dto.FechaInicio = cuota.FechaInicio.Date.ToString();
             dto.FechaFin = cuota.FechaFin.Date.ToString();
             dto.Monto = cuota.Monto.ToString();
-            switch (cuota.getEstado())
-            {
-                case 0:
-                    dto.Estado = "VENCE HOY";
-                    break;
-                case 1:
-                    dto.Estado = "VIGENTE";
-                    break;
-                case -1:
-                    dto.Estado = "VENCIDA";
-                    break;
-                default:
-                    dto.Estado = "SIN VENCIMIENTO";
-                    break;
-            }
+            dto.Estado = cuota.getEstado();
             return dto;
         }
 

@@ -18,23 +18,18 @@ namespace SportGym.Mapper
             dto.NroSocio = inscripcion.NroSocio.ToString();
             dto.NombreSocio = socio.Nombre;
             dto.ApellidoSocio = socio.Apellido;
-            dto.UltimoPago = inscripcion.getUltimoPago().FechaPago.Date.ToShortDateString(); ;
-            dto.UltimoVencimiento = inscripcion.getUltimoPago().FechaFin.Date.ToShortDateString(); ;
-            switch (inscripcion.getUltimoPago().getEstado())
+            if(inscripcion.getUltimoPago()==null)
             {
-                case 0:
-                    dto.EstadoCuota = "VENCE HOY";
-                    break;
-                case 1:
-                    dto.EstadoCuota = "VIGENTE";
-                    break;
-                case -1:
-                    dto.EstadoCuota = "VENCIDA";
-                    break;
-                default:
-                    dto.EstadoCuota = "SIN VENCIMIENTO";
-                    break;
+                dto.UltimoPago = "N/D";
+                dto.UltimoVencimiento = "N/D" ;
+                dto.EstadoCuota = "NO TIENE CUOTAS";
             }
+            else
+            {
+                dto.UltimoPago = inscripcion.getUltimoPago().FechaPago.Date.ToShortDateString(); ;
+                dto.UltimoVencimiento = inscripcion.getUltimoPago().FechaFin.Date.ToShortDateString(); ;
+                dto.EstadoCuota = inscripcion.getUltimoPago().getEstado();
+            }    
             return dto;
         }
     }

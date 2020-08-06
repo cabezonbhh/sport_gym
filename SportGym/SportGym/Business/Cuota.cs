@@ -25,18 +25,18 @@ namespace SportGym.Business
             return FechaFin.Date == DateTime.Now.Date;
         }
 
-        public int getEstado()
+        public string getEstado()
         {
             if (venceHoy() == true)
             {
-                return 0;
+                return "VENCE HOY" ;
             }
             else
             {
                 if (esVencida() == true)
-                    return -1;
+                    return "VENCIDA";
                 else
-                    return 1;
+                    return "VIGENTE";
             }
             
         }

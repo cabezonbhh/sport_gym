@@ -16,7 +16,7 @@ namespace SportGym.Business
         public Cuota getUltimoPago()
         {
             DateTime mayor = new DateTime(2000, 1, 1, 0, 0, 0);
-            Cuota cuota = new Cuota();
+            Cuota cuota = null;
             foreach (Cuota c in Cuotas)
             {
                 if (c.FechaPago > mayor)

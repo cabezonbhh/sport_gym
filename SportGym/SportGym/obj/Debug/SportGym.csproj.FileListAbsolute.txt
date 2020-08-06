@@ -8,3 +8,16 @@ D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.CoreCom
 D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.exe
 D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.pdb
 D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_prueba.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.Properties.Resources.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.GenerateResource.Cache
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.exe
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.pdb
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\bin\Debug\SportGym.exe.config
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\bin\Debug\SportGym.exe
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\bin\Debug\SportGym.pdb
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_principal.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csprojAssemblyReference.cache
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.CoreCompileInputs.cache
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_editar_socio.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Socio.frm_eliminar_socio.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_nuevo_socio.resources

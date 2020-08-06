@@ -18,11 +18,12 @@ namespace SportGym.Data
         private string string_conexion;
         private static DBHelper instance = new DBHelper();
         private readonly string notebook = "Data Source=Notebook-pc;Initial Catalog=DB_Sport_Gym;Integrated Security=True";
+        private readonly string pc = "Data Source=FRANCO-PC;Initial Catalog = DB_Sport_Gym; Integrated Security = True";
         //private readonly string pc = "";
 
         private DBHelper()
         {
-            string_conexion = notebook;
+            string_conexion = pc;
         }
 
         public static DBHelper getDBHelper()
@@ -40,7 +41,7 @@ namespace SportGym.Data
 
             try
             {
-                cnn.ConnectionString = string_conexion;
+                cnn.ConnectionString =  string_conexion;
                 cnn.Open();
                 cmd.Connection = cnn;
                 cmd.CommandType = CommandType.Text;

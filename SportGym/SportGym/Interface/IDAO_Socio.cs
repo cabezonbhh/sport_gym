@@ -9,10 +9,11 @@ namespace SportGym.Interface
     public interface IDAO_Socio <Socio>
     {
         IList<Socio> getSocios();
-        bool registrarSocio(Socio socio);
-        bool modificarSocio(Socio socio);
-        bool darBajaSocio(Socio socio);
+        int registrarSocio(Socio socio);
+        int modificarSocio(Socio socio);
+        int darBajaSocio(Socio socio);
         Socio getSocioPorNumero(int nro);
+        Socio getSocioPorDNI(string dni);
         IList<Socio> getSociosPorNombre(string nombre);
         IList<Socio> getSociosPorApellido(string apellido);
 

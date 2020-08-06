@@ -41,8 +41,13 @@ namespace SportGym.Service
         {
             return mapSocio.getDtoSocio(dao.getSocioPorNumero(nroSocio));
         }
+        public DTO_Socio getSocioPorDni(string dni)
+        {
+            return mapSocio.getDtoSocio(dao.getSocioPorDNI(dni));
+        }
 
-        public bool registrarSocio(DTO_Socio dto)
+
+        public int registrarSocio(DTO_Socio dto)
         {
             return dao.registrarSocio(mapSocio.getSocio(dto));
         }

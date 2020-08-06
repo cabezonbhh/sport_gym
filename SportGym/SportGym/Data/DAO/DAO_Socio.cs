@@ -3,6 +3,7 @@ using SportGym.Interface;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,9 +14,21 @@ namespace SportGym.Data
     {
         DBHelper helper = DBHelper.getDBHelper();
 
-        public bool darBajaSocio(Socio socio)
+        public int darBajaSocio(Socio socio)
         {
             throw new NotImplementedException();
+        }
+
+        public Socio getSocioPorDNI(string dni)
+        {
+            IList<Socio> listaSocios = getSocios();
+            Socio socioRetornado = new Socio();
+            foreach (Socio socio in listaSocios)
+            {
+                if (socio.Dni.Equals(dni))
+                    socioRetornado = socio;
+            }
+            return socioRetornado;
         }
 
         public Socio getSocioPorNumero(int nro)
@@ -53,19 +66,19 @@ namespace SportGym.Data
             throw new NotImplementedException();
         }
 
-        public bool modificarSocio(Socio socio)
+        public int modificarSocio(Socio socio)
         {
             throw new NotImplementedException();
         }
 
-        public bool registrarSocio(Socio socio)
+        public int registrarSocio(Socio socio)
         {
             string sp = "sp_registrar_socio";
-            var param1 = new SqlParameter("@nroSocio", nroSocio);
-            parametro.SqlDbType = SqlDbType.Int;
+            SqlParameter[] parametros = new SqlParameter[7];
+            
+ 
 
-
-            return helper.ejecutarStoredProcedureConParametros(sp,parametro);
+            return helper.ejecutarStoredProcedureConParametros(sp,parametros);
         }
 
         private Socio mapper(DataRow fila)

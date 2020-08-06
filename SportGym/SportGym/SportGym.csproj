@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,18 +57,31 @@
     <Compile Include="Data\DAO\DAO_Inscripcion.cs" />
     <Compile Include="Data\DAO\DAO_Socio.cs" />
     <Compile Include="Data\DBHelper.cs" />
+    <Compile Include="GUI\Socio\frm_editar_socio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Socio\frm_editar_socio.Designer.cs">
+      <DependentUpon>frm_editar_socio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Socio\frm_eliminar_socio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Socio\frm_eliminar_socio.Designer.cs">
+      <DependentUpon>frm_eliminar_socio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Socio\frm_nuevo_socio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Socio\frm_nuevo_socio.Designer.cs">
+      <DependentUpon>frm_nuevo_socio.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\frm_principal.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\frm_principal.Designer.cs">
       <DependentUpon>frm_principal.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUI\frm_prueba.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\frm_prueba.Designer.cs">
-      <DependentUpon>frm_prueba.cs</DependentUpon>
-    </Compile>
+    <Compile Include="GUI\Support.cs" />
     <Compile Include="Interface\IDAO_Cuota.cs" />
     <Compile Include="Interface\IDAO_Inscripcion.cs" />
     <Compile Include="Interface\IDAO_Socio.cs" />
@@ -79,8 +93,17 @@
     <Compile Include="Service\Service_cuota.cs" />
     <Compile Include="Service\Service_Inscripcion.cs" />
     <Compile Include="Service\Service_socio.cs" />
-    <EmbeddedResource Include="GUI\frm_prueba.resx">
-      <DependentUpon>frm_prueba.cs</DependentUpon>
+    <EmbeddedResource Include="GUI\Socio\frm_editar_socio.resx">
+      <DependentUpon>frm_editar_socio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Socio\frm_eliminar_socio.resx">
+      <DependentUpon>frm_eliminar_socio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Socio\frm_nuevo_socio.resx">
+      <DependentUpon>frm_nuevo_socio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\frm_principal.resx">
+      <DependentUpon>frm_principal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -90,6 +113,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -106,6 +130,70 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Helper\" />
+    <Folder Include="GUI\Cuota\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_menu_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_menu_48px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_weightlifting_100px_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_weightlifting_96px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_weightlifting_80px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_delete_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_maximize_button_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_minimize_window_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_restore_down_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_curls_with_dumbbells_26px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_money_bag_32px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_curls_with_dumbbells_52px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_money_bag_64px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_expired_52px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_leave_52px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_weightlifting_52px_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_error_52px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_treadmill_52px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_money_bag_52px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_average_2_52px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_get_cash_50px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

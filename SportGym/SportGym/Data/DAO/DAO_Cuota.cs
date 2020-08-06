@@ -22,7 +22,7 @@ namespace SportGym.Data
             var parametro = new SqlParameter("codInscripcion", nroInscripcion);
             parametro.SqlDbType = SqlDbType.Int;
 
-            DataTable tabla = helper.ejecutarStoredProcedureConUnParametro(sp,parametro);
+            DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp,parametro);
             IList<Cuota> listaCuotas = new List<Cuota>();
             foreach (DataRow fila in tabla.Rows)
             {

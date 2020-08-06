@@ -52,6 +52,7 @@
     <Compile Include="Business\Socio.cs" />
     <Compile Include="DataTransferObject\DTO_Cuota.cs" />
     <Compile Include="DataTransferObject\DTO_Inscripcion.cs" />
+    <Compile Include="DataTransferObject\DTO_Pagar_Cuota.cs" />
     <Compile Include="DataTransferObject\DTO_Socio.cs" />
     <Compile Include="Data\DAO\DAO_Cuota.cs" />
     <Compile Include="Data\DAO\DAO_Inscripcion.cs" />

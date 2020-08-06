@@ -21,12 +21,5 @@ namespace SportGym.Mapper
             dto.Estado = cuota.getEstado();
             return dto;
         }
-
-        public Cuota getCuota(DTO_Cuota dto)
-        {
-            Cuota cuota = new Cuota();
-
-            return cuota;
-        }
     }
 }

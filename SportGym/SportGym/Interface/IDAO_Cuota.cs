@@ -9,6 +9,8 @@ namespace SportGym.Interface
     public interface IDAO_Cuota<Cuota>
     {
         IList<Cuota> getCuotas(int nroInscripcion);
+
+        bool registrarCuota(int nroSocio, int nroInscripcion, double monto ,DateTime inicio, DateTime fin);
         
     }
 }

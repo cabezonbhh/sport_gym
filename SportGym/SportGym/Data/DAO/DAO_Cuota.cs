@@ -14,15 +14,31 @@ namespace SportGym.Data
     {
         DBHelper helper = DBHelper.getDBHelper();
 
-        public IList<Cuota> getCuotas(int nroInscripcion)
+        public IList<Cuota> getCuotas(int inscripcion)
         {
             Cuota cuota = new Cuota();
 
             string sp = "sp_listar_cuotas_por_inscripcion";
-            var parametro = new SqlParameter("codInscripcion", nroInscripcion);
+            var parametro = new SqlParameter("@codInscripcion", inscripcion);
             parametro.SqlDbType = SqlDbType.Int;
 
             DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp,parametro);
+            IList<Cuota> listaCuotas = new List<Cuota>();
+            foreach (DataRow fila in tabla.Rows)
+            {
+                listaCuotas.Add(mapper(fila));
+            }
+            return listaCuotas;
+        }
+        public IList<Cuota> getCuotasPorSocio(int nro)
+        {
+            Cuota cuota = new Cuota();
+
+            string sp = "cuotas_por_socio";
+            var parametro = new SqlParameter("@nro", nro);
+            parametro.SqlDbType = SqlDbType.Int;
+
+            DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp, parametro);
             IList<Cuota> listaCuotas = new List<Cuota>();
             foreach (DataRow fila in tabla.Rows)
             {

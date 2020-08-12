@@ -39,5 +39,20 @@ namespace SportGym.Service
             else
                 return false;
         }
+
+        public IList<DTO_Cuota> getCuotasPorSocio(int nro)
+        {
+            IList<Cuota> listaCuotas = daoCuota.getCuotasPorSocio(nro);
+            IList<DTO_Cuota> listaDto = new List<DTO_Cuota>();
+
+
+            foreach(Cuota cuota in listaCuotas)
+            {
+                listaDto.Add(mapCuota.getDtoCuota(cuota));
+            }
+
+            return listaDto;
+        }
+
     }
 }

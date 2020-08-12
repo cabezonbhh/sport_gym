@@ -58,6 +58,12 @@
     <Compile Include="Data\DAO\DAO_Inscripcion.cs" />
     <Compile Include="Data\DAO\DAO_Socio.cs" />
     <Compile Include="Data\DBHelper.cs" />
+    <Compile Include="GUI\Cuota\frm_historial_pagos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Cuota\frm_historial_pagos.Designer.cs">
+      <DependentUpon>frm_historial_pagos.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Socio\frm_editar_socio.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,12 @@
     <Compile Include="GUI\frm_principal.Designer.cs">
       <DependentUpon>frm_principal.cs</DependentUpon>
     </Compile>
+    <Compile Include="GUI\Socio\frm_principal_socio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Socio\frm_principal_socio.Designer.cs">
+      <DependentUpon>frm_principal_socio.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Support.cs" />
     <Compile Include="Interface\IDAO_Cuota.cs" />
     <Compile Include="Interface\IDAO_Inscripcion.cs" />
@@ -94,6 +106,9 @@
     <Compile Include="Service\Service_cuota.cs" />
     <Compile Include="Service\Service_Inscripcion.cs" />
     <Compile Include="Service\Service_socio.cs" />
+    <EmbeddedResource Include="GUI\Cuota\frm_historial_pagos.resx">
+      <DependentUpon>frm_historial_pagos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Socio\frm_editar_socio.resx">
       <DependentUpon>frm_editar_socio.cs</DependentUpon>
     </EmbeddedResource>
@@ -105,6 +120,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\frm_principal.resx">
       <DependentUpon>frm_principal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Socio\frm_principal_socio.resx">
+      <DependentUpon>frm_principal_socio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -131,7 +149,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\Helper\" />
-    <Folder Include="GUI\Cuota\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8_menu_32px.png" />
@@ -195,6 +212,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8_get_cash_50px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_add_user_male_52px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_registration_52px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_denied_52px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_restart_52px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_restart_26px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_general_ledger_52px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

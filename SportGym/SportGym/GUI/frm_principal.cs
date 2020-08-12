@@ -10,11 +10,24 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using SportGym.Service;
 using SportGym.DataTransferObject;
+using SportGym.GUI.Socio;
 
 namespace SportGym.GUI
 {
     public partial class frm_principal : Form
     {
+
+        Support support = Support.GetSupport();
+        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
+        private void panel_titulo_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
         private Service_Inscripcion svInscripcion;
         private Service_cuota svCuota;
         private Service_socio svSocio;
@@ -26,12 +39,6 @@ namespace SportGym.GUI
             svSocio = new Service_socio();
             this.cargarGrillaInscripciones();          
         }
-
-        [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
-        private extern static void ReleaseCapture();
-        [DllImport("user32.DLL", EntryPoint = "SendMessage")]
-        private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
-        
 
         private void pic_close_Click(object sender, EventArgs e)
         {
@@ -60,45 +67,38 @@ namespace SportGym.GUI
             this.WindowState = FormWindowState.Normal;
         }
 
-        private void panel_titulo_MouseDown(object sender, MouseEventArgs e)
-        {
-            ReleaseCapture();
-            SendMessage(this.Handle,0x112,0xf012,0); 
-        }
+      
 
         private void btn_cuotas_Click(object sender, EventArgs e)
-        {
-            if (panel_cuota.Visible == false)
-            {
+        {       
                 panel_cuota.Visible = true;
-                //panel_socio.Visible = false;
-            }               
+                panel_botones_cuota.Visible = true;
+
         }
 
-        private void btn_socios_Click(object sender, EventArgs e)
-        {
-            //if (panel_socio.Visible == false)
-            {
-                panel_cuota.Visible = false;
-                //panel_socio.Visible = true;
-            }
-        }
         private void cargarGrillaInscripciones()
         {
             IList<DTO_Inscripcion> inscripciones = svInscripcion.getInscripciones();
             dgv_inscripciones.Rows.Clear();
-            foreach (DTO_Inscripcion dto in inscripciones)
+            if(inscripciones != null)
             {
-                dgv_inscripciones.Rows.Add(new Object[]
-                        {
+                foreach (DTO_Inscripcion dto in inscripciones)
+                {
+                    dgv_inscripciones.Rows.Add(new Object[]
+                            {
                             dto.NroSocio.ToString(),
                             dto.NombreSocio.ToString(),
                             dto.ApellidoSocio.ToString(),
                             dto.UltimoVencimiento.ToString(),
                             dto.EstadoCuota.ToString(),
                             dto.UltimoPago.ToString()
-                        }
-                    );
+                            }
+                        );
+                }
+            }
+            else
+            {
+                MessageBox.Show("No hay datos para mostrar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
       
@@ -170,40 +170,71 @@ namespace SportGym.GUI
                 if (String.IsNullOrEmpty(txt_monto_pagar.Text) || Convert.ToDouble(txt_monto_pagar.Text) < 0)
                 {
                     MessageBox.Show("No ingreso un monto valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txt_monto_pagar.Clear();                
                 }
                 else
                 {
-                    DialogResult respuesta = MessageBox.Show("¿Desea registrar el pago?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Question); ;
+                    DialogResult respuesta = MessageBox.Show("¿Desea registrar el pago?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (respuesta == DialogResult.Yes)
                     {
-                        int nroS = Convert.ToInt32(dgv_inscripciones.CurrentRow.Cells["col_nro_socio"].Value.ToString());
-                        int nroI = Convert.ToInt32(svSocio.getSocio(nroS).Inscripcion);
+                        if(dgv_inscripciones.CurrentRow != null)
+                        {
+                            int nroS = Convert.ToInt32(dgv_inscripciones.CurrentRow.Cells["col_nro_socio"].Value.ToString());
+                            int nroI = Convert.ToInt32(svSocio.getSocio(nroS).Inscripcion);
 
-                        if (svCuota.tieneQuePagar(nroS) == false)
-                        {
-                            MessageBox.Show("No tiene que pagar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                        }
-                        else
-                        {
-                            DTO_Pagar_Cuota dtoNuevaCuota = new DTO_Pagar_Cuota();
-                            dtoNuevaCuota.NroSocio = nroS.ToString();
-                            dtoNuevaCuota.NroInscripcion = nroI.ToString();
-                            dtoNuevaCuota.FechaInicio = dtp_fecha_inicio.Value.ToString();
-                            dtoNuevaCuota.FechaFin = dtp_fecha_vto.Value.ToString();
-                            dtoNuevaCuota.Monto = txt_monto_pagar.Text;
-                            control = svCuota.registrarNuevaCuota(dtoNuevaCuota);
-                            if (control == true)
+                            if (svCuota.tieneQuePagar(nroS) == false)
                             {
-                                MessageBox.Show("Pago registrado con exito", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                cargarGrillaInscripciones();
-                            }                               
+                                MessageBox.Show("No tiene que pagar", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                                txt_monto_pagar.Clear();
+                            }
                             else
                             {
-                                MessageBox.Show("Error al registrar el pago, intente nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }                               
+                                DTO_Pagar_Cuota dtoNuevaCuota = new DTO_Pagar_Cuota();
+                                dtoNuevaCuota.NroSocio = nroS.ToString();
+                                dtoNuevaCuota.NroInscripcion = nroI.ToString();
+                                dtoNuevaCuota.FechaInicio = dtp_fecha_inicio.Value.ToString();
+                                dtoNuevaCuota.FechaFin = dtp_fecha_vto.Value.ToString();
+                                dtoNuevaCuota.Monto = txt_monto_pagar.Text;
+                                control = svCuota.registrarNuevaCuota(dtoNuevaCuota);
+                                if (control == true)
+                                {
+                                    MessageBox.Show("Pago registrado con exito", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                    dgv_inscripciones.Rows.Clear();
+                                    cargarGrillaInscripciones();
+                                    txt_monto_pagar.Clear();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Error al registrar el pago, intente nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    txt_monto_pagar.Clear();
+                            }
+                        }
+                    }
+                        else
+                        {
+                            MessageBox.Show("No selecciono ningun socio", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }      
                 }           
+        }
+
+        
+
+        private void btn_socios_Click(object sender, EventArgs e)
+        {
+            Form aux = new frm_principal_socio();
+            aux.ShowDialog();      
+        }
+
+        private void btn_refresh_Click(object sender, EventArgs e)
+        {
+            dgv_inscripciones.Rows.Clear();
+            this.cargarGrillaInscripciones();
+        }
+
+        private void txt_monto_pagar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            support.soloNumeros(sender,e);
         }
     }
 }

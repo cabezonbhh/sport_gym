@@ -19,29 +19,34 @@ namespace SportGym.Data
             throw new NotImplementedException();
         }
 
-        public Socio getSocioPorDNI(string dni)
+        public IList<Socio> getSocioPorDNI(string dni)
         {
-            IList<Socio> listaSocios = getSocios();
-            Socio socioRetornado = new Socio();
-            foreach (Socio socio in listaSocios)
+            string sp = "listar_socios_por_dni";
+            var parametro = new SqlParameter("@dni", dni);
+            parametro.SqlDbType = SqlDbType.VarChar;
+
+            IList<Socio> listaSocios = new List<Socio>();
+            DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp, parametro);
+            foreach (DataRow fila in tabla.Rows)
             {
-                if (socio.Dni.Equals(dni))
-                    socioRetornado = socio;
+                listaSocios.Add(mapper(fila));
             }
-            return socioRetornado;
+            return listaSocios;
         }
 
         public Socio getSocioPorNumero(int nro)
         {
+            string sp = "listar_socios_por_nroSocio";
+            var parametro = new SqlParameter("@id", nro);
+            parametro.SqlDbType = SqlDbType.Int;
+            Socio socio = new Socio();
 
-            IList<Socio> listaSocios = getSocios();
-            Socio socioRetornado = new Socio();
-            foreach (Socio socio in listaSocios)
+            DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp, parametro);
+            foreach (DataRow fila in tabla.Rows)
             {
-                if (socio.NumeroSocio == nro)
-                    socioRetornado = socio;
+                socio = mapper(fila);
             }
-            return socioRetornado;
+            return socio;
         }
 
         public IList<Socio> getSocios()
@@ -58,12 +63,32 @@ namespace SportGym.Data
 
         public IList<Socio> getSociosPorApellido(string apellido)
         {
-            throw new NotImplementedException();
+            string sp = "listar_socios_por_apellido";
+            var parametro = new SqlParameter("@apellido", apellido);
+            parametro.SqlDbType = SqlDbType.VarChar;
+
+            IList<Socio> listaSocios = new List<Socio>();
+            DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp, parametro);
+            foreach (DataRow fila in tabla.Rows)
+            {
+                listaSocios.Add(mapper(fila));
+            }
+            return listaSocios;
         }
 
         public IList<Socio> getSociosPorNombre(string nombre)
         {
-            throw new NotImplementedException();
+            string sp = "listar_socios_por_nombre";
+            var parametro = new SqlParameter("@nombre", nombre);
+            parametro.SqlDbType = SqlDbType.VarChar;
+
+            IList<Socio> listaSocios = new List<Socio>();
+            DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp, parametro);
+            foreach (DataRow fila in tabla.Rows)
+            {
+                listaSocios.Add(mapper(fila));
+            }
+            return listaSocios;
         }
 
         public int modificarSocio(Socio socio)

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_principal));
@@ -38,12 +37,14 @@
             this.btn_socios = new System.Windows.Forms.Button();
             this.pic_gym = new System.Windows.Forms.PictureBox();
             this.panel_titulo = new System.Windows.Forms.Panel();
+            this.btn_refresh = new System.Windows.Forms.Button();
             this.pic_restaurar = new System.Windows.Forms.PictureBox();
             this.pic_maximizar = new System.Windows.Forms.PictureBox();
             this.pic_min = new System.Windows.Forms.PictureBox();
             this.pic_close = new System.Windows.Forms.PictureBox();
             this.panel_cuota = new System.Windows.Forms.Panel();
             this.panel_botones_cuota = new System.Windows.Forms.Panel();
+            this.txt_monto_pagar = new System.Windows.Forms.TextBox();
             this.lbl_monto = new System.Windows.Forms.Label();
             this.lbl_fecha_fin = new System.Windows.Forms.Label();
             this.dtp_fecha_vto = new System.Windows.Forms.DateTimePicker();
@@ -57,8 +58,6 @@
             this.col_fecha_vto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_ultimo_pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.txt_monto_pagar = new System.Windows.Forms.TextBox();
             this.panel_main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_gym)).BeginInit();
             this.panel_titulo.SuspendLayout();
@@ -99,7 +98,6 @@
             this.btn_cuotas.TabIndex = 1;
             this.btn_cuotas.Text = "     Ultimos pagos";
             this.btn_cuotas.UseVisualStyleBackColor = true;
-            this.btn_cuotas.Click += new System.EventHandler(this.btn_cuotas_Click);
             // 
             // lbl_gym
             // 
@@ -142,6 +140,7 @@
             // panel_titulo
             // 
             this.panel_titulo.BackColor = System.Drawing.SystemColors.Control;
+            this.panel_titulo.Controls.Add(this.btn_refresh);
             this.panel_titulo.Controls.Add(this.pic_restaurar);
             this.panel_titulo.Controls.Add(this.pic_maximizar);
             this.panel_titulo.Controls.Add(this.pic_min);
@@ -152,6 +151,23 @@
             this.panel_titulo.Size = new System.Drawing.Size(1010, 50);
             this.panel_titulo.TabIndex = 1;
             this.panel_titulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_titulo_MouseDown);
+            // 
+            // btn_refresh
+            // 
+            this.btn_refresh.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btn_refresh.FlatAppearance.BorderSize = 0;
+            this.btn_refresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btn_refresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_refresh.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_refresh.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_refresh.Image = global::SportGym.Properties.Resources.icons8_restart_26px;
+            this.btn_refresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_refresh.Location = new System.Drawing.Point(15, 9);
+            this.btn_refresh.Name = "btn_refresh";
+            this.btn_refresh.Size = new System.Drawing.Size(36, 38);
+            this.btn_refresh.TabIndex = 19;
+            this.btn_refresh.UseVisualStyleBackColor = false;
+            this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
             // 
             // pic_restaurar
             // 
@@ -229,6 +245,15 @@
             this.panel_botones_cuota.Name = "panel_botones_cuota";
             this.panel_botones_cuota.Size = new System.Drawing.Size(1010, 136);
             this.panel_botones_cuota.TabIndex = 5;
+            // 
+            // txt_monto_pagar
+            // 
+            this.txt_monto_pagar.Enabled = false;
+            this.txt_monto_pagar.Location = new System.Drawing.Point(333, 77);
+            this.txt_monto_pagar.Name = "txt_monto_pagar";
+            this.txt_monto_pagar.Size = new System.Drawing.Size(100, 20);
+            this.txt_monto_pagar.TabIndex = 18;
+            this.txt_monto_pagar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_monto_pagar_KeyPress);
             // 
             // lbl_monto
             // 
@@ -385,14 +410,6 @@
             this.col_ultimo_pago.Name = "col_ultimo_pago";
             this.col_ultimo_pago.ReadOnly = true;
             // 
-            // txt_monto_pagar
-            // 
-            this.txt_monto_pagar.Enabled = false;
-            this.txt_monto_pagar.Location = new System.Drawing.Point(333, 77);
-            this.txt_monto_pagar.Name = "txt_monto_pagar";
-            this.txt_monto_pagar.Size = new System.Drawing.Size(100, 20);
-            this.txt_monto_pagar.TabIndex = 18;
-            // 
             // frm_principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -404,6 +421,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_principal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = " ";
             this.panel_main.ResumeLayout(false);
             this.panel_main.PerformLayout();
@@ -432,23 +450,23 @@
         private System.Windows.Forms.PictureBox pic_close;
         private System.Windows.Forms.Button btn_cuotas;
         private System.Windows.Forms.Button btn_socios;
-        private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.DataGridView dgv_inscripciones;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_nro_socio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_apellido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_fecha_vto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_ultimo_pago;
         private System.Windows.Forms.PictureBox pic_restaurar;
         private System.Windows.Forms.PictureBox pic_maximizar;
         private System.Windows.Forms.Panel panel_botones_cuota;
+        private System.Windows.Forms.DataGridView dgv_inscripciones;
+        private System.Windows.Forms.TextBox txt_monto_pagar;
         private System.Windows.Forms.Label lbl_monto;
         private System.Windows.Forms.Label lbl_fecha_fin;
         private System.Windows.Forms.DateTimePicker dtp_fecha_vto;
         private System.Windows.Forms.Label lbl_fecha_inicio;
         private System.Windows.Forms.DateTimePicker dtp_fecha_inicio;
         private System.Windows.Forms.Button btn_pagar_cuota;
-        private System.Windows.Forms.TextBox txt_monto_pagar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_nro_socio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_apellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_fecha_vto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_ultimo_pago;
+        private System.Windows.Forms.Button btn_refresh;
     }
 }

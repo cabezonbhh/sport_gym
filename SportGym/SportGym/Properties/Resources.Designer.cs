@@ -63,6 +63,16 @@ namespace SportGym.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_add_user_male_52px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_add_user_male_52px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_average_2_52px {
             get {
                 object obj = ResourceManager.GetObject("icons8_average_2_52px", resourceCulture);
@@ -103,6 +113,16 @@ namespace SportGym.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_denied_52px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_denied_52px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_error_52px {
             get {
                 object obj = ResourceManager.GetObject("icons8_error_52px", resourceCulture);
@@ -116,6 +136,16 @@ namespace SportGym.Properties {
         internal static System.Drawing.Bitmap icons8_expired_52px {
             get {
                 object obj = ResourceManager.GetObject("icons8_expired_52px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_general_ledger_52px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_general_ledger_52px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -206,6 +236,36 @@ namespace SportGym.Properties {
         internal static System.Drawing.Bitmap icons8_money_bag_64px {
             get {
                 object obj = ResourceManager.GetObject("icons8_money_bag_64px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_registration_52px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_registration_52px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_restart_26px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_restart_26px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_restart_52px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_restart_52px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

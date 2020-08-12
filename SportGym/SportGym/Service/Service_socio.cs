@@ -45,9 +45,38 @@ namespace SportGym.Service
         {
             return dao.getSocioPorNumero(nroSocio);
         }
-        public DTO_Socio getSocioPorDni(string dni)
+        public IList<DTO_Socio> getSocioPorDni(string dni)
         {
-            return mapSocio.getDtoSocio(dao.getSocioPorDNI(dni));
+            IList<DTO_Socio> lista = new List<DTO_Socio>();
+            IList<Socio> listaSocios = dao.getSocioPorDNI(dni);
+            foreach(Socio socio in listaSocios)
+            {
+                lista.Add(mapSocio.getDtoSocio(socio));
+            }
+            return lista;
+        }
+        public IList<DTO_Socio> getSocioPorNombre(string nombre)
+        {
+            IList<DTO_Socio> lista = new List<DTO_Socio>();
+            IList<Socio> listaSocios = dao.getSociosPorNombre(nombre);
+            foreach (Socio socio in listaSocios)
+            {
+                lista.Add(mapSocio.getDtoSocio(socio));
+            }
+
+            return lista;
+        }
+
+        public IList<DTO_Socio> getSocioPorApellido(string apellido)
+        {
+            IList<DTO_Socio> lista = new List<DTO_Socio>();
+            IList<Socio> listaSocios = dao.getSociosPorApellido(apellido);
+            foreach (Socio socio in listaSocios)
+            {
+                lista.Add(mapSocio.getDtoSocio(socio));
+            }
+
+            return lista;
         }
 
 

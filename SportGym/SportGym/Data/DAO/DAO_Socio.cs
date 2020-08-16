@@ -33,6 +33,19 @@ namespace SportGym.Data
             }
             return listaSocios;
         }
+        public bool existeSocioConDni(string dni)
+        {
+            string sp = "listar_socios_por_dni";
+            var parametro = new SqlParameter("@dni", dni);
+            parametro.SqlDbType = SqlDbType.VarChar;
+
+            IList<Socio> listaSocios = new List<Socio>();
+            DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp, parametro);
+            if (tabla != null)
+                return tabla.Rows.Count > 0;
+            else
+                return false; 
+        }
 
         public Socio getSocioPorNumero(int nro)
         {
@@ -99,9 +112,31 @@ namespace SportGym.Data
         public int registrarSocio(Socio socio)
         {
             string sp = "sp_registrar_socio";
-            SqlParameter[] parametros = new SqlParameter[7];
-            
- 
+            SqlParameter[] parametros = new SqlParameter[6];
+
+            var param1 = new SqlParameter("@nombre", socio.Nombre);
+            param1.SqlDbType = SqlDbType.VarChar;
+            parametros[0] = param1;
+
+            var param2 = new SqlParameter("@apellido", socio.Apellido);
+            param2.SqlDbType = SqlDbType.VarChar;
+            parametros[1] = param2;
+
+            var param3 = new SqlParameter("@email", socio.Email);
+            param3.SqlDbType = SqlDbType.VarChar;
+            parametros[2] = param3;
+
+            var param4 = new SqlParameter("@telefono", socio.Telefono);
+            param4.SqlDbType = SqlDbType.VarChar;
+            parametros[3] = param4;
+
+            var param5 = new SqlParameter("@celular", socio.Celular);
+            param5.SqlDbType = SqlDbType.VarChar;
+            parametros[4] = param5;
+
+            var param6 = new SqlParameter("@dni", socio.Dni);
+            param6.SqlDbType = SqlDbType.VarChar;
+            parametros[5] = param6;
 
             return helper.ejecutarStoredProcedureConParametros(sp,parametros);
         }

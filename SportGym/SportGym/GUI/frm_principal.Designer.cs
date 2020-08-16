@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_principal));
             this.panel_main = new System.Windows.Forms.Panel();
+            this.btn_historial_pago_socio = new System.Windows.Forms.Button();
             this.btn_cuotas = new System.Windows.Forms.Button();
             this.lbl_gym = new System.Windows.Forms.Label();
             this.btn_socios = new System.Windows.Forms.Button();
@@ -73,6 +74,7 @@
             // panel_main
             // 
             this.panel_main.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.panel_main.Controls.Add(this.btn_historial_pago_socio);
             this.panel_main.Controls.Add(this.btn_cuotas);
             this.panel_main.Controls.Add(this.lbl_gym);
             this.panel_main.Controls.Add(this.btn_socios);
@@ -82,6 +84,23 @@
             this.panel_main.Name = "panel_main";
             this.panel_main.Size = new System.Drawing.Size(270, 720);
             this.panel_main.TabIndex = 0;
+            // 
+            // btn_historial_pago_socio
+            // 
+            this.btn_historial_pago_socio.FlatAppearance.BorderSize = 0;
+            this.btn_historial_pago_socio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btn_historial_pago_socio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_historial_pago_socio.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_historial_pago_socio.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_historial_pago_socio.Image = global::SportGym.Properties.Resources.icons8_general_ledger_52px;
+            this.btn_historial_pago_socio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_historial_pago_socio.Location = new System.Drawing.Point(0, 295);
+            this.btn_historial_pago_socio.Name = "btn_historial_pago_socio";
+            this.btn_historial_pago_socio.Size = new System.Drawing.Size(270, 64);
+            this.btn_historial_pago_socio.TabIndex = 2;
+            this.btn_historial_pago_socio.Text = "     Historial de pagos";
+            this.btn_historial_pago_socio.UseVisualStyleBackColor = true;
+            this.btn_historial_pago_socio.Click += new System.EventHandler(this.btn_historial_pago_socio_Click);
             // 
             // btn_cuotas
             // 
@@ -162,7 +181,7 @@
             this.btn_refresh.ForeColor = System.Drawing.SystemColors.Control;
             this.btn_refresh.Image = global::SportGym.Properties.Resources.icons8_restart_26px;
             this.btn_refresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_refresh.Location = new System.Drawing.Point(15, 9);
+            this.btn_refresh.Location = new System.Drawing.Point(15, 6);
             this.btn_refresh.Name = "btn_refresh";
             this.btn_refresh.Size = new System.Drawing.Size(36, 38);
             this.btn_refresh.TabIndex = 19;
@@ -468,5 +487,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ultimo_pago;
         private System.Windows.Forms.Button btn_refresh;
+        private System.Windows.Forms.Button btn_historial_pago_socio;
     }
 }

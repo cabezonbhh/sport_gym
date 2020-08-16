@@ -119,7 +119,7 @@ namespace SportGym.GUI
             else if (char.IsSeparator(e.KeyChar))
                 e.Handled = false;
             else if (char.IsWhiteSpace(e.KeyChar))
-                e.Handled = false;
+                e.Handled = true;
             else if (char.IsLetter(e.KeyChar))
                 e.Handled = false;
             else

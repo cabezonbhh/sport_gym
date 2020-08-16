@@ -16,6 +16,7 @@ namespace SportGym.Interface
         IList<Socio> getSocioPorDNI(string dni);
         IList<Socio> getSociosPorNombre(string nombre);
         IList<Socio> getSociosPorApellido(string apellido);
+        bool existeSocioConDni(string dni);
 
     }
 }

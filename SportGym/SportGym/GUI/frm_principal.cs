@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using SportGym.Service;
 using SportGym.DataTransferObject;
 using SportGym.GUI.Socio;
+using SportGym.GUI.Cuota;
 
 namespace SportGym.GUI
 {
@@ -235,6 +236,17 @@ namespace SportGym.GUI
         private void txt_monto_pagar_KeyPress(object sender, KeyPressEventArgs e)
         {
             support.soloNumeros(sender,e);
+        }
+
+        private void btn_historial_pago_socio_Click(object sender, EventArgs e)
+        {
+            if (dgv_inscripciones.CurrentRow != null)
+            {
+                int id = Convert.ToInt32(dgv_inscripciones.CurrentRow.Cells["col_nro_socio"].Value.ToString());
+                string nombre = dgv_inscripciones.CurrentRow.Cells["col_nombre"].Value.ToString() + " " + dgv_inscripciones.CurrentRow.Cells["col_apellido"].Value.ToString();
+                Form historial = new frm_historial_pagos(id, nombre);
+                historial.ShowDialog();
+            }
         }
     }
 }

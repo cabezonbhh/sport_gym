@@ -66,8 +66,24 @@ namespace SportGym.GUI.Socio
 
         private void btn_ver_editar_Click(object sender, EventArgs e)
         {
-            Form editarVer = new frm_editar_socio();
-            editarVer.ShowDialog();
+            if (dgv_socios.CurrentRow != null)
+            {
+                int id = Convert.ToInt32(dgv_socios.CurrentRow.Cells["col_nro"].Value.ToString());
+                DTO_Socio dto = svSocio.getSocio(id);
+                if(dto != null)
+                {
+                    Form editarVer = new frm_editar_socio(dto);
+                    editarVer.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Error al cargar los datos del socio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                } 
+            }
+            else
+            {
+                MessageBox.Show("No selecciono ningun socio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btn_eliminar_Click(object sender, EventArgs e)
@@ -104,17 +120,7 @@ namespace SportGym.GUI.Socio
             cargarGrilla(svSocio.getSocios());
         }
 
-        private void btn_historia_pagos_Click(object sender, EventArgs e)
-        {
-            if(dgv_socios.CurrentRow != null)
-            {
-                int id = Convert.ToInt32(dgv_socios.CurrentRow.Cells["col_nro"].Value.ToString());
-                string nombre = dgv_socios.CurrentRow.Cells["col_nombre_socio"].Value.ToString()+" "+ dgv_socios.CurrentRow.Cells["col_apellido_socio"].Value.ToString();
-                Form historial = new frm_historial_pagos(id,nombre);
-                historial.ShowDialog();
-            }
-            
-        }
+
 
         private void txt_filtro_nombre_TextChanged(object sender, EventArgs e)
         {       
@@ -153,6 +159,7 @@ namespace SportGym.GUI.Socio
             else
             {
                 dgv_socios.Rows.Clear();
+                cargarGrilla(svSocio.getSocios());
             }
         }
 
@@ -169,6 +176,11 @@ namespace SportGym.GUI.Socio
         private void txt_filtro_dni_KeyPress(object sender, KeyPressEventArgs e)
         {
             support.soloNumerosConAdvertencia(sender, e);
+        }
+
+        private void btn_refresh_socio_Click(object sender, EventArgs e)
+        {
+            cargarGrilla(svSocio.getSocios());
         }
     }
 }

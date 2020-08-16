@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel_main = new System.Windows.Forms.Panel();
             this.panel_cuota = new System.Windows.Forms.Panel();
             this.panel_botones_socio = new System.Windows.Forms.Panel();
@@ -54,13 +54,13 @@
             this.btn_nuevo = new System.Windows.Forms.Button();
             this.pic_gym = new System.Windows.Forms.PictureBox();
             this.panel_titulo = new System.Windows.Forms.Panel();
+            this.btn_refresh_socio = new System.Windows.Forms.Button();
             this.pic_restaurar = new System.Windows.Forms.PictureBox();
             this.pic_maximizar = new System.Windows.Forms.PictureBox();
             this.pic_min = new System.Windows.Forms.PictureBox();
             this.pic_close = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel_filtros = new System.Windows.Forms.Panel();
-            this.btn_historia_pagos = new System.Windows.Forms.Button();
             this.txt_filtro_dni = new System.Windows.Forms.TextBox();
             this.txt_filtro_apellido = new System.Windows.Forms.TextBox();
             this.txt_filtro_nombre = new System.Windows.Forms.TextBox();
@@ -205,28 +205,28 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_inscripciones.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_inscripciones.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_inscripciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_inscripciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_inscripciones.ColumnHeadersHeight = 30;
             this.dgv_inscripciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_nro_socio,
             this.col_nombre,
             this.col_apellido,
             this.col_dni});
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_inscripciones.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_inscripciones.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_inscripciones.Location = new System.Drawing.Point(15, 6);
             this.dgv_inscripciones.MultiSelect = false;
             this.dgv_inscripciones.Name = "dgv_inscripciones";
@@ -339,6 +339,7 @@
             // panel_titulo
             // 
             this.panel_titulo.BackColor = System.Drawing.SystemColors.Control;
+            this.panel_titulo.Controls.Add(this.btn_refresh_socio);
             this.panel_titulo.Controls.Add(this.pic_restaurar);
             this.panel_titulo.Controls.Add(this.pic_maximizar);
             this.panel_titulo.Controls.Add(this.pic_min);
@@ -349,6 +350,23 @@
             this.panel_titulo.Size = new System.Drawing.Size(1010, 50);
             this.panel_titulo.TabIndex = 2;
             this.panel_titulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_titulo_MouseDown);
+            // 
+            // btn_refresh_socio
+            // 
+            this.btn_refresh_socio.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btn_refresh_socio.FlatAppearance.BorderSize = 0;
+            this.btn_refresh_socio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btn_refresh_socio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_refresh_socio.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_refresh_socio.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_refresh_socio.Image = global::SportGym.Properties.Resources.icons8_restart_26px;
+            this.btn_refresh_socio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_refresh_socio.Location = new System.Drawing.Point(15, 6);
+            this.btn_refresh_socio.Name = "btn_refresh_socio";
+            this.btn_refresh_socio.Size = new System.Drawing.Size(36, 38);
+            this.btn_refresh_socio.TabIndex = 20;
+            this.btn_refresh_socio.UseVisualStyleBackColor = false;
+            this.btn_refresh_socio.Click += new System.EventHandler(this.btn_refresh_socio_Click);
             // 
             // pic_restaurar
             // 
@@ -412,7 +430,6 @@
             // 
             // panel_filtros
             // 
-            this.panel_filtros.Controls.Add(this.btn_historia_pagos);
             this.panel_filtros.Controls.Add(this.txt_filtro_dni);
             this.panel_filtros.Controls.Add(this.txt_filtro_apellido);
             this.panel_filtros.Controls.Add(this.txt_filtro_nombre);
@@ -424,24 +441,6 @@
             this.panel_filtros.Name = "panel_filtros";
             this.panel_filtros.Size = new System.Drawing.Size(1010, 136);
             this.panel_filtros.TabIndex = 5;
-            // 
-            // btn_historia_pagos
-            // 
-            this.btn_historia_pagos.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btn_historia_pagos.FlatAppearance.BorderSize = 0;
-            this.btn_historia_pagos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btn_historia_pagos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_historia_pagos.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_historia_pagos.ForeColor = System.Drawing.SystemColors.Control;
-            this.btn_historia_pagos.Image = global::SportGym.Properties.Resources.icons8_general_ledger_52px;
-            this.btn_historia_pagos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_historia_pagos.Location = new System.Drawing.Point(728, 22);
-            this.btn_historia_pagos.Name = "btn_historia_pagos";
-            this.btn_historia_pagos.Size = new System.Drawing.Size(270, 64);
-            this.btn_historia_pagos.TabIndex = 13;
-            this.btn_historia_pagos.Text = "     Historial de pagos";
-            this.btn_historia_pagos.UseVisualStyleBackColor = false;
-            this.btn_historia_pagos.Click += new System.EventHandler(this.btn_historia_pagos_Click);
             // 
             // txt_filtro_dni
             // 
@@ -507,28 +506,28 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_socios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_socios.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgv_socios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgv_socios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgv_socios.ColumnHeadersHeight = 30;
             this.dgv_socios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.col_nro,
             this.col_nombre_socio,
             this.col_apellido_socio,
             this.col_dni_socio});
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_socios.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_socios.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgv_socios.Location = new System.Drawing.Point(15, 6);
             this.dgv_socios.MultiSelect = false;
             this.dgv_socios.Name = "dgv_socios";
@@ -636,10 +635,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dgv_socios;
-        private System.Windows.Forms.Button btn_historia_pagos;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_nro;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_nombre_socio;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_apellido_socio;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_dni_socio;
+        private System.Windows.Forms.Button btn_refresh_socio;
     }
 }

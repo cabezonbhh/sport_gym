@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SportGym.DataTransferObject;
+using SportGym.Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,17 +14,29 @@ namespace SportGym.GUI
 {
     public partial class frm_nuevo_socio : Form
     {
+        Service_socio service = null;
         public frm_nuevo_socio()
         {
             InitializeComponent();
+            service = new Service_socio();// inicializo el service que se va a comunicar con el dao
         }
 
         private void frm_nuevo_socio_Load(object sender, EventArgs e)
         {
-
+            this.limpiarCampos();
         }
 
-        private string validarCampos()
+        private void limpiarCampos()//metodo para limpiar los campos
+        {
+            txt_nombre.Clear();
+            txt_apellido.Clear();
+            txt_dni.Clear();
+            txt_mail.Clear();
+            txt_celular.Clear();
+            txt_telefono.Clear();
+        }
+
+        private string validarCampos()// metodo para validar que ingreso nombre y apellido, ya que ambos son obligatorios. Si alguno esta vacio retorna un string indicando el campo que falta
         {
             {
                 if (String.IsNullOrWhiteSpace(txt_nombre.Text))
@@ -33,11 +47,15 @@ namespace SportGym.GUI
                 {
                     return "Apellido";
                 }
+                if (String.IsNullOrWhiteSpace(txt_dni.Text))
+                {
+                    return "DNI";
+                }
                 return null;
             }
         }
 
-        private void txt_nombre_KeyPress(object sender, KeyPressEventArgs e)
+        private void txt_nombre_KeyPress(object sender, KeyPressEventArgs e)//metodo que controla 
         {
             Support.GetSupport().soloLetrasSiEspacioConAdvertencia(sender,e);
             if(txt_nombre.TextLength > 50 )
@@ -78,38 +96,48 @@ namespace SportGym.GUI
                 MessageBox.Show("Maximo 12 caracteres", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        //private void btn_guardar_Click(object sender, EventArgs e)
-        //{
-        //    bool retorno = false;
-        //    if (validarCampos() != null)
-        //    {
-        //        MessageBox.Show("Ha dejado el campo " + validarCampos() + " vacio", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-        //    else
-        //    {
-        //        if ()
-        //        {
-        //            MessageBox.Show("Ya existe un cliente con ese DNI ", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        //        }
-        //        else
-        //        {
-        //            //vec: 0 - nombre / 1 - apellido / 2 - calle 
-        //            string[] vec = new string[3];
-        //            long dni = Convert.ToInt64(txt_dni.Text);
-        //            long telefono = Convert.ToInt64(txt_phone.Text);
-        //            long celular = Convert.ToInt64(txt_mobile.Text);
-        //            int nro = Int32.Parse(txt_nro.Text);
-        //            vec[0] = txt_name.Text;
-        //            vec[1] = txt_lastName.Text;
-        //            vec[2] = txt_address.Text;
-        //            retorno = service.nuevoCliente(vec, dni, nro, telefono, celular);
-        //            if (retorno == true)
-        //                MessageBox.Show("Cliente registrado con exito", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        //            else
-        //                MessageBox.Show("Hubo un problema al registrar el cliente, intente nuevamente", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        private void btn_guardar_Click(object sender, EventArgs e)
+        {
+            bool retorno = false;
+            if (validarCampos() != null)
+            {
+                MessageBox.Show("Ha dejado el campo " + validarCampos() + " vacio", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                if(service.existeSocioConDni(txt_dni.Text) == false)
+                {   
+                    
+                    DTO_Socio dto = new DTO_Socio();
+                    dto.Nombre = txt_nombre.Text;
+                    dto.Apellido = txt_apellido.Text;
+                    dto.Dni = txt_dni.Text;
+                    dto.Email = txt_mail.Text;
+                    dto.Celular = txt_celular.Text;
+                    dto.Telefono = txt_telefono.Text;
 
-        //        }
-        //    }
-        //}
+                    retorno = (service.registrarSocio(dto) > 0) ;
+                    if(retorno == true)
+                    {
+                        MessageBox.Show("Socio registrado con exito", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.limpiarCampos();
+                    }                       
+                    else
+                    {
+                        MessageBox.Show("Hubo un problema al registrar al socio, intente nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.limpiarCampos();
+                    }
+                        
+                }
+                else
+                {
+                    MessageBox.Show("Existe un socio con ese dni", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.limpiarCampos();
+                }
+            }
+            
+        }
+
+        
     }
 }

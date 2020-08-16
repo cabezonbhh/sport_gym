@@ -78,6 +78,10 @@ namespace SportGym.Service
 
             return lista;
         }
+        public bool existeSocioConDni(string dni)
+        {
+            return dao.existeSocioConDni(dni);
+        }
 
 
         public int registrarSocio(DTO_Socio dto)

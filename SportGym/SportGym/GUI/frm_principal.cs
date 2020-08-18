@@ -167,18 +167,19 @@ namespace SportGym.GUI
         private void btn_pagar_cuota_Click(object sender, EventArgs e)
         {
             bool control = false;
-
+            if(support.esUnNumero(txt_monto_pagar.Text)==true)
+            {
                 if (String.IsNullOrEmpty(txt_monto_pagar.Text) || Convert.ToDouble(txt_monto_pagar.Text) < 0)
                 {
                     MessageBox.Show("No ingreso un monto valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txt_monto_pagar.Clear();                
+                    txt_monto_pagar.Clear();
                 }
                 else
                 {
                     DialogResult respuesta = MessageBox.Show("¿Desea registrar el pago?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (respuesta == DialogResult.Yes)
                     {
-                        if(dgv_inscripciones.CurrentRow != null)
+                        if (dgv_inscripciones.CurrentRow != null)
                         {
                             int nroS = Convert.ToInt32(dgv_inscripciones.CurrentRow.Cells["col_nro_socio"].Value.ToString());
                             int nroI = Convert.ToInt32(svSocio.getSocio(nroS).Inscripcion);
@@ -208,15 +209,16 @@ namespace SportGym.GUI
                                 {
                                     MessageBox.Show("Error al registrar el pago, intente nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     txt_monto_pagar.Clear();
+                                }
                             }
                         }
-                    }
                         else
                         {
                             MessageBox.Show("No selecciono ningun socio", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                    }      
-                }           
+                    }
+                }
+            }
         }
 
         
@@ -246,6 +248,15 @@ namespace SportGym.GUI
                 string nombre = dgv_inscripciones.CurrentRow.Cells["col_nombre"].Value.ToString() + " " + dgv_inscripciones.CurrentRow.Cells["col_apellido"].Value.ToString();
                 Form historial = new frm_historial_pagos(id, nombre);
                 historial.ShowDialog();
+            }
+        }
+
+        private void btn_salir_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show("¿Desea salir?", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+            if (resultado == DialogResult.Yes)
+            {
+                Application.Exit();
             }
         }
     }

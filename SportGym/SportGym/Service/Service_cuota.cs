@@ -34,7 +34,7 @@ namespace SportGym.Service
         {
             Service_socio service = new Service_socio();
             Cuota cuota = service.getSocioEntidad(nroSocio).Inscripcion.getUltimoPago();
-            if (cuota.esVencida() == true)
+            if (cuota == null || cuota.esVencida() == true)
                 return true;
             else
                 return false;

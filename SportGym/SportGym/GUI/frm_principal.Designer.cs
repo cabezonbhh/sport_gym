@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_principal));
             this.panel_main = new System.Windows.Forms.Panel();
+            this.btn_salir = new System.Windows.Forms.Button();
             this.btn_historial_pago_socio = new System.Windows.Forms.Button();
             this.btn_cuotas = new System.Windows.Forms.Button();
             this.lbl_gym = new System.Windows.Forms.Label();
@@ -74,6 +75,7 @@
             // panel_main
             // 
             this.panel_main.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.panel_main.Controls.Add(this.btn_salir);
             this.panel_main.Controls.Add(this.btn_historial_pago_socio);
             this.panel_main.Controls.Add(this.btn_cuotas);
             this.panel_main.Controls.Add(this.lbl_gym);
@@ -84,6 +86,24 @@
             this.panel_main.Name = "panel_main";
             this.panel_main.Size = new System.Drawing.Size(270, 720);
             this.panel_main.TabIndex = 0;
+            // 
+            // btn_salir
+            // 
+            this.btn_salir.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btn_salir.FlatAppearance.BorderSize = 0;
+            this.btn_salir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btn_salir.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_salir.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_salir.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_salir.Image = global::SportGym.Properties.Resources.icons8_exit_sign_52px;
+            this.btn_salir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_salir.Location = new System.Drawing.Point(0, 656);
+            this.btn_salir.Name = "btn_salir";
+            this.btn_salir.Size = new System.Drawing.Size(270, 64);
+            this.btn_salir.TabIndex = 3;
+            this.btn_salir.Text = "     Salir";
+            this.btn_salir.UseVisualStyleBackColor = true;
+            this.btn_salir.Click += new System.EventHandler(this.btn_salir_Click);
             // 
             // btn_historial_pago_socio
             // 
@@ -269,6 +289,7 @@
             // 
             this.txt_monto_pagar.Enabled = false;
             this.txt_monto_pagar.Location = new System.Drawing.Point(333, 77);
+            this.txt_monto_pagar.MaxLength = 10;
             this.txt_monto_pagar.Name = "txt_monto_pagar";
             this.txt_monto_pagar.Size = new System.Drawing.Size(100, 20);
             this.txt_monto_pagar.TabIndex = 18;
@@ -488,5 +509,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ultimo_pago;
         private System.Windows.Forms.Button btn_refresh;
         private System.Windows.Forms.Button btn_historial_pago_socio;
+        private System.Windows.Forms.Button btn_salir;
     }
 }

@@ -14,9 +14,12 @@ namespace SportGym.Data
     {
         DBHelper helper = DBHelper.getDBHelper();
 
-        public int darBajaSocio(Socio socio)
+        public int darBajaSocio(int socio)
         {
-            throw new NotImplementedException();
+            string sp = "sp_baja_socio";
+            var parametro = new SqlParameter("@nroSocio", socio);
+            parametro.SqlDbType = SqlDbType.Int;
+            return helper.ejecutarStoredProcedureConUnParametro(sp,parametro);
         }
 
         public IList<Socio> getSocioPorDNI(string dni)
@@ -106,7 +109,38 @@ namespace SportGym.Data
 
         public int modificarSocio(Socio socio)
         {
-            throw new NotImplementedException();
+            string sp = "sp_modificar_socio";
+            SqlParameter[] parametros = new SqlParameter[7];
+
+            var param1 = new SqlParameter("@nroSocio", socio.NumeroSocio);
+            param1.SqlDbType = SqlDbType.VarChar;
+            parametros[0] = param1;
+
+            var param2 = new SqlParameter("@nombre", socio.Nombre);
+            param1.SqlDbType = SqlDbType.VarChar;
+            parametros[1] = param2;
+
+            var param3 = new SqlParameter("@apellido", socio.Apellido);
+            param2.SqlDbType = SqlDbType.VarChar;
+            parametros[2] = param3;
+
+            var param4 = new SqlParameter("@email", socio.Email);
+            param3.SqlDbType = SqlDbType.VarChar;
+            parametros[3] = param4;
+
+            var param5 = new SqlParameter("@telefono", socio.Telefono);
+            param4.SqlDbType = SqlDbType.VarChar;
+            parametros[4] = param5;
+
+            var param6= new SqlParameter("@celular", socio.Celular);
+            param5.SqlDbType = SqlDbType.VarChar;
+            parametros[5] = param6;
+
+            var param7= new SqlParameter("@dni", socio.Dni);
+            param6.SqlDbType = SqlDbType.VarChar;
+            parametros[6] = param7;
+
+            return helper.ejecutarStoredProcedureConParametros(sp, parametros);
         }
 
         public int registrarSocio(Socio socio)

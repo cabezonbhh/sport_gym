@@ -133,6 +133,16 @@ namespace SportGym.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_exit_sign_52px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_exit_sign_52px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_expired_52px {
             get {
                 object obj = ResourceManager.GetObject("icons8_expired_52px", resourceCulture);
@@ -166,6 +176,16 @@ namespace SportGym.Properties {
         internal static System.Drawing.Bitmap icons8_leave_52px {
             get {
                 object obj = ResourceManager.GetObject("icons8_leave_52px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_left_52px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_left_52px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -88,8 +88,17 @@ namespace SportGym.GUI.Socio
 
         private void btn_eliminar_Click(object sender, EventArgs e)
         {
-            Form eliminar = new frm_eliminar_socio();
-            eliminar.ShowDialog();
+            if(dgv_socios.CurrentRow != null)
+            {
+                int id = Convert.ToInt32(dgv_socios.CurrentRow.Cells["col_nro"].Value.ToString());
+                DTO_Socio dto = svSocio.getSocio(id);
+                Form eliminar = new frm_eliminar_socio(dto);
+                eliminar.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No selecciono ningun socio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void cargarGrilla(IList<DTO_Socio> lista)
@@ -181,6 +190,11 @@ namespace SportGym.GUI.Socio
         private void btn_refresh_socio_Click(object sender, EventArgs e)
         {
             cargarGrilla(svSocio.getSocios());
+        }
+
+        private void btn_atras_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

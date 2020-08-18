@@ -21,6 +21,32 @@ namespace SportGym.GUI
             return instance;
         }
 
+        public bool esUnNumero(string cadena)
+        {
+            try
+            {
+                Convert.ToInt32(cadena);
+                return true;
+            }
+            catch (FormatException fe)
+            {
+                MessageBox.Show("Error, no ha ingresado un numero","Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        public bool esUnNumeroSinAdvertencia(string cadena)
+        {
+            try
+            {
+                Convert.ToInt32(cadena);
+                return true;
+            }
+            catch (FormatException fe)
+            {              
+                return false;
+            }
+        }
         public void soloLetrasNumeros(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
             if (char.IsDigit(e.KeyChar))

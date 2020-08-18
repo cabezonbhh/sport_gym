@@ -58,9 +58,9 @@
             this.lbl_advertencia_celular.AutoSize = true;
             this.lbl_advertencia_celular.Location = new System.Drawing.Point(169, 198);
             this.lbl_advertencia_celular.Name = "lbl_advertencia_celular";
-            this.lbl_advertencia_celular.Size = new System.Drawing.Size(118, 13);
+            this.lbl_advertencia_celular.Size = new System.Drawing.Size(301, 13);
             this.lbl_advertencia_celular.TabIndex = 41;
-            this.lbl_advertencia_celular.Text = "(Maximo 12 Caracteres)";
+            this.lbl_advertencia_celular.Text = "(Maximo 12 Caracteres). Solo numeros, sin guiones o espacios";
             this.lbl_advertencia_celular.Visible = false;
             // 
             // lbl_advertencia_telefono
@@ -68,9 +68,9 @@
             this.lbl_advertencia_telefono.AutoSize = true;
             this.lbl_advertencia_telefono.Location = new System.Drawing.Point(169, 157);
             this.lbl_advertencia_telefono.Name = "lbl_advertencia_telefono";
-            this.lbl_advertencia_telefono.Size = new System.Drawing.Size(118, 13);
+            this.lbl_advertencia_telefono.Size = new System.Drawing.Size(301, 13);
             this.lbl_advertencia_telefono.TabIndex = 40;
-            this.lbl_advertencia_telefono.Text = "(Maximo 12 Caracteres)";
+            this.lbl_advertencia_telefono.Text = "(Maximo 12 Caracteres). Solo numeros, sin guiones o espacios";
             this.lbl_advertencia_telefono.Visible = false;
             // 
             // lbl_advertencia_dni
@@ -78,9 +78,9 @@
             this.lbl_advertencia_dni.AutoSize = true;
             this.lbl_advertencia_dni.Location = new System.Drawing.Point(169, 120);
             this.lbl_advertencia_dni.Name = "lbl_advertencia_dni";
-            this.lbl_advertencia_dni.Size = new System.Drawing.Size(118, 13);
+            this.lbl_advertencia_dni.Size = new System.Drawing.Size(188, 13);
             this.lbl_advertencia_dni.TabIndex = 39;
-            this.lbl_advertencia_dni.Text = "(Maximo 10 Caracteres)";
+            this.lbl_advertencia_dni.Text = "(Maximo 10 Caracteres). Solo numeros";
             this.lbl_advertencia_dni.Visible = false;
             // 
             // lbl_advertencia_mail
@@ -131,6 +131,7 @@
             this.btn_salir_editar.TabIndex = 34;
             this.btn_salir_editar.Text = "Salir";
             this.btn_salir_editar.UseVisualStyleBackColor = true;
+            this.btn_salir_editar.Click += new System.EventHandler(this.btn_salir_editar_Click);
             // 
             // txt_celular
             // 
@@ -252,6 +253,7 @@
             this.btn_guardar.Text = "Guardar";
             this.btn_guardar.UseVisualStyleBackColor = true;
             this.btn_guardar.Visible = false;
+            this.btn_guardar.Click += new System.EventHandler(this.btn_guardar_Click);
             // 
             // check_editar
             // 
@@ -268,7 +270,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(449, 301);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(474, 301);
             this.Controls.Add(this.check_editar);
             this.Controls.Add(this.lbl_advertencia_celular);
             this.Controls.Add(this.lbl_advertencia_telefono);
@@ -292,6 +295,8 @@
             this.Controls.Add(this.lbl_nombre);
             this.Controls.Add(this.btn_guardar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frm_editar_socio";
             this.Text = "Ver/Editar socio";
             this.Load += new System.EventHandler(this.frm_editar_socio_Load);

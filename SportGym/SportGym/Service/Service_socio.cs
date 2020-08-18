@@ -88,5 +88,15 @@ namespace SportGym.Service
         {
             return dao.registrarSocio(mapSocio.getSocio(dto));
         }
+
+        public bool modificarSocio(DTO_Socio dto)
+        {
+            return dao.modificarSocio(mapSocio.getSocio(dto)) == 1;
+        }
+
+        public bool eliminarSocio(int nro)
+        {
+            return dao.darBajaSocio(nro) == 2;
+        }
     }
 }

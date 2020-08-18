@@ -11,7 +11,7 @@ namespace SportGym.Interface
         IList<Socio> getSocios();
         int registrarSocio(Socio socio);
         int modificarSocio(Socio socio);
-        int darBajaSocio(Socio socio);
+        int darBajaSocio(int socio);
         Socio getSocioPorNumero(int nro);
         IList<Socio> getSocioPorDNI(string dni);
         IList<Socio> getSociosPorNombre(string nombre);

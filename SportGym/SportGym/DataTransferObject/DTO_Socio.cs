@@ -15,6 +15,9 @@ namespace SportGym.DataTransferObject
         public string Celular { get; set; }
         public string Email { get; set; }
         public string Dni { get; set; }
-        public string Inscripcion{ get; set; }
+        public string Inscripcion { get; set; }
+        public string HoraInicio { get; set; }
+        public string HoraFin { get; set; }
+
     }
 }

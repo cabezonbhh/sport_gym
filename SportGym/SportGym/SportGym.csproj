@@ -54,15 +54,40 @@
     <Compile Include="DataTransferObject\DTO_Inscripcion.cs" />
     <Compile Include="DataTransferObject\DTO_Pagar_Cuota.cs" />
     <Compile Include="DataTransferObject\DTO_Socio.cs" />
+    <Compile Include="Data\DAO\DAO_Estadisticas.cs" />
     <Compile Include="Data\DAO\DAO_Cuota.cs" />
     <Compile Include="Data\DAO\DAO_Inscripcion.cs" />
     <Compile Include="Data\DAO\DAO_Socio.cs" />
     <Compile Include="Data\DBHelper.cs" />
+    <Compile Include="GUI\Cuota\frm_vencidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Cuota\frm_vencidos.Designer.cs">
+      <DependentUpon>frm_vencidos.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Cuota\frm_historial_pagos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GUI\Cuota\frm_historial_pagos.Designer.cs">
       <DependentUpon>frm_historial_pagos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\frm_estadisticas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\frm_estadisticas.Designer.cs">
+      <DependentUpon>frm_estadisticas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Horarios\frm_horarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Horarios\frm_horarios.Designer.cs">
+      <DependentUpon>frm_horarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUI\Horarios\frm_horarios_automaticos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Horarios\frm_horarios_automaticos.Designer.cs">
+      <DependentUpon>frm_horarios_automaticos.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Socio\frm_editar_socio.cs">
       <SubType>Form</SubType>
@@ -96,6 +121,7 @@
     </Compile>
     <Compile Include="GUI\Support.cs" />
     <Compile Include="Interface\IDAO_Cuota.cs" />
+    <Compile Include="Interface\IDAO_Estadisticas.cs" />
     <Compile Include="Interface\IDAO_Inscripcion.cs" />
     <Compile Include="Interface\IDAO_Socio.cs" />
     <Compile Include="Mapper\MapperCuota.cs" />
@@ -104,10 +130,23 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Service_cuota.cs" />
+    <Compile Include="Service\Service_estadisticas.cs" />
     <Compile Include="Service\Service_Inscripcion.cs" />
     <Compile Include="Service\Service_socio.cs" />
+    <EmbeddedResource Include="GUI\Cuota\frm_vencidos.resx">
+      <DependentUpon>frm_vencidos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Cuota\frm_historial_pagos.resx">
       <DependentUpon>frm_historial_pagos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\frm_estadisticas.resx">
+      <DependentUpon>frm_estadisticas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Horarios\frm_horarios.resx">
+      <DependentUpon>frm_horarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUI\Horarios\frm_horarios_automaticos.resx">
+      <DependentUpon>frm_horarios_automaticos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Socio\frm_editar_socio.resx">
       <DependentUpon>frm_editar_socio.cs</DependentUpon>
@@ -236,6 +275,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8_left_52px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_clock_52px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_coronavirus_26px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_expired_52px1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8_statistics_52px.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

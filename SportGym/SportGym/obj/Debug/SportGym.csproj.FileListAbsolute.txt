@@ -23,3 +23,7 @@ T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.S
 T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_nuevo_socio.resources
 T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Socio.frm_principal_socio.resources
 T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Cuota.frm_historial_pagos.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_horarios.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Horarios.frm_horarios_automaticos.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Cuota.frm_vencidos.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_estadisticas.resources

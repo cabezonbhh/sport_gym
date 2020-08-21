@@ -78,6 +78,34 @@ namespace SportGym.Service
 
             return lista;
         }
+
+        public IList<DTO_Socio> getSociosHorarios(string inicio, string fin)
+        {
+
+            IList<DTO_Socio> lista = new List<DTO_Socio>();
+            IList<Socio> listaSocios = dao.getSocioPorHorario(inicio,fin);
+            foreach (Socio socio in listaSocios)
+            {
+                lista.Add(mapSocio.getDtoSocio(socio));
+            }
+
+            return lista;
+        }
+        public IList<DTO_Socio> getSociosVencidos()
+        {
+            IList<DTO_Socio> lista = new List<DTO_Socio>();
+            IList<Socio> listaSocios = dao.getSocios();
+            Cuota aux = new Cuota();
+            foreach (Socio socio in listaSocios)
+            {
+                if(socio.Inscripcion.getUltimoPago().esVencida() == true)
+                {
+                    lista.Add(mapSocio.getDtoSocio(socio));
+                }             
+            }
+
+            return lista;
+        }
         public bool existeSocioConDni(string dni)
         {
             return dao.existeSocioConDni(dni);

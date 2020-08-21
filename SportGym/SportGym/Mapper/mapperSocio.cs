@@ -21,6 +21,8 @@ namespace SportGym.Mapper
             dto.Telefono = socio.Telefono;
             dto.Celular = socio.Celular;
             dto.Inscripcion = socio.Inscripcion.CodInscripcion.ToString();
+            dto.HoraInicio = socio.HoraInicio;
+            dto.HoraFin = socio.HoraFin;
             return dto;
         }
 
@@ -34,6 +36,8 @@ namespace SportGym.Mapper
             socio.Email = dto.Email;
             socio.Telefono = dto.Telefono;
             socio.Celular = dto.Celular;
+            socio.HoraInicio = dto.HoraInicio;
+            socio.HoraFin = dto.HoraFin;
             return socio;
         }
     }

@@ -12,6 +12,7 @@ using SportGym.Service;
 using SportGym.DataTransferObject;
 using SportGym.GUI.Socio;
 using SportGym.GUI.Cuota;
+using SportGym.GUI.Horarios;
 
 namespace SportGym.GUI
 {
@@ -38,9 +39,13 @@ namespace SportGym.GUI
             svInscripcion = new Service_Inscripcion();
             svCuota = new Service_cuota();
             svSocio = new Service_socio();
-            this.cargarGrillaInscripciones();          
+            this.cargarGrillaInscripciones();
+            Form aux = new frm_horarios_automaticos();
+            aux.Show();
+            //this.WindowState = FormWindowState.Maximized; para que la ventana inicie maximizada
         }
 
+        
         private void pic_close_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show("¿Desea cerrar la aplicacion?", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
@@ -166,30 +171,31 @@ namespace SportGym.GUI
 
         private void btn_pagar_cuota_Click(object sender, EventArgs e)
         {
-            bool control = false;
-            if(support.esUnNumero(txt_monto_pagar.Text)==true)
+            bool control = false; //variable para controlar el resultado 
+            if (dgv_inscripciones.CurrentRow != null)//valido que haya seleccionado una fila
             {
-                if (String.IsNullOrEmpty(txt_monto_pagar.Text) || Convert.ToDouble(txt_monto_pagar.Text) < 0)
+                int nroS = Convert.ToInt32(dgv_inscripciones.CurrentRow.Cells["col_nro_socio"].Value.ToString());
+                string nombre = dgv_inscripciones.CurrentRow.Cells["col_nombre"].Value.ToString();
+                string apellido = dgv_inscripciones.CurrentRow.Cells["col_apellido"].Value.ToString();
+                int nroI = Convert.ToInt32(svSocio.getSocio(nroS).Inscripcion);
+                if (svCuota.tieneQuePagar(nroS) == false)//valido que el socio tenga la cuota vencida
                 {
-                    MessageBox.Show("No ingreso un monto valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("La ultima cuota no se encuentra vencida", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     txt_monto_pagar.Clear();
                 }
                 else
                 {
-                    DialogResult respuesta = MessageBox.Show("¿Desea registrar el pago?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (respuesta == DialogResult.Yes)
+                    if (support.esUnNumero(txt_monto_pagar.Text) == true)
                     {
-                        if (dgv_inscripciones.CurrentRow != null)
+                        if (String.IsNullOrEmpty(txt_monto_pagar.Text) || Convert.ToDouble(txt_monto_pagar.Text) < 0)
                         {
-                            int nroS = Convert.ToInt32(dgv_inscripciones.CurrentRow.Cells["col_nro_socio"].Value.ToString());
-                            int nroI = Convert.ToInt32(svSocio.getSocio(nroS).Inscripcion);
-
-                            if (svCuota.tieneQuePagar(nroS) == false)
-                            {
-                                MessageBox.Show("No tiene que pagar", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                                txt_monto_pagar.Clear();
-                            }
-                            else
+                            MessageBox.Show("No ingreso un monto valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txt_monto_pagar.Clear();
+                        }
+                        else
+                        {
+                            DialogResult respuesta = MessageBox.Show("¿Desea registrar el pago de " +nombre+" "+apellido + "?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (respuesta == DialogResult.Yes)
                             {
                                 DTO_Pagar_Cuota dtoNuevaCuota = new DTO_Pagar_Cuota();
                                 dtoNuevaCuota.NroSocio = nroS.ToString();
@@ -200,7 +206,7 @@ namespace SportGym.GUI
                                 control = svCuota.registrarNuevaCuota(dtoNuevaCuota);
                                 if (control == true)
                                 {
-                                    MessageBox.Show("Pago registrado con exito", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                    MessageBox.Show("Pago registrado con exito", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     dgv_inscripciones.Rows.Clear();
                                     cargarGrillaInscripciones();
                                     txt_monto_pagar.Clear();
@@ -212,13 +218,17 @@ namespace SportGym.GUI
                                 }
                             }
                         }
-                        else
-                        {
-                            MessageBox.Show("No selecciono ningun socio", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
+                    }
+                    else
+                    {
+                        txt_monto_pagar.Clear();
                     }
                 }
             }
+            else
+            {
+                MessageBox.Show("No selecciono ningun socio", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }       
         }
 
         
@@ -227,12 +237,6 @@ namespace SportGym.GUI
         {
             Form aux = new frm_principal_socio();
             aux.ShowDialog();      
-        }
-
-        private void btn_refresh_Click(object sender, EventArgs e)
-        {
-            dgv_inscripciones.Rows.Clear();
-            this.cargarGrillaInscripciones();
         }
 
         private void txt_monto_pagar_KeyPress(object sender, KeyPressEventArgs e)
@@ -258,6 +262,46 @@ namespace SportGym.GUI
             {
                 Application.Exit();
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lbl_fecha.Text = DateTime.Now.ToShortDateString();
+            lbl_hora_chico.Text = DateTime.Now.ToLongTimeString();
+        }
+
+        private void frm_principal_Load(object sender, EventArgs e)
+        {
+            timer1.Start();
+        }
+
+        private void btn_horarios_Click(object sender, EventArgs e)
+        {
+            Form horario = new frm_horarios();
+            horario.Show();
+        }
+
+        private void btn_covid_Click(object sender, EventArgs e)
+        {
+            Form aux = new frm_horarios_automaticos();
+            aux.Show();
+        }
+
+        private void btn_vencidos_Click(object sender, EventArgs e)
+        {
+            Form aux = new frm_vencidos();
+            aux.Show();
+        }
+
+        private void btn_refresh_socio_Click(object sender, EventArgs e)
+        {
+            cargarGrillaInscripciones();
+        }
+
+        private void btn_estadisticas_Click(object sender, EventArgs e)
+        {
+            Form aux = new frm_estadisticas();
+            aux.Show();
         }
     }
 }

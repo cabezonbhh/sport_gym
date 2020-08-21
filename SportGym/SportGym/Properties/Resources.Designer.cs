@@ -83,6 +83,26 @@ namespace SportGym.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_clock_52px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_clock_52px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_coronavirus_26px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_coronavirus_26px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_curls_with_dumbbells_26px {
             get {
                 object obj = ResourceManager.GetObject("icons8_curls_with_dumbbells_26px", resourceCulture);
@@ -146,6 +166,16 @@ namespace SportGym.Properties {
         internal static System.Drawing.Bitmap icons8_expired_52px {
             get {
                 object obj = ResourceManager.GetObject("icons8_expired_52px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_expired_52px1 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_expired_52px1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -296,6 +326,16 @@ namespace SportGym.Properties {
         internal static System.Drawing.Bitmap icons8_restore_down_32px {
             get {
                 object obj = ResourceManager.GetObject("icons8_restore_down_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_statistics_52px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_statistics_52px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

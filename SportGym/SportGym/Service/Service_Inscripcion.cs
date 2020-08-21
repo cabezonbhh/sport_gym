@@ -47,6 +47,26 @@ namespace SportGym.Service
             }
             return listaDTO;
         }
+        public IList<DTO_Inscripcion> getInscripcionesVencidas()
+        {
+            IList<DTO_Inscripcion> listaDTO = new List<DTO_Inscripcion>();
+            IList<Inscripcion> listaInscripciones = daoInscripcion.getInscripcionesActivas();
+            Socio socio = null;
+            Cuota cuota = null;
+            if (listaInscripciones != null)
+            {
+                foreach (Inscripcion inscripcion in listaInscripciones)
+                {
+                    socio = daoSocio.getSocioPorNumero(inscripcion.NroSocio);
+                    cuota = inscripcion.getUltimoPago();
+                    if(cuota != null && cuota.esVencida() == true)
+                    {
+                        listaDTO.Add(mapInscripcion.getDtoInscripcion(inscripcion, socio, cuota));
+                    }                  
+                }
+            }
+            return listaDTO;
+        }
 
 
     }

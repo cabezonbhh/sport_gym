@@ -31,18 +31,5 @@ namespace SportGym.Business
         {
             return null;
         }
-
-        public IList<Cuota> getCuotasVencidas()
-        {
-            return null;
-        }
-
-        public bool pagarCuota(Cuota cuota)
-        {
-            return false;
-        }
-
-       
-
     }
 }

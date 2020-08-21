@@ -110,7 +110,7 @@ namespace SportGym.Data
         public int modificarSocio(Socio socio)
         {
             string sp = "sp_modificar_socio";
-            SqlParameter[] parametros = new SqlParameter[7];
+            SqlParameter[] parametros = new SqlParameter[9];
 
             var param1 = new SqlParameter("@nroSocio", socio.NumeroSocio);
             param1.SqlDbType = SqlDbType.VarChar;
@@ -140,13 +140,21 @@ namespace SportGym.Data
             param6.SqlDbType = SqlDbType.VarChar;
             parametros[6] = param7;
 
+            var param8 = new SqlParameter("@horaInicio", socio.HoraInicio);
+            param8.SqlDbType = SqlDbType.Time;
+            parametros[7] = param8;
+
+            var param9 = new SqlParameter("@horaFin", socio.HoraFin);
+            param9.SqlDbType = SqlDbType.Time;
+            parametros[8] = param9;
+
             return helper.ejecutarStoredProcedureConParametros(sp, parametros);
         }
 
         public int registrarSocio(Socio socio)
         {
             string sp = "sp_registrar_socio";
-            SqlParameter[] parametros = new SqlParameter[6];
+            SqlParameter[] parametros = new SqlParameter[8];
 
             var param1 = new SqlParameter("@nombre", socio.Nombre);
             param1.SqlDbType = SqlDbType.VarChar;
@@ -172,6 +180,14 @@ namespace SportGym.Data
             param6.SqlDbType = SqlDbType.VarChar;
             parametros[5] = param6;
 
+            var param7 = new SqlParameter("@horaInicio", socio.HoraInicio);
+            param7.SqlDbType = SqlDbType.VarChar;
+            parametros[6] = param7;
+
+            var param8 = new SqlParameter("@horaFin", socio.HoraFin);
+            param8.SqlDbType = SqlDbType.VarChar ;
+            parametros[7] = param8;
+
             return helper.ejecutarStoredProcedureConParametros(sp,parametros);
         }
 
@@ -186,8 +202,34 @@ namespace SportGym.Data
             socio.Telefono = fila[4].ToString();
             socio.Celular = fila[5].ToString();
             socio.Dni = fila[6].ToString();
+            socio.HoraInicio = fila[8].ToString();
+            socio.HoraFin = fila[9].ToString();
             socio.Inscripcion = dao.getInscripcionActiva(socio.NumeroSocio);
             return socio;
         }
+
+        public IList<Socio> getSocioPorHorario(string inicio, string fin)
+        {
+            string sp = "sp_listar_socios_por_hora";
+            SqlParameter[] parametros = new SqlParameter[2];
+
+            var parametro = new SqlParameter("@horaInicio", inicio);
+            parametro.SqlDbType = SqlDbType.VarChar;
+            parametros[0] = parametro;
+
+            var parametro2 = new SqlParameter("@horaFin", fin);
+            parametro2.SqlDbType = SqlDbType.VarChar;
+            parametros[1] = parametro2;
+
+            IList<Socio> listaSocios = new List<Socio>();
+            DataTable tabla = helper.consultarStoredProcedureConParametros(sp, parametros);
+            foreach (DataRow fila in tabla.Rows)
+            {
+               listaSocios.Add(mapper(fila));
+            }
+            return listaSocios;
+        }
+
+       
     }
 }

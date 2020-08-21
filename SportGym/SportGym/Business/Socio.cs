@@ -16,6 +16,8 @@ namespace SportGym.Business
         public string Email { get; set; }
         public string Dni { get; set; }
         public Inscripcion Inscripcion { get; set; }
+        public string HoraInicio { get; set; }
+        public string HoraFin { get; set; }
 
         public Socio()
         {
@@ -27,7 +29,8 @@ namespace SportGym.Business
             this.Celular = "N/D";
             this.Email = "N/D";
             this.Inscripcion = new Inscripcion();
-
+            this.HoraInicio = "N/D";
+            this.HoraFin = "N/D";
         }
 
     }

@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_principal_socio));
             this.panel_main = new System.Windows.Forms.Panel();
             this.btn_atras = new System.Windows.Forms.Button();
             this.panel_cuota = new System.Windows.Forms.Panel();
@@ -62,10 +63,8 @@
             this.pic_close = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel_filtros = new System.Windows.Forms.Panel();
-            this.txt_filtro_dni = new System.Windows.Forms.TextBox();
             this.txt_filtro_apellido = new System.Windows.Forms.TextBox();
             this.txt_filtro_nombre = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dgv_socios = new System.Windows.Forms.DataGridView();
@@ -106,6 +105,7 @@
             // 
             // btn_atras
             // 
+            this.btn_atras.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btn_atras.FlatAppearance.BorderSize = 0;
             this.btn_atras.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btn_atras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -449,10 +449,8 @@
             // 
             // panel_filtros
             // 
-            this.panel_filtros.Controls.Add(this.txt_filtro_dni);
             this.panel_filtros.Controls.Add(this.txt_filtro_apellido);
             this.panel_filtros.Controls.Add(this.txt_filtro_nombre);
-            this.panel_filtros.Controls.Add(this.label2);
             this.panel_filtros.Controls.Add(this.label3);
             this.panel_filtros.Controls.Add(this.label4);
             this.panel_filtros.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -461,57 +459,43 @@
             this.panel_filtros.Size = new System.Drawing.Size(1010, 136);
             this.panel_filtros.TabIndex = 5;
             // 
-            // txt_filtro_dni
-            // 
-            this.txt_filtro_dni.Location = new System.Drawing.Point(419, 19);
-            this.txt_filtro_dni.Name = "txt_filtro_dni";
-            this.txt_filtro_dni.Size = new System.Drawing.Size(113, 20);
-            this.txt_filtro_dni.TabIndex = 9;
-            this.txt_filtro_dni.TextChanged += new System.EventHandler(this.txt_filtro_dni_TextChanged);
-            this.txt_filtro_dni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_filtro_dni_KeyPress);
-            // 
             // txt_filtro_apellido
             // 
-            this.txt_filtro_apellido.Location = new System.Drawing.Point(65, 57);
+            this.txt_filtro_apellido.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_filtro_apellido.Location = new System.Drawing.Point(476, 40);
             this.txt_filtro_apellido.Name = "txt_filtro_apellido";
-            this.txt_filtro_apellido.Size = new System.Drawing.Size(202, 20);
+            this.txt_filtro_apellido.Size = new System.Drawing.Size(202, 33);
             this.txt_filtro_apellido.TabIndex = 8;
             this.txt_filtro_apellido.TextChanged += new System.EventHandler(this.txt_filtro_apellido_TextChanged);
             this.txt_filtro_apellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_filtro_apellido_KeyPress);
             // 
             // txt_filtro_nombre
             // 
-            this.txt_filtro_nombre.Location = new System.Drawing.Point(65, 19);
+            this.txt_filtro_nombre.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_filtro_nombre.Location = new System.Drawing.Point(104, 39);
             this.txt_filtro_nombre.Name = "txt_filtro_nombre";
-            this.txt_filtro_nombre.Size = new System.Drawing.Size(202, 20);
+            this.txt_filtro_nombre.Size = new System.Drawing.Size(202, 33);
             this.txt_filtro_nombre.TabIndex = 7;
             this.txt_filtro_nombre.TextChanged += new System.EventHandler(this.txt_filtro_nombre_TextChanged);
             this.txt_filtro_nombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_filtro_nombre_KeyPress);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(384, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "DNI:";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 60);
+            this.label3.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(382, 42);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.Size = new System.Drawing.Size(88, 26);
             this.label3.TabIndex = 2;
             this.label3.Text = "Apellido:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 22);
+            this.label4.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(10, 42);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(47, 13);
+            this.label4.Size = new System.Drawing.Size(88, 26);
             this.label4.TabIndex = 0;
             this.label4.Text = "Nombre:";
             // 
@@ -520,9 +504,6 @@
             this.dgv_socios.AllowUserToAddRows = false;
             this.dgv_socios.AllowUserToDeleteRows = false;
             this.dgv_socios.AllowUserToOrderColumns = true;
-            this.dgv_socios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_socios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_socios.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -593,9 +574,10 @@
             this.Controls.Add(this.panel_titulo);
             this.Controls.Add(this.panel_main);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_principal_socio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frm_principal_socio";
+            this.Text = "Socios";
             this.Load += new System.EventHandler(this.frm_principal_socio_Load);
             this.panel_main.ResumeLayout(false);
             this.panel_main.PerformLayout();
@@ -647,10 +629,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_dni;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel_filtros;
-        private System.Windows.Forms.TextBox txt_filtro_dni;
         private System.Windows.Forms.TextBox txt_filtro_apellido;
         private System.Windows.Forms.TextBox txt_filtro_nombre;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dgv_socios;

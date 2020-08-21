@@ -158,33 +158,20 @@ namespace SportGym.GUI.Socio
             }
         }
 
-        private void txt_filtro_dni_TextChanged(object sender, EventArgs e)
-        {
-            dgv_socios.Rows.Clear();
-            if (!String.IsNullOrWhiteSpace(txt_filtro_nombre.Text))
-            {
-                cargarGrilla(svSocio.getSocioPorDni(txt_filtro_dni.Text));
-            }
-            else
-            {
-                dgv_socios.Rows.Clear();
-                cargarGrilla(svSocio.getSocios());
-            }
-        }
 
         private void txt_filtro_nombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            support.soloLetrasSiEspacioConAdvertencia(sender,e);
+            support.soloLetrasSiEspacio(sender,e);
         }
 
         private void txt_filtro_apellido_KeyPress(object sender, KeyPressEventArgs e)
         {
-            support.soloLetrasSiEspacioConAdvertencia(sender, e);
+            support.soloLetrasSiEspacio(sender, e);
         }
 
         private void txt_filtro_dni_KeyPress(object sender, KeyPressEventArgs e)
         {
-            support.soloNumerosConAdvertencia(sender, e);
+            support.soloNumeros(sender, e);
         }
 
         private void btn_refresh_socio_Click(object sender, EventArgs e)

@@ -16,12 +16,38 @@ namespace SportGym.GUI
     {
         private DTO_Socio seleccionado;
         private Service_socio service = null;
+        Support support = Support.GetSupport();
         public frm_editar_socio(DTO_Socio seleccionado)
         {
             InitializeComponent();
             this.seleccionado = seleccionado;
             service = new Service_socio();
         }
+        private void llenarCombos()
+        {
+            //combo de inicio
+            combo_inicio.Items.Add("08:00");
+            combo_inicio.Items.Add("09:00");
+            combo_inicio.Items.Add("10:00");
+            combo_inicio.Items.Add("11:00");
+            combo_inicio.Items.Add("16:00");
+            combo_inicio.Items.Add("17:00");
+            combo_inicio.Items.Add("18:00");
+            combo_inicio.Items.Add("19:00");
+            combo_inicio.Items.Add("20:00");
+            combo_inicio.Items.Add("21:00");
+            //combo de fin
+            combo_fin.Items.Add("09:00");
+            combo_fin.Items.Add("10:00");
+            combo_fin.Items.Add("11:00");
+            combo_fin.Items.Add("17:00");
+            combo_fin.Items.Add("18:00");
+            combo_fin.Items.Add("19:00");
+            combo_fin.Items.Add("20:00");
+            combo_fin.Items.Add("21:00");
+            combo_fin.Items.Add("22:00");
+        }
+
 
         public void llenarCampos()
         {
@@ -33,6 +59,8 @@ namespace SportGym.GUI
                 txt_mail.Text = seleccionado.Email;
                 txt_celular.Text = seleccionado.Celular; ;
                 txt_telefono.Text = seleccionado.Telefono;
+                combo_inicio.Items.Add(seleccionado.HoraInicio);
+                combo_fin.Items.Add(seleccionado.HoraFin);
             }
             else
             {
@@ -83,6 +111,7 @@ namespace SportGym.GUI
                 lbl_advertencia_celular.Visible = true;
                 lbl_advertencia_telefono.Visible = true;
                 lbl_info.Visible = true;
+                llenarCombos();
             }
         }
 
@@ -100,9 +129,9 @@ namespace SportGym.GUI
 
         private void btn_guardar_Click(object sender, EventArgs e)
         {
-            if(!String.IsNullOrWhiteSpace(txt_nombre.Text) && !String.IsNullOrWhiteSpace(txt_apellido.Text) && check_editar.Checked == true && validarMaximoCaracteres() == 6)
+            if(!String.IsNullOrWhiteSpace(txt_nombre.Text) && !String.IsNullOrWhiteSpace(txt_apellido.Text) && check_editar.Checked == true)
             {
-                if(validarMaximoCaracteres() == 6 && validarFormatoCampos()==true)
+                if(support.esUnNumeroSinAdvertencia(txt_dni.Text) == true && support.esUnNumeroSinAdvertencia(txt_celular.Text) == true && support.esUnNumeroSinAdvertencia(txt_telefono.Text) == true)
                 {
                     DTO_Socio dto = new DTO_Socio();
                     dto.NumeroSocio = seleccionado.NumeroSocio;
@@ -124,49 +153,39 @@ namespace SportGym.GUI
                             llenarCampos();
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show("Hay un problema de formato en alguno de los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
-                {
-                    MessageBox.Show("Alguno de los campos no respeta el formato indicado, revise e intente nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            {
+                MessageBox.Show("El campo nombre o apellido se encuentra vacio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private bool validarFormatoCampos()
+        private void txt_nombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            Support support = Support.GetSupport();
-            int control = 0;
-
-            if(support.esUnNumeroSinAdvertencia(txt_dni.Text) == true)
-            {
-                control++;
-            }
-            if (support.esUnNumeroSinAdvertencia(txt_celular.Text) == true) 
-            {
-                control++;
-            }
-            if (support.esUnNumeroSinAdvertencia(txt_telefono.Text) == true) 
-            {
-                control++;
-            }
-            return control == 3;
+            support.soloLetrasSiEspacio(sender,e);
         }
-        private int validarMaximoCaracteres()
+
+        private void txt_apellido_KeyPress(object sender, KeyPressEventArgs e)
         {
-            int contador = 0;
-            if (txt_nombre.TextLength < 51)
-                contador++;
-            if (txt_apellido.TextLength < 51)
-                contador++;
-            if (txt_mail.TextLength < 81)
-                contador++;
-            if (txt_dni.TextLength < 11)
-                contador++;
-            if (txt_telefono.TextLength < 13)
-                contador++;
-            if (txt_celular.TextLength < 13)
-                contador++;
-            return contador;
+            support.soloLetrasSiEspacio(sender, e);
+        }
+        private void txt_dni_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            support.soloNumeros(sender, e);
+        }
+
+        private void txt_telefono_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            support.soloNumeros(sender, e);
+        }
+
+        private void txt_celular_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            support.soloNumeros(sender, e);
         }
     }
 }

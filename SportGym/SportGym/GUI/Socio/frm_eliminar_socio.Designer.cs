@@ -101,6 +101,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frm_eliminar_socio";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Eliminar";
             this.Load += new System.EventHandler(this.frm_eliminar_socio_Load);
             this.ResumeLayout(false);

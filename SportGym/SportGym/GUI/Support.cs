@@ -23,29 +23,43 @@ namespace SportGym.GUI
 
         public bool esUnNumero(string cadena)
         {
-            try
+            if (String.IsNullOrWhiteSpace(cadena))
             {
-                Convert.ToInt32(cadena);
                 return true;
             }
-            catch (FormatException fe)
+            else
             {
-                MessageBox.Show("Error, no ha ingresado un numero","Error", MessageBoxButtons.OK,MessageBoxIcon.Error);
-                return false;
+                try
+                {
+                    Convert.ToDouble(cadena);
+                    return true;
+                }
+                catch (FormatException fe)
+                {
+                    MessageBox.Show("Error, no ha ingresado un numero", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
         }
 
         public bool esUnNumeroSinAdvertencia(string cadena)
         {
-            try
+            if(String.IsNullOrWhiteSpace(cadena))
             {
-                Convert.ToInt32(cadena);
                 return true;
             }
-            catch (FormatException fe)
-            {              
-                return false;
-            }
+            else
+            {
+                try
+                {
+                    Convert.ToDouble(cadena);
+                    return true;
+                }
+                catch (FormatException fe)
+                {
+                    return false;
+                }
+            }                        
         }
         public void soloLetrasNumeros(object sender, System.Windows.Forms.KeyPressEventArgs e)
         {
@@ -327,6 +341,61 @@ namespace SportGym.GUI
             {
                 e.Handled = true;
                 MessageBox.Show("No se permiten numeros", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                if (char.IsControl(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    if (char.IsSymbol(e.KeyChar))
+                    {
+                        e.Handled = true;
+                    }
+                    else
+                    {
+                        if (char.IsSeparator(e.KeyChar))
+                        {
+                            e.Handled = false;
+                        }
+                        else
+                        {
+                            if (char.IsWhiteSpace(e.KeyChar))
+                            {
+                                e.Handled = false;
+                            }
+                            else
+                            {
+                                if (char.IsLetter(e.KeyChar))
+                                {
+                                    e.Handled = false;
+                                }
+                                else
+                                {
+                                    if (char.IsLetter(e.KeyChar))
+                                    {
+                                        e.Handled = false;
+                                    }
+                                    else
+                                    {
+                                        e.Handled = true;
+                                        MessageBox.Show("Solo letras", "Informacion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        public void soloLetrasSiEspacio(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
             else
             {

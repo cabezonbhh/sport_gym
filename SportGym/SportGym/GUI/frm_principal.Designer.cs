@@ -28,18 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_principal));
             this.panel_main = new System.Windows.Forms.Panel();
+            this.btn_estadisticas = new System.Windows.Forms.Button();
+            this.btn_vencidos = new System.Windows.Forms.Button();
+            this.btn_horarios = new System.Windows.Forms.Button();
+            this.lbl_hora_chico = new System.Windows.Forms.Label();
             this.btn_salir = new System.Windows.Forms.Button();
+            this.lbl_fecha = new System.Windows.Forms.Label();
             this.btn_historial_pago_socio = new System.Windows.Forms.Button();
-            this.btn_cuotas = new System.Windows.Forms.Button();
             this.lbl_gym = new System.Windows.Forms.Label();
             this.btn_socios = new System.Windows.Forms.Button();
             this.pic_gym = new System.Windows.Forms.PictureBox();
             this.panel_titulo = new System.Windows.Forms.Panel();
-            this.btn_refresh = new System.Windows.Forms.Button();
+            this.btn_refresh_socio = new System.Windows.Forms.Button();
+            this.btn_covid = new System.Windows.Forms.Button();
             this.pic_restaurar = new System.Windows.Forms.PictureBox();
             this.pic_maximizar = new System.Windows.Forms.PictureBox();
             this.pic_min = new System.Windows.Forms.PictureBox();
@@ -60,6 +66,7 @@
             this.col_fecha_vto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_ultimo_pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel_main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_gym)).BeginInit();
             this.panel_titulo.SuspendLayout();
@@ -75,9 +82,13 @@
             // panel_main
             // 
             this.panel_main.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.panel_main.Controls.Add(this.btn_estadisticas);
+            this.panel_main.Controls.Add(this.btn_vencidos);
+            this.panel_main.Controls.Add(this.btn_horarios);
+            this.panel_main.Controls.Add(this.lbl_hora_chico);
             this.panel_main.Controls.Add(this.btn_salir);
+            this.panel_main.Controls.Add(this.lbl_fecha);
             this.panel_main.Controls.Add(this.btn_historial_pago_socio);
-            this.panel_main.Controls.Add(this.btn_cuotas);
             this.panel_main.Controls.Add(this.lbl_gym);
             this.panel_main.Controls.Add(this.btn_socios);
             this.panel_main.Controls.Add(this.pic_gym);
@@ -86,6 +97,68 @@
             this.panel_main.Name = "panel_main";
             this.panel_main.Size = new System.Drawing.Size(270, 720);
             this.panel_main.TabIndex = 0;
+            // 
+            // btn_estadisticas
+            // 
+            this.btn_estadisticas.FlatAppearance.BorderSize = 0;
+            this.btn_estadisticas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btn_estadisticas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_estadisticas.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_estadisticas.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_estadisticas.Image = global::SportGym.Properties.Resources.icons8_statistics_52px;
+            this.btn_estadisticas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_estadisticas.Location = new System.Drawing.Point(0, 435);
+            this.btn_estadisticas.Name = "btn_estadisticas";
+            this.btn_estadisticas.Size = new System.Drawing.Size(270, 64);
+            this.btn_estadisticas.TabIndex = 8;
+            this.btn_estadisticas.Text = "     Estadisticas";
+            this.btn_estadisticas.UseVisualStyleBackColor = true;
+            this.btn_estadisticas.Click += new System.EventHandler(this.btn_estadisticas_Click);
+            // 
+            // btn_vencidos
+            // 
+            this.btn_vencidos.FlatAppearance.BorderSize = 0;
+            this.btn_vencidos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btn_vencidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_vencidos.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_vencidos.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_vencidos.Image = global::SportGym.Properties.Resources.icons8_expired_52px1;
+            this.btn_vencidos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_vencidos.Location = new System.Drawing.Point(0, 365);
+            this.btn_vencidos.Name = "btn_vencidos";
+            this.btn_vencidos.Size = new System.Drawing.Size(270, 64);
+            this.btn_vencidos.TabIndex = 7;
+            this.btn_vencidos.Text = "     Vencidos";
+            this.btn_vencidos.UseVisualStyleBackColor = true;
+            this.btn_vencidos.Click += new System.EventHandler(this.btn_vencidos_Click);
+            // 
+            // btn_horarios
+            // 
+            this.btn_horarios.FlatAppearance.BorderSize = 0;
+            this.btn_horarios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btn_horarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_horarios.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_horarios.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_horarios.Image = global::SportGym.Properties.Resources.icons8_clock_52px;
+            this.btn_horarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_horarios.Location = new System.Drawing.Point(0, 295);
+            this.btn_horarios.Name = "btn_horarios";
+            this.btn_horarios.Size = new System.Drawing.Size(270, 64);
+            this.btn_horarios.TabIndex = 6;
+            this.btn_horarios.Text = "     Horarios";
+            this.btn_horarios.UseVisualStyleBackColor = true;
+            this.btn_horarios.Click += new System.EventHandler(this.btn_horarios_Click);
+            // 
+            // lbl_hora_chico
+            // 
+            this.lbl_hora_chico.AutoSize = true;
+            this.lbl_hora_chico.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_hora_chico.ForeColor = System.Drawing.Color.White;
+            this.lbl_hora_chico.Location = new System.Drawing.Point(12, 115);
+            this.lbl_hora_chico.Name = "lbl_hora_chico";
+            this.lbl_hora_chico.Size = new System.Drawing.Size(61, 29);
+            this.lbl_hora_chico.TabIndex = 4;
+            this.lbl_hora_chico.Text = "hora";
             // 
             // btn_salir
             // 
@@ -105,6 +178,17 @@
             this.btn_salir.UseVisualStyleBackColor = true;
             this.btn_salir.Click += new System.EventHandler(this.btn_salir_Click);
             // 
+            // lbl_fecha
+            // 
+            this.lbl_fecha.AutoSize = true;
+            this.lbl_fecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_fecha.ForeColor = System.Drawing.Color.White;
+            this.lbl_fecha.Location = new System.Drawing.Point(118, 83);
+            this.lbl_fecha.Name = "lbl_fecha";
+            this.lbl_fecha.Size = new System.Drawing.Size(71, 29);
+            this.lbl_fecha.TabIndex = 5;
+            this.lbl_fecha.Text = "fecha";
+            // 
             // btn_historial_pago_socio
             // 
             this.btn_historial_pago_socio.FlatAppearance.BorderSize = 0;
@@ -114,29 +198,13 @@
             this.btn_historial_pago_socio.ForeColor = System.Drawing.SystemColors.Control;
             this.btn_historial_pago_socio.Image = global::SportGym.Properties.Resources.icons8_general_ledger_52px;
             this.btn_historial_pago_socio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_historial_pago_socio.Location = new System.Drawing.Point(0, 295);
+            this.btn_historial_pago_socio.Location = new System.Drawing.Point(0, 225);
             this.btn_historial_pago_socio.Name = "btn_historial_pago_socio";
             this.btn_historial_pago_socio.Size = new System.Drawing.Size(270, 64);
             this.btn_historial_pago_socio.TabIndex = 2;
             this.btn_historial_pago_socio.Text = "     Historial de pagos";
             this.btn_historial_pago_socio.UseVisualStyleBackColor = true;
             this.btn_historial_pago_socio.Click += new System.EventHandler(this.btn_historial_pago_socio_Click);
-            // 
-            // btn_cuotas
-            // 
-            this.btn_cuotas.FlatAppearance.BorderSize = 0;
-            this.btn_cuotas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btn_cuotas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_cuotas.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_cuotas.ForeColor = System.Drawing.SystemColors.Control;
-            this.btn_cuotas.Image = global::SportGym.Properties.Resources.icons8_average_2_52px;
-            this.btn_cuotas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_cuotas.Location = new System.Drawing.Point(0, 225);
-            this.btn_cuotas.Name = "btn_cuotas";
-            this.btn_cuotas.Size = new System.Drawing.Size(270, 64);
-            this.btn_cuotas.TabIndex = 1;
-            this.btn_cuotas.Text = "     Ultimos pagos";
-            this.btn_cuotas.UseVisualStyleBackColor = true;
             // 
             // lbl_gym
             // 
@@ -179,7 +247,8 @@
             // panel_titulo
             // 
             this.panel_titulo.BackColor = System.Drawing.SystemColors.Control;
-            this.panel_titulo.Controls.Add(this.btn_refresh);
+            this.panel_titulo.Controls.Add(this.btn_refresh_socio);
+            this.panel_titulo.Controls.Add(this.btn_covid);
             this.panel_titulo.Controls.Add(this.pic_restaurar);
             this.panel_titulo.Controls.Add(this.pic_maximizar);
             this.panel_titulo.Controls.Add(this.pic_min);
@@ -191,22 +260,39 @@
             this.panel_titulo.TabIndex = 1;
             this.panel_titulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_titulo_MouseDown);
             // 
-            // btn_refresh
+            // btn_refresh_socio
             // 
-            this.btn_refresh.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btn_refresh.FlatAppearance.BorderSize = 0;
-            this.btn_refresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btn_refresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_refresh.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_refresh.ForeColor = System.Drawing.SystemColors.Control;
-            this.btn_refresh.Image = global::SportGym.Properties.Resources.icons8_restart_26px;
-            this.btn_refresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_refresh.Location = new System.Drawing.Point(15, 6);
-            this.btn_refresh.Name = "btn_refresh";
-            this.btn_refresh.Size = new System.Drawing.Size(36, 38);
-            this.btn_refresh.TabIndex = 19;
-            this.btn_refresh.UseVisualStyleBackColor = false;
-            this.btn_refresh.Click += new System.EventHandler(this.btn_refresh_Click);
+            this.btn_refresh_socio.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btn_refresh_socio.FlatAppearance.BorderSize = 0;
+            this.btn_refresh_socio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btn_refresh_socio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_refresh_socio.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_refresh_socio.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_refresh_socio.Image = global::SportGym.Properties.Resources.icons8_restart_26px;
+            this.btn_refresh_socio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_refresh_socio.Location = new System.Drawing.Point(59, 6);
+            this.btn_refresh_socio.Name = "btn_refresh_socio";
+            this.btn_refresh_socio.Size = new System.Drawing.Size(36, 38);
+            this.btn_refresh_socio.TabIndex = 21;
+            this.btn_refresh_socio.UseVisualStyleBackColor = false;
+            this.btn_refresh_socio.Click += new System.EventHandler(this.btn_refresh_socio_Click);
+            // 
+            // btn_covid
+            // 
+            this.btn_covid.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btn_covid.FlatAppearance.BorderSize = 0;
+            this.btn_covid.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.btn_covid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_covid.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_covid.ForeColor = System.Drawing.SystemColors.Control;
+            this.btn_covid.Image = global::SportGym.Properties.Resources.icons8_coronavirus_26px;
+            this.btn_covid.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_covid.Location = new System.Drawing.Point(15, 6);
+            this.btn_covid.Name = "btn_covid";
+            this.btn_covid.Size = new System.Drawing.Size(38, 38);
+            this.btn_covid.TabIndex = 20;
+            this.btn_covid.UseVisualStyleBackColor = false;
+            this.btn_covid.Click += new System.EventHandler(this.btn_covid_Click);
             // 
             // pic_restaurar
             // 
@@ -280,67 +366,71 @@
             this.panel_botones_cuota.Controls.Add(this.dtp_fecha_inicio);
             this.panel_botones_cuota.Controls.Add(this.btn_pagar_cuota);
             this.panel_botones_cuota.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_botones_cuota.Location = new System.Drawing.Point(0, 534);
+            this.panel_botones_cuota.Location = new System.Drawing.Point(0, 556);
             this.panel_botones_cuota.Name = "panel_botones_cuota";
-            this.panel_botones_cuota.Size = new System.Drawing.Size(1010, 136);
+            this.panel_botones_cuota.Size = new System.Drawing.Size(1010, 114);
             this.panel_botones_cuota.TabIndex = 5;
             // 
             // txt_monto_pagar
             // 
             this.txt_monto_pagar.Enabled = false;
-            this.txt_monto_pagar.Location = new System.Drawing.Point(333, 77);
+            this.txt_monto_pagar.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_monto_pagar.Location = new System.Drawing.Point(609, 36);
             this.txt_monto_pagar.MaxLength = 10;
             this.txt_monto_pagar.Name = "txt_monto_pagar";
-            this.txt_monto_pagar.Size = new System.Drawing.Size(100, 20);
+            this.txt_monto_pagar.Size = new System.Drawing.Size(100, 33);
             this.txt_monto_pagar.TabIndex = 18;
             this.txt_monto_pagar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_monto_pagar_KeyPress);
             // 
             // lbl_monto
             // 
             this.lbl_monto.AutoSize = true;
-            this.lbl_monto.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_monto.Location = new System.Drawing.Point(272, 76);
+            this.lbl_monto.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_monto.Location = new System.Drawing.Point(527, 39);
             this.lbl_monto.Name = "lbl_monto";
-            this.lbl_monto.Size = new System.Drawing.Size(55, 19);
+            this.lbl_monto.Size = new System.Drawing.Size(76, 26);
             this.lbl_monto.TabIndex = 17;
             this.lbl_monto.Text = "Monto:";
             // 
             // lbl_fecha_fin
             // 
             this.lbl_fecha_fin.AutoSize = true;
-            this.lbl_fecha_fin.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_fecha_fin.Location = new System.Drawing.Point(28, 76);
+            this.lbl_fecha_fin.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_fecha_fin.Location = new System.Drawing.Point(276, 41);
             this.lbl_fecha_fin.Name = "lbl_fecha_fin";
-            this.lbl_fecha_fin.Size = new System.Drawing.Size(74, 19);
+            this.lbl_fecha_fin.Size = new System.Drawing.Size(99, 26);
             this.lbl_fecha_fin.TabIndex = 16;
             this.lbl_fecha_fin.Text = "Fecha Fin:";
             // 
             // dtp_fecha_vto
             // 
             this.dtp_fecha_vto.Enabled = false;
+            this.dtp_fecha_vto.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_fecha_vto.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_fecha_vto.Location = new System.Drawing.Point(108, 76);
+            this.dtp_fecha_vto.Location = new System.Drawing.Point(381, 36);
             this.dtp_fecha_vto.Name = "dtp_fecha_vto";
-            this.dtp_fecha_vto.Size = new System.Drawing.Size(99, 20);
+            this.dtp_fecha_vto.Size = new System.Drawing.Size(132, 33);
             this.dtp_fecha_vto.TabIndex = 15;
             // 
             // lbl_fecha_inicio
             // 
             this.lbl_fecha_inicio.AutoSize = true;
-            this.lbl_fecha_inicio.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_fecha_inicio.Location = new System.Drawing.Point(12, 36);
+            this.lbl_fecha_inicio.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_fecha_inicio.Location = new System.Drawing.Point(11, 41);
             this.lbl_fecha_inicio.Name = "lbl_fecha_inicio";
-            this.lbl_fecha_inicio.Size = new System.Drawing.Size(90, 19);
+            this.lbl_fecha_inicio.Size = new System.Drawing.Size(119, 26);
             this.lbl_fecha_inicio.TabIndex = 14;
             this.lbl_fecha_inicio.Text = "Fecha Inicio:";
             // 
             // dtp_fecha_inicio
             // 
+            this.dtp_fecha_inicio.CalendarFont = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_fecha_inicio.Enabled = false;
+            this.dtp_fecha_inicio.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_fecha_inicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_fecha_inicio.Location = new System.Drawing.Point(108, 36);
+            this.dtp_fecha_inicio.Location = new System.Drawing.Point(136, 36);
             this.dtp_fecha_inicio.Name = "dtp_fecha_inicio";
-            this.dtp_fecha_inicio.Size = new System.Drawing.Size(99, 20);
+            this.dtp_fecha_inicio.Size = new System.Drawing.Size(132, 33);
             this.dtp_fecha_inicio.TabIndex = 13;
             // 
             // btn_pagar_cuota
@@ -354,7 +444,7 @@
             this.btn_pagar_cuota.ForeColor = System.Drawing.SystemColors.Control;
             this.btn_pagar_cuota.Image = global::SportGym.Properties.Resources.icons8_get_cash_50px;
             this.btn_pagar_cuota.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_pagar_cuota.Location = new System.Drawing.Point(722, 36);
+            this.btn_pagar_cuota.Location = new System.Drawing.Point(728, 36);
             this.btn_pagar_cuota.Name = "btn_pagar_cuota";
             this.btn_pagar_cuota.Size = new System.Drawing.Size(270, 64);
             this.btn_pagar_cuota.TabIndex = 12;
@@ -403,7 +493,7 @@
             this.dgv_inscripciones.RowHeadersVisible = false;
             this.dgv_inscripciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgv_inscripciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_inscripciones.Size = new System.Drawing.Size(983, 533);
+            this.dgv_inscripciones.Size = new System.Drawing.Size(983, 544);
             this.dgv_inscripciones.TabIndex = 4;
             this.dgv_inscripciones.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_inscripciones_CellFormatting_1);
             this.dgv_inscripciones.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_inscripciones_CellMouseClick);
@@ -450,6 +540,10 @@
             this.col_ultimo_pago.Name = "col_ultimo_pago";
             this.col_ultimo_pago.ReadOnly = true;
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // frm_principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -462,7 +556,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_principal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " ";
+            this.Text = " Principal";
+            this.Load += new System.EventHandler(this.frm_principal_Load);
             this.panel_main.ResumeLayout(false);
             this.panel_main.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_gym)).EndInit();
@@ -488,7 +583,6 @@
         private System.Windows.Forms.Label lbl_gym;
         private System.Windows.Forms.PictureBox pic_min;
         private System.Windows.Forms.PictureBox pic_close;
-        private System.Windows.Forms.Button btn_cuotas;
         private System.Windows.Forms.Button btn_socios;
         private System.Windows.Forms.PictureBox pic_restaurar;
         private System.Windows.Forms.PictureBox pic_maximizar;
@@ -507,8 +601,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_fecha_vto;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ultimo_pago;
-        private System.Windows.Forms.Button btn_refresh;
         private System.Windows.Forms.Button btn_historial_pago_socio;
         private System.Windows.Forms.Button btn_salir;
+        private System.Windows.Forms.Label lbl_hora_chico;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lbl_fecha;
+        private System.Windows.Forms.Button btn_horarios;
+        private System.Windows.Forms.Button btn_covid;
+        private System.Windows.Forms.Button btn_vencidos;
+        private System.Windows.Forms.Button btn_estadisticas;
+        private System.Windows.Forms.Button btn_refresh_socio;
     }
 }

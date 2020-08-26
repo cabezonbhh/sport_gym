@@ -17,7 +17,7 @@ namespace SportGym.Service
             if (dao != null)
                 return dao.getSociosActivos();
             else
-                return 0;
+                return -1;
         }
 
         public int getSociosVencidos()
@@ -25,7 +25,7 @@ namespace SportGym.Service
             if (dao != null)
                 return dao.getCuotasVencidas();
             else
-                return 0;
+                return -1;
         }
 
         public double getIngresosEstimados()
@@ -33,7 +33,7 @@ namespace SportGym.Service
             if (dao != null)
                 return dao.getIngresosEstimados();
             else
-                return 0;
+                return -1;
         }
 
         public double getIngresosReales()
@@ -41,7 +41,7 @@ namespace SportGym.Service
             if (dao != null)
                 return dao.getIngresosReales();
             else
-                return 0;
+                return -1;
         }
     }
 }

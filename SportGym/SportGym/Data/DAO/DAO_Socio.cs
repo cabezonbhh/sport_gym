@@ -30,9 +30,12 @@ namespace SportGym.Data
 
             IList<Socio> listaSocios = new List<Socio>();
             DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp, parametro);
-            foreach (DataRow fila in tabla.Rows)
+            if(tabla != null)
             {
-                listaSocios.Add(mapper(fila));
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    listaSocios.Add(mapper(fila));
+                }               
             }
             return listaSocios;
         }
@@ -58,9 +61,12 @@ namespace SportGym.Data
             Socio socio = new Socio();
 
             DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp, parametro);
-            foreach (DataRow fila in tabla.Rows)
+            if(tabla != null)
             {
-                socio = mapper(fila);
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    socio = mapper(fila);
+                }                
             }
             return socio;
         }
@@ -70,9 +76,13 @@ namespace SportGym.Data
             DataTable tabla = helper.consultarStoredProcedure("sp_listar_socios_activos");
 
             IList<Socio>listaSocios = new List<Socio>();
-            foreach (DataRow fila in tabla.Rows)
+            
+            if(tabla != null)
             {
-                listaSocios.Add(mapper(fila));
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    listaSocios.Add(mapper(fila));
+                }                
             }
             return listaSocios;
         }
@@ -85,9 +95,12 @@ namespace SportGym.Data
 
             IList<Socio> listaSocios = new List<Socio>();
             DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp, parametro);
-            foreach (DataRow fila in tabla.Rows)
+            if(tabla != null)
             {
-                listaSocios.Add(mapper(fila));
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    listaSocios.Add(mapper(fila));
+                }
             }
             return listaSocios;
         }
@@ -100,9 +113,12 @@ namespace SportGym.Data
 
             IList<Socio> listaSocios = new List<Socio>();
             DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp, parametro);
-            foreach (DataRow fila in tabla.Rows)
+            if(tabla != null)
             {
-                listaSocios.Add(mapper(fila));
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    listaSocios.Add(mapper(fila));
+                }
             }
             return listaSocios;
         }
@@ -223,9 +239,12 @@ namespace SportGym.Data
 
             IList<Socio> listaSocios = new List<Socio>();
             DataTable tabla = helper.consultarStoredProcedureConParametros(sp, parametros);
-            foreach (DataRow fila in tabla.Rows)
+            if(tabla != null)
             {
-               listaSocios.Add(mapper(fila));
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    listaSocios.Add(mapper(fila));
+                }
             }
             return listaSocios;
         }

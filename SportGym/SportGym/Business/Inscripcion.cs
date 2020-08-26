@@ -13,6 +13,13 @@ namespace SportGym.Business
         public int NroSocio { get; set; }
         public IList<Cuota> Cuotas { get; set; }
 
+        public Inscripcion()
+        {
+            this.CodInscripcion = -99;
+            this.FechaAlta = (DateTime.Now.AddYears(-1000));
+            this.NroSocio = -99;
+            this.Cuotas = new List<Cuota>();
+        }
         public Cuota getUltimoPago()
         {
             DateTime mayor = new DateTime(2000, 1, 1, 0, 0, 0);

@@ -24,9 +24,12 @@ namespace SportGym.Data
 
             DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp,parametro);
             IList<Cuota> listaCuotas = new List<Cuota>();
-            foreach (DataRow fila in tabla.Rows)
+            if(tabla != null)
             {
-                listaCuotas.Add(mapper(fila));
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    listaCuotas.Add(mapper(fila));
+                }
             }
             return listaCuotas;
         }
@@ -40,9 +43,12 @@ namespace SportGym.Data
 
             DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp, parametro);
             IList<Cuota> listaCuotas = new List<Cuota>();
-            foreach (DataRow fila in tabla.Rows)
+            if(tabla != null)
             {
-                listaCuotas.Add(mapper(fila));
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    listaCuotas.Add(mapper(fila));
+                }
             }
             return listaCuotas;
         }

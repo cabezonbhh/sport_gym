@@ -28,12 +28,13 @@ namespace SportGym.GUI.Socio
         }
         Service_socio svSocio;
         Support support = Support.GetSupport();
+
         public frm_principal_socio()
         {
             InitializeComponent();
             svSocio = new Service_socio();
         }
-
+      
         private void pic_close_Click(object sender, EventArgs e)
         {
             this.Dispose();
@@ -60,8 +61,14 @@ namespace SportGym.GUI.Socio
 
         private void btn_nuevo_Click(object sender, EventArgs e)
         {
-            Form nuevo = new frm_nuevo_socio();
-            nuevo.ShowDialog();
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frm_principal_socio);
+            if(frm != null || frm.IsDisposed==false)
+            {
+                
+                Form nuevo = new frm_nuevo_socio();
+                nuevo.ShowDialog();
+            }
+           
         }
 
         private void btn_ver_editar_Click(object sender, EventArgs e)
@@ -100,12 +107,13 @@ namespace SportGym.GUI.Socio
                 MessageBox.Show("No selecciono ningun socio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void cargarGrilla(IList<DTO_Socio> lista)
+        
+        public  void cargarGrilla(IList<DTO_Socio> lista)
         {
             dgv_socios.Rows.Clear();
-            if (lista != null)
+            if (lista != null && lista.Count > 0)
             {
+                habilitarBotonesNoError();
                 foreach (DTO_Socio dto in lista)
                 {
                     dgv_socios.Rows.Add(new Object[]
@@ -118,15 +126,19 @@ namespace SportGym.GUI.Socio
                         );
                 }
             }
-            else
-            {
-                MessageBox.Show("No hay datos para mostrar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
-
+      
         private void frm_principal_socio_Load(object sender, EventArgs e)
         {
             cargarGrilla(svSocio.getSocios());
+        }
+        
+        private void habilitarBotonesNoError()
+        {
+            btn_eliminar.Enabled = true;
+            btn_ver_editar.Enabled = true;
+            txt_filtro_nombre.Enabled = true;
+            txt_filtro_apellido.Enabled = true;
         }
 
 
@@ -183,5 +195,7 @@ namespace SportGym.GUI.Socio
         {
             this.Dispose();
         }
+
+       
     }
 }

@@ -25,6 +25,8 @@ namespace SportGym.GUI
         }
         private void llenarCombos()
         {
+            combo_inicio.Items.Clear();
+            combo_fin.Items.Clear();
             //combo de inicio
             combo_inicio.Items.Add("08:00");
             combo_inicio.Items.Add("09:00");
@@ -40,6 +42,7 @@ namespace SportGym.GUI
             combo_fin.Items.Add("09:00");
             combo_fin.Items.Add("10:00");
             combo_fin.Items.Add("11:00");
+            combo_fin.Items.Add("12:00");
             combo_fin.Items.Add("17:00");
             combo_fin.Items.Add("18:00");
             combo_fin.Items.Add("19:00");

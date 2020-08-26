@@ -15,6 +15,16 @@ namespace SportGym.Business
         public int NroCuota { get; set; }
         public int CodInscripcion { get; set; }
 
+        public Cuota()
+        {
+            this.FechaPago = DateTime.Now.AddYears(-1000);
+            this.FechaInicio = DateTime.Now.AddYears(-1000);
+            this.FechaFin = DateTime.Now.AddYears(-1000);
+            this.Monto = -99;
+            this.NroCuota = -99;
+            this.CodInscripcion = -99;
+        }
+
         public bool esVencida()
         {
             return FechaFin.Date < DateTime.Now.Date;
@@ -36,7 +46,7 @@ namespace SportGym.Business
                 if (esVencida() == true)
                     return "VENCIDA";
                 else
-                    return "VIGENTE";
+                    return "HABILITADA";
             }
             
         }

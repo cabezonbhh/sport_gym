@@ -1,4 +1,5 @@
 ﻿using SportGym.DataTransferObject;
+using SportGym.GUI.Socio;
 using SportGym.Service;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace SportGym.GUI
         {
             InitializeComponent();
             service = new Service_socio();// inicializo el service que se va a comunicar con el dao
-
+           
         }
         private void llenarCombos()
         {
@@ -38,6 +39,7 @@ namespace SportGym.GUI
             combo_fin.Items.Add("09:00");
             combo_fin.Items.Add("10:00");
             combo_fin.Items.Add("11:00");
+            combo_fin.Items.Add("12:00");
             combo_fin.Items.Add("17:00");
             combo_fin.Items.Add("18:00");
             combo_fin.Items.Add("19:00");
@@ -161,7 +163,7 @@ namespace SportGym.GUI
                         if (retorno == true)
                         {
                             MessageBox.Show("Socio registrado con exito", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.limpiarCampos();
+                            this.limpiarCampos();                         
                         }
                         else
                         {
@@ -215,8 +217,10 @@ namespace SportGym.GUI
         private void btn_cancelar_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show("¿Desea salir de esta ventana?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (resultado == DialogResult.Yes)
-                this.Dispose();
+            if (resultado == DialogResult.Yes)               
+            {
+                this.Dispose();              
+            }
         }
     }
 }

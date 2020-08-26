@@ -15,7 +15,10 @@ namespace SportGym.Data.DAO
         {
             string sp = "sp_listar_socios_con_cuota_vencida";
             DataTable tabla = helper.consultarStoredProcedure(sp);
-            return tabla.Rows.Count;           
+            if (tabla != null)
+                return tabla.Rows.Count;
+            else
+                return 0;
         }
 
         public double getIngresosEstimados()
@@ -23,9 +26,12 @@ namespace SportGym.Data.DAO
             string sp = "sp_ingresos_esperados_por_mes";
             double acumulador = 0;
             DataTable tabla = helper.consultarStoredProcedure(sp);
-            foreach(DataRow fila in tabla.Rows)
+            if(tabla != null)
             {
-                acumulador += Convert.ToDouble(fila[0].ToString());
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    acumulador += Convert.ToDouble(fila[0].ToString());
+                }
             }
             return acumulador;
         }
@@ -35,9 +41,12 @@ namespace SportGym.Data.DAO
             string sp = "sp_ingresos_reales";
             double acumulador = 0;
             DataTable tabla = helper.consultarStoredProcedure(sp);
-            foreach (DataRow fila in tabla.Rows)
+            if(tabla !=null)
             {
-                acumulador += Convert.ToDouble(fila[0].ToString());
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    acumulador += Convert.ToDouble(fila[0].ToString());
+                }
             }
             return acumulador;
         }
@@ -46,7 +55,10 @@ namespace SportGym.Data.DAO
         {
             string sp = "sp_listar_socios_activos";
             DataTable tabla = helper.consultarStoredProcedure(sp);
-            return tabla.Rows.Count;
+            if (tabla != null)
+                return tabla.Rows.Count;
+            else
+                return 0;
         }
     }
 }

@@ -21,9 +21,12 @@ namespace SportGym.Data
 
             DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp,parametro);
             Inscripcion inscripcion = new Inscripcion();
-            foreach (DataRow fila in tabla.Rows)
+            if(tabla != null)
             {
-                inscripcion = mapper(fila);              
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    inscripcion = mapper(fila);
+                }
             }
             return inscripcion;
         }
@@ -33,9 +36,12 @@ namespace SportGym.Data
             IList<Inscripcion> listaInscripciones = new List<Inscripcion>();
             DataTable tabla = helper.consultarStoredProcedure("sp_listar_inscripciones_activas");
             Inscripcion inscripcion = new Inscripcion();
-            foreach (DataRow fila in tabla.Rows)
+            if(tabla != null)
             {
-                listaInscripciones.Add(mapper(fila));
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    listaInscripciones.Add(mapper(fila));
+                }
             }
             return listaInscripciones;
         }

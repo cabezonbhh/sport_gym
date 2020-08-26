@@ -100,6 +100,7 @@
             // 
             // btn_estadisticas
             // 
+            this.btn_estadisticas.Enabled = false;
             this.btn_estadisticas.FlatAppearance.BorderSize = 0;
             this.btn_estadisticas.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btn_estadisticas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -117,6 +118,7 @@
             // 
             // btn_vencidos
             // 
+            this.btn_vencidos.Enabled = false;
             this.btn_vencidos.FlatAppearance.BorderSize = 0;
             this.btn_vencidos.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btn_vencidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -134,6 +136,7 @@
             // 
             // btn_horarios
             // 
+            this.btn_horarios.Enabled = false;
             this.btn_horarios.FlatAppearance.BorderSize = 0;
             this.btn_horarios.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btn_horarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -152,11 +155,11 @@
             // lbl_hora_chico
             // 
             this.lbl_hora_chico.AutoSize = true;
-            this.lbl_hora_chico.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_hora_chico.ForeColor = System.Drawing.Color.White;
+            this.lbl_hora_chico.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_hora_chico.ForeColor = System.Drawing.SystemColors.Control;
             this.lbl_hora_chico.Location = new System.Drawing.Point(12, 115);
             this.lbl_hora_chico.Name = "lbl_hora_chico";
-            this.lbl_hora_chico.Size = new System.Drawing.Size(61, 29);
+            this.lbl_hora_chico.Size = new System.Drawing.Size(65, 29);
             this.lbl_hora_chico.TabIndex = 4;
             this.lbl_hora_chico.Text = "hora";
             // 
@@ -181,16 +184,17 @@
             // lbl_fecha
             // 
             this.lbl_fecha.AutoSize = true;
-            this.lbl_fecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_fecha.ForeColor = System.Drawing.Color.White;
+            this.lbl_fecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_fecha.ForeColor = System.Drawing.SystemColors.Control;
             this.lbl_fecha.Location = new System.Drawing.Point(118, 83);
             this.lbl_fecha.Name = "lbl_fecha";
-            this.lbl_fecha.Size = new System.Drawing.Size(71, 29);
+            this.lbl_fecha.Size = new System.Drawing.Size(76, 29);
             this.lbl_fecha.TabIndex = 5;
             this.lbl_fecha.Text = "fecha";
             // 
             // btn_historial_pago_socio
             // 
+            this.btn_historial_pago_socio.Enabled = false;
             this.btn_historial_pago_socio.FlatAppearance.BorderSize = 0;
             this.btn_historial_pago_socio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btn_historial_pago_socio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -280,6 +284,7 @@
             // btn_covid
             // 
             this.btn_covid.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.btn_covid.Enabled = false;
             this.btn_covid.FlatAppearance.BorderSize = 0;
             this.btn_covid.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.btn_covid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -345,12 +350,10 @@
             // 
             // panel_cuota
             // 
-            this.panel_cuota.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel_cuota.BackColor = System.Drawing.SystemColors.Control;
             this.panel_cuota.Controls.Add(this.panel_botones_cuota);
             this.panel_cuota.Controls.Add(this.dgv_inscripciones);
+            this.panel_cuota.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_cuota.Location = new System.Drawing.Point(270, 50);
             this.panel_cuota.Name = "panel_cuota";
             this.panel_cuota.Size = new System.Drawing.Size(1010, 670);
@@ -444,7 +447,7 @@
             this.btn_pagar_cuota.ForeColor = System.Drawing.SystemColors.Control;
             this.btn_pagar_cuota.Image = global::SportGym.Properties.Resources.icons8_get_cash_50px;
             this.btn_pagar_cuota.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_pagar_cuota.Location = new System.Drawing.Point(728, 36);
+            this.btn_pagar_cuota.Location = new System.Drawing.Point(728, 23);
             this.btn_pagar_cuota.Name = "btn_pagar_cuota";
             this.btn_pagar_cuota.Size = new System.Drawing.Size(270, 64);
             this.btn_pagar_cuota.TabIndex = 12;
@@ -556,7 +559,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_principal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = " Principal";
+            this.Text = "Principal";
             this.Load += new System.EventHandler(this.frm_principal_Load);
             this.panel_main.ResumeLayout(false);
             this.panel_main.PerformLayout();

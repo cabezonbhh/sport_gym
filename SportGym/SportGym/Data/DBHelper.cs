@@ -49,7 +49,7 @@ namespace SportGym.Data
                 tabla.Load(cmd.ExecuteReader());
                 return tabla;
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("EXPLOTO EL HELPER", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw (ex);
@@ -114,7 +114,6 @@ namespace SportGym.Data
             SqlConnection cnn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             DataTable tabla = new DataTable();
-
             try
             {
                 cnn.ConnectionString = string_conexion;
@@ -126,10 +125,9 @@ namespace SportGym.Data
                 tabla.Load(cmd.ExecuteReader());
                 return tabla;
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("EXPLOTO EL HELPER", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw (ex);
+                return null;
             }
             finally
             {
@@ -141,7 +139,6 @@ namespace SportGym.Data
             SqlConnection cnn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             DataTable tabla = new DataTable();
-
             try
             {
                 cnn.ConnectionString = string_conexion;
@@ -153,10 +150,9 @@ namespace SportGym.Data
                 tabla.Load(cmd.ExecuteReader());
                 return tabla;
             }
-            catch (SqlException ex)
-            {
-                MessageBox.Show("EXPLOTO EL HELPER", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw (ex);
+            catch (Exception ex)
+            {               
+                return null;
             }
             finally
             {
@@ -168,7 +164,7 @@ namespace SportGym.Data
             SqlConnection cnn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             DataTable tabla = new DataTable();
-
+            int error = 0;
             try
             {
                 cnn.ConnectionString = string_conexion;
@@ -179,15 +175,15 @@ namespace SportGym.Data
                 tabla.Load(cmd.ExecuteReader());
                 return tabla;
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("EXPLOTO EL HELPER", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw (ex);
+                return null;
             }
             finally
             {
                 this.CloseConnection(cnn);
             }
+
         }
         public int ejecutarStoredProcedure(string sp)
         {
@@ -210,10 +206,9 @@ namespace SportGym.Data
                 resultado = cmd.ExecuteNonQuery();
                 transaction.Commit();            
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("EXPLOTO EL HELPER", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw (ex);
+                return 0;
             }
             finally
             {
@@ -244,10 +239,10 @@ namespace SportGym.Data
                 resultado = cmd.ExecuteNonQuery();
                 transaction.Commit();
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("EXPLOTO EL HELPER", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw (ex);
+                
+                return 0;
             }
             finally
             {
@@ -277,10 +272,10 @@ namespace SportGym.Data
                 resultado = cmd.ExecuteNonQuery();
                 transaction.Commit();
             }
-            catch (SqlException ex)
+            catch (Exception ex)
             {
-                MessageBox.Show("EXPLOTO EL HELPER", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw (ex);
+
+                return 0;
             }
             finally
             {

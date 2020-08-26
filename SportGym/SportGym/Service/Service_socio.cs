@@ -49,9 +49,12 @@ namespace SportGym.Service
         {
             IList<DTO_Socio> lista = new List<DTO_Socio>();
             IList<Socio> listaSocios = dao.getSocioPorDNI(dni);
-            foreach(Socio socio in listaSocios)
+            if(listaSocios != null)
             {
-                lista.Add(mapSocio.getDtoSocio(socio));
+                foreach (Socio socio in listaSocios)
+                {
+                    lista.Add(mapSocio.getDtoSocio(socio));
+                }
             }
             return lista;
         }
@@ -59,9 +62,12 @@ namespace SportGym.Service
         {
             IList<DTO_Socio> lista = new List<DTO_Socio>();
             IList<Socio> listaSocios = dao.getSociosPorNombre(nombre);
-            foreach (Socio socio in listaSocios)
+            if(listaSocios != null)
             {
-                lista.Add(mapSocio.getDtoSocio(socio));
+                foreach (Socio socio in listaSocios)
+                {
+                    lista.Add(mapSocio.getDtoSocio(socio));
+                }
             }
 
             return lista;
@@ -71,11 +77,14 @@ namespace SportGym.Service
         {
             IList<DTO_Socio> lista = new List<DTO_Socio>();
             IList<Socio> listaSocios = dao.getSociosPorApellido(apellido);
-            foreach (Socio socio in listaSocios)
+            if(listaSocios != null)
             {
-                lista.Add(mapSocio.getDtoSocio(socio));
-            }
+                foreach (Socio socio in listaSocios)
+                {
+                    lista.Add(mapSocio.getDtoSocio(socio));
+                }
 
+            }
             return lista;
         }
 
@@ -84,11 +93,13 @@ namespace SportGym.Service
 
             IList<DTO_Socio> lista = new List<DTO_Socio>();
             IList<Socio> listaSocios = dao.getSocioPorHorario(inicio,fin);
-            foreach (Socio socio in listaSocios)
+            if(listaSocios != null)
             {
-                lista.Add(mapSocio.getDtoSocio(socio));
+                foreach (Socio socio in listaSocios)
+                {
+                    lista.Add(mapSocio.getDtoSocio(socio));
+                }
             }
-
             return lista;
         }
         public IList<DTO_Socio> getSociosVencidos()
@@ -96,12 +107,15 @@ namespace SportGym.Service
             IList<DTO_Socio> lista = new List<DTO_Socio>();
             IList<Socio> listaSocios = dao.getSocios();
             Cuota aux = new Cuota();
-            foreach (Socio socio in listaSocios)
+            if(listaSocios != null)
             {
-                if(socio.Inscripcion.getUltimoPago().esVencida() == true)
+                foreach (Socio socio in listaSocios)
                 {
-                    lista.Add(mapSocio.getDtoSocio(socio));
-                }             
+                    if (socio.Inscripcion.getUltimoPago().esVencida() == true)
+                    {
+                        lista.Add(mapSocio.getDtoSocio(socio));
+                    }
+                }
             }
 
             return lista;

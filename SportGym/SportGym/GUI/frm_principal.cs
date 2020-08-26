@@ -33,6 +33,7 @@ namespace SportGym.GUI
         private Service_Inscripcion svInscripcion;
         private Service_cuota svCuota;
         private Service_socio svSocio;
+
         public frm_principal()
         {
             InitializeComponent();
@@ -40,8 +41,6 @@ namespace SportGym.GUI
             svCuota = new Service_cuota();
             svSocio = new Service_socio();
             this.cargarGrillaInscripciones();
-            Form aux = new frm_horarios_automaticos();
-            aux.Show();
             //this.WindowState = FormWindowState.Maximized; para que la ventana inicie maximizada
         }
 
@@ -86,8 +85,9 @@ namespace SportGym.GUI
         {
             IList<DTO_Inscripcion> inscripciones = svInscripcion.getInscripciones();
             dgv_inscripciones.Rows.Clear();
-            if(inscripciones != null)
+            if(inscripciones != null && inscripciones.Count > 0)
             {
+                habilitarBotonesNoError();
                 foreach (DTO_Inscripcion dto in inscripciones)
                 {
                     dgv_inscripciones.Rows.Add(new Object[]
@@ -148,6 +148,25 @@ namespace SportGym.GUI
         private void dgv_inscripciones_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             habilitarBotonesCuota();
+            if(dgv_inscripciones.CurrentRow != null && dgv_inscripciones.CurrentRow.Cells["col_fecha_vto"].Value.ToString().Equals("N/D")!=true)
+            {            
+                dtp_fecha_inicio.Value = Convert.ToDateTime(dgv_inscripciones.CurrentRow.Cells["col_fecha_vto"].Value.ToString());
+            }
+            else
+            {
+                dtp_fecha_inicio.Value = DateTime.Now;
+            }
+                
+        }
+
+        private void habilitarBotonesNoError()
+        {
+            btn_historial_pago_socio.Enabled = true; 
+            btn_horarios.Enabled = true;
+            btn_vencidos.Enabled = true;
+            btn_estadisticas.Enabled = true;
+            btn_covid.Enabled = true;
+            btn_refresh_socio.Enabled = true;
         }
         private void habilitarBotonesCuota()
         {
@@ -194,27 +213,34 @@ namespace SportGym.GUI
                         }
                         else
                         {
-                            DialogResult respuesta = MessageBox.Show("¿Desea registrar el pago de " +nombre+" "+apellido + "?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                            if (respuesta == DialogResult.Yes)
+                            if(dtp_fecha_vto.Value < dtp_fecha_inicio.Value)
                             {
-                                DTO_Pagar_Cuota dtoNuevaCuota = new DTO_Pagar_Cuota();
-                                dtoNuevaCuota.NroSocio = nroS.ToString();
-                                dtoNuevaCuota.NroInscripcion = nroI.ToString();
-                                dtoNuevaCuota.FechaInicio = dtp_fecha_inicio.Value.ToString();
-                                dtoNuevaCuota.FechaFin = dtp_fecha_vto.Value.ToString();
-                                dtoNuevaCuota.Monto = txt_monto_pagar.Text;
-                                control = svCuota.registrarNuevaCuota(dtoNuevaCuota);
-                                if (control == true)
+                                MessageBox.Show("No selecciono fechas o la fecha de vencimiento es anterior a la de inicio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                DialogResult respuesta = MessageBox.Show("¿Desea registrar el pago de " + nombre + " " + apellido + "?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (respuesta == DialogResult.Yes)
                                 {
-                                    MessageBox.Show("Pago registrado con exito", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    dgv_inscripciones.Rows.Clear();
-                                    cargarGrillaInscripciones();
-                                    txt_monto_pagar.Clear();
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Error al registrar el pago, intente nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    txt_monto_pagar.Clear();
+                                    DTO_Pagar_Cuota dtoNuevaCuota = new DTO_Pagar_Cuota();
+                                    dtoNuevaCuota.NroSocio = nroS.ToString();
+                                    dtoNuevaCuota.NroInscripcion = nroI.ToString();
+                                    dtoNuevaCuota.FechaInicio = dtp_fecha_inicio.Value.ToString();
+                                    dtoNuevaCuota.FechaFin = dtp_fecha_vto.Value.ToString();
+                                    dtoNuevaCuota.Monto = txt_monto_pagar.Text;
+                                    control = svCuota.registrarNuevaCuota(dtoNuevaCuota);
+                                    if (control == true)
+                                    {
+                                        MessageBox.Show("Pago registrado con exito", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        dgv_inscripciones.Rows.Clear();
+                                        cargarGrillaInscripciones();
+                                        txt_monto_pagar.Clear();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Error al registrar el pago, intente nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        txt_monto_pagar.Clear();
+                                    }
                                 }
                             }
                         }
@@ -235,8 +261,17 @@ namespace SportGym.GUI
 
         private void btn_socios_Click(object sender, EventArgs e)
         {
-            Form aux = new frm_principal_socio();
-            aux.ShowDialog();      
+            
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frm_principal_socio);
+            if (frm == null || frm.IsDisposed == true)
+            {
+                frm = new frm_principal_socio();
+                frm.Show();
+            }
+            else
+            {
+                frm.BringToFront();
+            }
         }
 
         private void txt_monto_pagar_KeyPress(object sender, KeyPressEventArgs e)
@@ -252,6 +287,11 @@ namespace SportGym.GUI
                 string nombre = dgv_inscripciones.CurrentRow.Cells["col_nombre"].Value.ToString() + " " + dgv_inscripciones.CurrentRow.Cells["col_apellido"].Value.ToString();
                 Form historial = new frm_historial_pagos(id, nombre);
                 historial.ShowDialog();
+
+            }
+            else
+            {
+                MessageBox.Show("No selecciono un socio", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -277,20 +317,44 @@ namespace SportGym.GUI
 
         private void btn_horarios_Click(object sender, EventArgs e)
         {
-            Form horario = new frm_horarios();
-            horario.Show();
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frm_horarios);
+            if (frm == null || frm.IsDisposed == true)
+            {
+                frm = new frm_horarios();
+                frm.Show();
+            }
+            else
+            {
+                frm.BringToFront();
+            }
         }
 
         private void btn_covid_Click(object sender, EventArgs e)
         {
-            Form aux = new frm_horarios_automaticos();
-            aux.Show();
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frm_horarios_automaticos);
+            if (frm == null || frm.IsDisposed == true)
+            {
+                frm = new frm_horarios_automaticos();
+                frm.Show();
+            }
+            else
+            {
+                frm.BringToFront();
+            }
         }
 
         private void btn_vencidos_Click(object sender, EventArgs e)
         {
-            Form aux = new frm_vencidos();
-            aux.Show();
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frm_vencidos);
+            if (frm == null || frm.IsDisposed == true)
+            {
+                frm = new frm_vencidos();
+                frm.Show();
+            }
+            else
+            {
+                frm.BringToFront();
+            }
         }
 
         private void btn_refresh_socio_Click(object sender, EventArgs e)
@@ -300,8 +364,28 @@ namespace SportGym.GUI
 
         private void btn_estadisticas_Click(object sender, EventArgs e)
         {
-            Form aux = new frm_estadisticas();
-            aux.Show();
+            //Otra forma de validar si fue desechado o no.
+            //if(fEstadisticas == null || fEstadisticas.IsDisposed == true) valida si fue desechado.
+            //{
+            //    fEstadisticas = new frm_estadisticas();
+            //    fEstadisticas.Show();
+            //}
+            //else
+            //{
+            //    fEstadisticas.Focus();
+            //    //fEstadisticas.BringToFront();
+            //}
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frm_estadisticas);
+            if (frm == null || frm.IsDisposed == true)
+            {
+                frm = new frm_estadisticas();
+                frm.Show();
+            }
+            else
+            {
+                frm.BringToFront();
+            }          
         }
+
     }
 }

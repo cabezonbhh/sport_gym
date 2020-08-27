@@ -100,7 +100,7 @@
             this.panel_main.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_main.Location = new System.Drawing.Point(0, 0);
             this.panel_main.Name = "panel_main";
-            this.panel_main.Size = new System.Drawing.Size(270, 720);
+            this.panel_main.Size = new System.Drawing.Size(260, 580);
             this.panel_main.TabIndex = 1;
             // 
             // btn_atras
@@ -113,9 +113,9 @@
             this.btn_atras.ForeColor = System.Drawing.SystemColors.Control;
             this.btn_atras.Image = global::SportGym.Properties.Resources.icons8_left_52px;
             this.btn_atras.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_atras.Location = new System.Drawing.Point(0, 656);
+            this.btn_atras.Location = new System.Drawing.Point(0, 516);
             this.btn_atras.Name = "btn_atras";
-            this.btn_atras.Size = new System.Drawing.Size(270, 64);
+            this.btn_atras.Size = new System.Drawing.Size(260, 64);
             this.btn_atras.TabIndex = 5;
             this.btn_atras.Text = "Atras";
             this.btn_atras.UseVisualStyleBackColor = true;
@@ -131,7 +131,7 @@
             this.panel_cuota.Controls.Add(this.dgv_inscripciones);
             this.panel_cuota.Location = new System.Drawing.Point(270, 50);
             this.panel_cuota.Name = "panel_cuota";
-            this.panel_cuota.Size = new System.Drawing.Size(1010, 670);
+            this.panel_cuota.Size = new System.Drawing.Size(1000, 530);
             this.panel_cuota.TabIndex = 4;
             // 
             // panel_botones_socio
@@ -145,9 +145,9 @@
             this.panel_botones_socio.Controls.Add(this.lbl_apellido);
             this.panel_botones_socio.Controls.Add(this.lbl_nombre);
             this.panel_botones_socio.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_botones_socio.Location = new System.Drawing.Point(0, 534);
+            this.panel_botones_socio.Location = new System.Drawing.Point(0, 394);
             this.panel_botones_socio.Name = "panel_botones_socio";
-            this.panel_botones_socio.Size = new System.Drawing.Size(1010, 136);
+            this.panel_botones_socio.Size = new System.Drawing.Size(1000, 136);
             this.panel_botones_socio.TabIndex = 5;
             // 
             // textBox4
@@ -253,7 +253,7 @@
             this.dgv_inscripciones.RowHeadersVisible = false;
             this.dgv_inscripciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgv_inscripciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_inscripciones.Size = new System.Drawing.Size(983, 533);
+            this.dgv_inscripciones.Size = new System.Drawing.Size(973, 393);
             this.dgv_inscripciones.TabIndex = 4;
             // 
             // col_nro_socio
@@ -366,9 +366,9 @@
             this.panel_titulo.Controls.Add(this.pic_min);
             this.panel_titulo.Controls.Add(this.pic_close);
             this.panel_titulo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_titulo.Location = new System.Drawing.Point(270, 0);
+            this.panel_titulo.Location = new System.Drawing.Point(260, 0);
             this.panel_titulo.Name = "panel_titulo";
-            this.panel_titulo.Size = new System.Drawing.Size(1010, 50);
+            this.panel_titulo.Size = new System.Drawing.Size(730, 50);
             this.panel_titulo.TabIndex = 2;
             this.panel_titulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_titulo_MouseDown);
             // 
@@ -394,7 +394,7 @@
             this.pic_restaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pic_restaurar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pic_restaurar.Image = global::SportGym.Properties.Resources.icons8_restore_down_32px;
-            this.pic_restaurar.Location = new System.Drawing.Point(928, 12);
+            this.pic_restaurar.Location = new System.Drawing.Point(648, 12);
             this.pic_restaurar.Name = "pic_restaurar";
             this.pic_restaurar.Size = new System.Drawing.Size(32, 32);
             this.pic_restaurar.TabIndex = 3;
@@ -407,7 +407,7 @@
             this.pic_maximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pic_maximizar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pic_maximizar.Image = global::SportGym.Properties.Resources.icons8_maximize_button_32px;
-            this.pic_maximizar.Location = new System.Drawing.Point(928, 12);
+            this.pic_maximizar.Location = new System.Drawing.Point(648, 12);
             this.pic_maximizar.Name = "pic_maximizar";
             this.pic_maximizar.Size = new System.Drawing.Size(32, 32);
             this.pic_maximizar.TabIndex = 2;
@@ -419,7 +419,7 @@
             this.pic_min.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pic_min.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pic_min.Image = global::SportGym.Properties.Resources.icons8_minimize_window_32px;
-            this.pic_min.Location = new System.Drawing.Point(890, 12);
+            this.pic_min.Location = new System.Drawing.Point(610, 12);
             this.pic_min.Name = "pic_min";
             this.pic_min.Size = new System.Drawing.Size(32, 32);
             this.pic_min.TabIndex = 1;
@@ -431,7 +431,7 @@
             this.pic_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pic_close.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pic_close.Image = global::SportGym.Properties.Resources.icons8_delete_32px;
-            this.pic_close.Location = new System.Drawing.Point(966, 12);
+            this.pic_close.Location = new System.Drawing.Point(686, 12);
             this.pic_close.Name = "pic_close";
             this.pic_close.Size = new System.Drawing.Size(32, 32);
             this.pic_close.TabIndex = 0;
@@ -444,9 +444,9 @@
             this.panel1.Controls.Add(this.panel_filtros);
             this.panel1.Controls.Add(this.dgv_socios);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(270, 50);
+            this.panel1.Location = new System.Drawing.Point(260, 50);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1010, 670);
+            this.panel1.Size = new System.Drawing.Size(730, 530);
             this.panel1.TabIndex = 4;
             // 
             // panel_filtros
@@ -456,18 +456,18 @@
             this.panel_filtros.Controls.Add(this.label3);
             this.panel_filtros.Controls.Add(this.label4);
             this.panel_filtros.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_filtros.Location = new System.Drawing.Point(0, 534);
+            this.panel_filtros.Location = new System.Drawing.Point(0, 478);
             this.panel_filtros.Name = "panel_filtros";
-            this.panel_filtros.Size = new System.Drawing.Size(1010, 136);
+            this.panel_filtros.Size = new System.Drawing.Size(730, 52);
             this.panel_filtros.TabIndex = 5;
             // 
             // txt_filtro_apellido
             // 
             this.txt_filtro_apellido.Enabled = false;
-            this.txt_filtro_apellido.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_filtro_apellido.Location = new System.Drawing.Point(476, 40);
+            this.txt_filtro_apellido.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_filtro_apellido.Location = new System.Drawing.Point(408, 14);
             this.txt_filtro_apellido.Name = "txt_filtro_apellido";
-            this.txt_filtro_apellido.Size = new System.Drawing.Size(202, 33);
+            this.txt_filtro_apellido.Size = new System.Drawing.Size(202, 23);
             this.txt_filtro_apellido.TabIndex = 8;
             this.txt_filtro_apellido.TextChanged += new System.EventHandler(this.txt_filtro_apellido_TextChanged);
             this.txt_filtro_apellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_filtro_apellido_KeyPress);
@@ -475,10 +475,10 @@
             // txt_filtro_nombre
             // 
             this.txt_filtro_nombre.Enabled = false;
-            this.txt_filtro_nombre.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_filtro_nombre.Location = new System.Drawing.Point(104, 39);
+            this.txt_filtro_nombre.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_filtro_nombre.Location = new System.Drawing.Point(75, 14);
             this.txt_filtro_nombre.Name = "txt_filtro_nombre";
-            this.txt_filtro_nombre.Size = new System.Drawing.Size(202, 33);
+            this.txt_filtro_nombre.Size = new System.Drawing.Size(202, 23);
             this.txt_filtro_nombre.TabIndex = 7;
             this.txt_filtro_nombre.TextChanged += new System.EventHandler(this.txt_filtro_nombre_TextChanged);
             this.txt_filtro_nombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_filtro_nombre_KeyPress);
@@ -486,20 +486,20 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(382, 42);
+            this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(346, 17);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(88, 26);
+            this.label3.Size = new System.Drawing.Size(56, 15);
             this.label3.TabIndex = 2;
             this.label3.Text = "Apellido:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(10, 42);
+            this.label4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(13, 17);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(88, 26);
+            this.label4.Size = new System.Drawing.Size(57, 15);
             this.label4.TabIndex = 0;
             this.label4.Text = "Nombre:";
             // 
@@ -508,11 +508,14 @@
             this.dgv_socios.AllowUserToAddRows = false;
             this.dgv_socios.AllowUserToDeleteRows = false;
             this.dgv_socios.AllowUserToOrderColumns = true;
+            this.dgv_socios.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgv_socios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgv_socios.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -526,20 +529,20 @@
             this.col_dni_socio});
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv_socios.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgv_socios.Location = new System.Drawing.Point(15, 6);
+            this.dgv_socios.Location = new System.Drawing.Point(10, 6);
             this.dgv_socios.MultiSelect = false;
             this.dgv_socios.Name = "dgv_socios";
             this.dgv_socios.ReadOnly = true;
             this.dgv_socios.RowHeadersVisible = false;
             this.dgv_socios.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgv_socios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_socios.Size = new System.Drawing.Size(983, 533);
+            this.dgv_socios.Size = new System.Drawing.Size(708, 461);
             this.dgv_socios.TabIndex = 4;
             // 
             // col_nro
@@ -571,9 +574,9 @@
             // 
             // frm_principal_socio
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.ClientSize = new System.Drawing.Size(990, 580);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel_titulo);
             this.Controls.Add(this.panel_main);

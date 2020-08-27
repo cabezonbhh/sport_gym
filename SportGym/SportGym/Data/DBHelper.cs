@@ -15,90 +15,23 @@ namespace SportGym.Data
 
     public class DBHelper
     {
-        private string string_conexion;
-        private static DBHelper instance = new DBHelper();
-        private readonly string notebook = "Data Source=Notebook-pc;Initial Catalog=DB_Sport_Gym;Integrated Security=True";
-        private readonly string pc = "Data Source=FRANCO-PC;Initial Catalog = DB_Sport_Gym; Integrated Security = True";
-        //private readonly string pc = "";
+        private string string_conexion;//variable que voy usar para la cadena de conexion.
+        private static DBHelper instance = new DBHelper(); // variable que almacena una instancia de esta misma clase para utilizar el patron singleton
+        private readonly string cadena = "Data Source=(local);Initial Catalog=DB_Sport_Gym;Integrated Security=True"; //cadena de conexion
 
-        private DBHelper()
+        private DBHelper() // constructor privado que va a ser llamado por el metodo getDBHelper(). Se utiliza para el patron singleton
         {
-            string_conexion = pc;
+            string_conexion = cadena;
         }
 
-        public static DBHelper getDBHelper()
+        public static DBHelper getDBHelper()//metodo que devuelve la instancia unica.
         {
             if (instance == null)
                 instance = new DBHelper();
             return instance;
         }
 
-        public DataTable ConsultaSQL(string strSql)
-        {
-            SqlConnection cnn = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
-            DataTable tabla = new DataTable();
-
-            try
-            {
-                cnn.ConnectionString =  string_conexion;
-                cnn.Open();
-                cmd.Connection = cnn;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = strSql;
-                tabla.Load(cmd.ExecuteReader());
-                return tabla;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("EXPLOTO EL HELPER", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw (ex);
-            }
-            finally
-            {
-                this.CloseConnection(cnn);
-            }
-        }
-        public int ejecutarSQL(string strSql)
-        {
-            int afectadas = 0;
-
-            SqlConnection cnn = new SqlConnection();
-            SqlCommand cmd = new SqlCommand();
-            SqlTransaction t = null;
-
-            try
-            {
-                cnn.ConnectionString = string_conexion;
-                cnn.Open();
-                //comienzo de transaccion...
-                t = cnn.BeginTransaction();
-                cmd.Connection = cnn;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = strSql;
-                cmd.Transaction = t;
-                afectadas = cmd.ExecuteNonQuery();
-                //Commit de transacción...
-                t.Commit();
-            }
-            catch (Exception ex)
-            {
-                if (t != null)
-                {
-                    t.Rollback();
-                    afectadas = 0;
-                }
-                MessageBox.Show("EXPLOTO EL HELPER", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw ex;
-            }
-            finally
-            {
-                this.CloseConnection(cnn);
-            }
-
-            return afectadas;
-        }
-        private void CloseConnection(SqlConnection cnn)
+        private void CloseConnection(SqlConnection cnn) // metodo para cerrar la conexion
         {
             if (cnn.State == ConnectionState.Open)
             {
@@ -106,85 +39,180 @@ namespace SportGym.Data
                 cnn.Dispose();
             }
         }
-        
 
-        
+
+        // consultarStoredProcedureConParametros(string sp, SqlParameter[] sqlParameters)
+        //
+        //      SP = stored procedure
+        //
+        //     Se utiliza para llamar a SP de la base de datos, del tipo SELECT, con mas de 1 parametro. 
+        // Parametros:
+        //      - Recibe un string con el nombre del SP.
+        //      - Recibe un array del tipo SqlParameter, el cual contiene los parametros solicitados por el SP.
+        //
+        // Devuelve:
+        //      Un DataTable con los registros de la base de datos.
+        //
+        // Excepciones:
+        //      System.Data.SqlClient.SqlException:
+        //          El error de conexión se produce:
+        //              a) durante la apertura de la conexión
+        //              b) durante la ejecución del comando.
         public DataTable consultarStoredProcedureConParametros(string sp, SqlParameter[] sqlParameters)
         {
             SqlConnection cnn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             DataTable tabla = new DataTable();
-            try
+            if(!String.IsNullOrWhiteSpace(cadena))
             {
-                cnn.ConnectionString = string_conexion;
-                cnn.Open();
-                cmd.Connection = cnn;
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = sp;
-                cmd.Parameters.AddRange(sqlParameters);
-                tabla.Load(cmd.ExecuteReader());
+                try
+                {
+                    cnn.ConnectionString = string_conexion;
+                    cnn.Open();
+                    cmd.Connection = cnn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = sp;
+                    cmd.Parameters.AddRange(sqlParameters);
+                    tabla.Load(cmd.ExecuteReader());
+                    return tabla;
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Codigo 02: "+ "\n"+ ex.ToString(), "Fallo critico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                finally
+                {
+                    this.CloseConnection(cnn);
+                }
+            }
+            {
+                MessageBox.Show("Codigo 01: Error con la cadena de conexion", "Fallo critico", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return tabla;
             }
-            catch (Exception ex)
-            {
-                return null;
-            }
-            finally
-            {
-                this.CloseConnection(cnn);
-            }
         }
+
+
+        // public DataTable consultarStoredProcedureConUnParametro(string sp, SqlParameter parametro)
+        //
+        //      SP = stored procedure
+        //
+        //     Se utiliza para llamar a SP de la base de datos, del tipo SELECT, con 1 parametro. 
+        // Parametros:
+        //      - Recibe un string con el nombre del SP.
+        //      - Recibe un parametro del tipo SqlParameter.
+        //
+        // Devuelve:
+        //      Un DataTable con los registros de la base de datos.
+        //
+        // Excepciones:
+        //      System.Data.SqlClient.SqlException:
+        //          El error de conexión se produce:
+        //              a) durante la apertura de la conexión
+        //              b) durante la ejecución del comando.
         public DataTable consultarStoredProcedureConUnParametro(string sp, SqlParameter parametro)
         {
             SqlConnection cnn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             DataTable tabla = new DataTable();
-            try
+            if(!String.IsNullOrWhiteSpace(cadena))
             {
-                cnn.ConnectionString = string_conexion;
-                cnn.Open();
-                cmd.Connection = cnn;
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = sp;
-                cmd.Parameters.Add(parametro);
-                tabla.Load(cmd.ExecuteReader());
+                try
+                {
+                    cnn.ConnectionString = string_conexion;
+                    cnn.Open();
+                    cmd.Connection = cnn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = sp;
+                    cmd.Parameters.Add(parametro);
+                    tabla.Load(cmd.ExecuteReader());
+                    return tabla;
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Codigo 02: " + "\n" + ex.ToString(), "Fallo critico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                finally
+                {
+                    this.CloseConnection(cnn);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Codigo 01: Error con la cadena de conexion", "Fallo critico", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return tabla;
             }
-            catch (Exception ex)
-            {               
-                return null;
-            }
-            finally
-            {
-                this.CloseConnection(cnn);
-            }
         }
+
+        // public DataTable consultarStoredProcedure(string sp)
+        //
+        //      SP = stored procedure
+        //
+        //     Se utiliza para llamar a SP de la base de datos, del tipo SELECT, sin parametros. 
+        // Parametros:
+        //      - Recibe un string con el nombre del SP.
+        //      
+        // Devuelve:
+        //      Un DataTable con los registros de la base de datos.
+        //
+        // Excepciones:
+        //      System.Data.SqlClient.SqlException:
+        //          El error de conexión se produce:
+        //              a) durante la apertura de la conexión
+        //              b) durante la ejecución del comando.
         public DataTable consultarStoredProcedure(string sp)
         {
             SqlConnection cnn = new SqlConnection();
             SqlCommand cmd = new SqlCommand();
             DataTable tabla = new DataTable();
-            int error = 0;
-            try
+
+            if(!String.IsNullOrWhiteSpace(cadena))
             {
-                cnn.ConnectionString = string_conexion;
-                cnn.Open();
-                cmd.Connection = cnn;
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = sp;
-                tabla.Load(cmd.ExecuteReader());
+                try
+                {
+                    cnn.ConnectionString = string_conexion;
+                    cnn.Open();
+                    cmd.Connection = cnn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = sp;
+                    tabla.Load(cmd.ExecuteReader());
+                    return tabla;
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Codigo 02: " + "\n" + ex.ToString(), "Fallo critico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }
+                finally
+                {
+                    this.CloseConnection(cnn);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Codigo 01: Error con la cadena de conexion","Fallo critico",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 return tabla;
-            }
-            catch (Exception ex)
-            {
-                return null;
-            }
-            finally
-            {
-                this.CloseConnection(cnn);
             }
 
         }
+
+        // public int ejecutarStoredProcedure(string sp)
+        //
+        //      SP = stored procedure
+        //
+        //     Se utiliza para llamar a SP de la base de datos, del tipo UPDATE o INSERT, sin parametro. 
+        // Parametros:
+        //      - Recibe un string con el nombre del SP.
+        //
+        // Devuelve:
+        //      Un int con la cantidad de filas afectadas por el SP.
+        //
+        // Excepciones:
+        //      System.Data.SqlClient.SqlException:
+        //          El error de conexión se produce:
+        //              a) durante la apertura de la conexión
+        //              b) durante la ejecución del comando.
         public int ejecutarStoredProcedure(string sp)
         {
             int resultado = 0;
@@ -192,30 +220,57 @@ namespace SportGym.Data
             SqlCommand cmd = new SqlCommand();
             SqlTransaction transaction = null;
          
-            try
+            if(!String.IsNullOrWhiteSpace(cadena))
             {
-                cnn.ConnectionString = string_conexion;
-                cnn.Open();
+                try
+                {
+                    cnn.ConnectionString = string_conexion;
+                    cnn.Open();
 
-                transaction = cnn.BeginTransaction();
+                    transaction = cnn.BeginTransaction();
 
-                cmd.Connection = cnn;
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = sp;
-                cmd.Transaction = transaction;
-                resultado = cmd.ExecuteNonQuery();
-                transaction.Commit();            
+                    cmd.Connection = cnn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = sp;
+                    cmd.Transaction = transaction;
+                    resultado = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Codigo 02: " + "\n" + ex.ToString(), "Fallo critico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return 0;
+                }
+                finally
+                {
+                    this.CloseConnection(cnn);
+                }
+                return resultado;
             }
-            catch (Exception ex)
+            else
             {
-                return 0;
+                MessageBox.Show("Codigo 01: Error con la cadena de conexion", "Fallo critico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return resultado;
             }
-            finally
-            {
-                this.CloseConnection(cnn);
-            }
-            return resultado;
         }
+
+        // public int ejecutarStoredProcedureConUnParametro(string sp, SqlParameter parametro)
+        //
+        //      SP = stored procedure
+        //
+        //     Se utiliza para llamar a SP de la base de datos, del tipo UPDATE o INSERT, con 1 parametro. 
+        // Parametros:
+        //      - Recibe un string con el nombre del SP.
+        //      - Recibe un parametro del tipo SqlParameter.
+        //
+        // Devuelve:
+        //      Un int con la cantidad de filas afectadas por el SP.
+        //
+        // Excepciones:
+        //      System.Data.SqlClient.SqlException:
+        //          El error de conexión se produce:
+        //              a) durante la apertura de la conexión
+        //              b) durante la ejecución del comando.
 
         public int ejecutarStoredProcedureConUnParametro(string sp, SqlParameter parametro)
         {
@@ -224,32 +279,58 @@ namespace SportGym.Data
             SqlCommand cmd = new SqlCommand();
             SqlTransaction transaction = null;
 
-            try
+            if(!String.IsNullOrWhiteSpace(cadena))
             {
-                cnn.ConnectionString = string_conexion;
-                cnn.Open();
+                try
+                {
+                    cnn.ConnectionString = string_conexion;
+                    cnn.Open();
 
-                transaction = cnn.BeginTransaction();
+                    transaction = cnn.BeginTransaction();
 
-                cmd.Connection = cnn;
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = sp;
-                cmd.Parameters.Add(parametro);
-                cmd.Transaction = transaction;
-                resultado = cmd.ExecuteNonQuery();
-                transaction.Commit();
+                    cmd.Connection = cnn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = sp;
+                    cmd.Parameters.Add(parametro);
+                    cmd.Transaction = transaction;
+                    resultado = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Codigo 02: " + "\n" + ex.ToString(), "Fallo critico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return 0;
+                }
+                finally
+                {
+                    this.CloseConnection(cnn);
+                }
+                return resultado;
             }
-            catch (Exception ex)
+            else
             {
-                
-                return 0;
+                MessageBox.Show("Codigo 01: Error con la cadena de conexion", "Fallo critico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return resultado;
             }
-            finally
-            {
-                this.CloseConnection(cnn);
-            }
-            return resultado;
         }
+
+        // public int ejecutarStoredProcedureConParametros(string sp, SqlParameter[] parametros)
+        //
+        //      SP = stored procedure
+        //
+        //     Se utiliza para llamar a SP de la base de datos, del tipo UPDATE o INSERT, con mas de 1 parametro. 
+        // Parametros:
+        //      - Recibe un string con el nombre del SP.
+        //      - Recibe un array del tipo SqlParameter, el cual contiene los parametros solicitados por el SP.
+        //
+        // Devuelve:
+        //      Un int con la cantidad de filas afectadas por el SP.
+        //
+        // Excepciones:
+        //      System.Data.SqlClient.SqlException:
+        //          El error de conexión se produce:
+        //              a) durante la apertura de la conexión
+        //              b) durante la ejecución del comando.
         public int ejecutarStoredProcedureConParametros(string sp, SqlParameter[] parametros)
         {
             int resultado = 0;
@@ -257,31 +338,39 @@ namespace SportGym.Data
             SqlCommand cmd = new SqlCommand();
             SqlTransaction transaction = null;
 
-            try
+            if(!String.IsNullOrWhiteSpace(cadena))
             {
-                cnn.ConnectionString = string_conexion;
-                cnn.Open();
+                try
+                {
+                    cnn.ConnectionString = string_conexion;
+                    cnn.Open();
 
-                transaction = cnn.BeginTransaction();
+                    transaction = cnn.BeginTransaction();
 
-                cmd.Connection = cnn;
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = sp;
-                cmd.Parameters.AddRange(parametros);
-                cmd.Transaction = transaction;
-                resultado = cmd.ExecuteNonQuery();
-                transaction.Commit();
+                    cmd.Connection = cnn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = sp;
+                    cmd.Parameters.AddRange(parametros);
+                    cmd.Transaction = transaction;
+                    resultado = cmd.ExecuteNonQuery();
+                    transaction.Commit();
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Codigo 02: " + "\n" + ex.ToString(), "Fallo critico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return 0;
+                }
+                finally
+                {
+                    this.CloseConnection(cnn);
+                }
+                return resultado;
             }
-            catch (Exception ex)
+            else
             {
-
-                return 0;
+                MessageBox.Show("Codigo 01: Error con la cadena de conexion", "Fallo critico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return resultado;
             }
-            finally
-            {
-                this.CloseConnection(cnn);
-            }
-            return resultado;
         }
     }
 }

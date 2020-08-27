@@ -555,15 +555,7 @@ namespace SportGym.GUI
                     }
                 }
             }
-        }
-        public void cargarCombo(ComboBox combo, string tabla, string value, string display)
-        {
-            // metodo para cualquier combo donde pasa el combo, la tabla, el id y el campo descripcion.
-            combo.DataSource = DBHelper.getDBHelper().ConsultaSQL(tabla); //
-            combo.DisplayMember = display; //nombre del campo que lista el combo
-            combo.ValueMember = value; // nombre del campo Id que se guarda en cada ítems de la lista
-        }
-       
+        }     
     }
 }
 

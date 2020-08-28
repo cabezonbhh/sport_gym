@@ -78,7 +78,7 @@
             this.dgv_cuotas.RowHeadersVisible = false;
             this.dgv_cuotas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgv_cuotas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_cuotas.Size = new System.Drawing.Size(784, 561);
+            this.dgv_cuotas.Size = new System.Drawing.Size(664, 441);
             this.dgv_cuotas.TabIndex = 5;
             // 
             // col_codigo
@@ -118,7 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(664, 441);
             this.Controls.Add(this.dgv_cuotas);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_historial_pagos";

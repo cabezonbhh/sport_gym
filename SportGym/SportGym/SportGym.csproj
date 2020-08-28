@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>icons8_dumbbell_3.ico</ApplicationIcon>
+    <ApplicationIcon>icons8_person_lifting_weights.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup />
   <ItemGroup>
@@ -101,12 +101,6 @@
     </Compile>
     <Compile Include="GUI\Horarios\frm_horarios.Designer.cs">
       <DependentUpon>frm_horarios.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUI\Horarios\frm_horarios_automaticos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUI\Horarios\frm_horarios_automaticos.Designer.cs">
-      <DependentUpon>frm_horarios_automaticos.cs</DependentUpon>
     </Compile>
     <Compile Include="GUI\Socio\frm_editar_socio.cs">
       <SubType>Form</SubType>
@@ -163,9 +157,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Horarios\frm_horarios.resx">
       <DependentUpon>frm_horarios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="GUI\Horarios\frm_horarios_automaticos.resx">
-      <DependentUpon>frm_horarios_automaticos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUI\Socio\frm_editar_socio.resx">
       <DependentUpon>frm_editar_socio.cs</DependentUpon>
@@ -309,6 +300,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icons8_dumbbell_3.ico" />
+    <Content Include="icons8_person_lifting_weights.ico" />
+    <Content Include="icons8_weightlifting.ico" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
@@ -321,6 +314,35 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

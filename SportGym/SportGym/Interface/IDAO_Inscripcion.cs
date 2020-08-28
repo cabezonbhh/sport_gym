@@ -10,5 +10,7 @@ namespace SportGym.Interface
     {
         Inscripcion getInscripcionActiva(int nroSocio);
         IList<Inscripcion> getInscripcionesActivas();
+        IList<Inscripcion> getInscripcionesActivasPorNombre(string nombre);
+        IList<Inscripcion> getInscripcionesActivasPorApellido(string apellido);
     }
 }

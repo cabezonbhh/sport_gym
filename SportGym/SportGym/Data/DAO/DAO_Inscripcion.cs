@@ -45,7 +45,45 @@ namespace SportGym.Data
             }
             return listaInscripciones;
         }
-        
+
+        public IList<Inscripcion> getInscripcionesActivasPorApellido(string apellido)
+        {
+            string sp = "sp_inscripciones_por_apellido";
+            var parametro = new SqlParameter("@apellido", apellido);
+            parametro.SqlDbType = SqlDbType.VarChar;
+
+            IList<Inscripcion> listaInscripciones = new List<Inscripcion>();
+            DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp,parametro);
+            Inscripcion inscripcion = new Inscripcion();
+            if (tabla != null)
+            {
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    listaInscripciones.Add(mapper(fila));
+                }
+            }
+            return listaInscripciones;
+        }
+
+        public IList<Inscripcion> getInscripcionesActivasPorNombre(string nombre)
+        {
+            string sp = "sp_inscripciones_por_nombre";
+            var parametro = new SqlParameter("@nombre", nombre);
+            parametro.SqlDbType = SqlDbType.VarChar;
+
+            IList<Inscripcion> listaInscripciones = new List<Inscripcion>();
+            DataTable tabla = helper.consultarStoredProcedureConUnParametro(sp, parametro);
+            Inscripcion inscripcion = new Inscripcion();
+            if (tabla != null)
+            {
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    listaInscripciones.Add(mapper(fila));
+                }
+            }
+            return listaInscripciones;
+        }
+
         private Inscripcion mapper(DataRow fila)
         {
             DAO_Cuota dao = new DAO_Cuota();

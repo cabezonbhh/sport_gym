@@ -178,6 +178,7 @@
             // 
             // btn_cancelar
             // 
+            this.btn_cancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_cancelar.Location = new System.Drawing.Point(371, 306);
             this.btn_cancelar.Name = "btn_cancelar";
             this.btn_cancelar.Size = new System.Drawing.Size(75, 23);
@@ -287,8 +288,10 @@
             // 
             // frm_nuevo_socio
             // 
+            this.AcceptButton = this.btn_guardar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.CancelButton = this.btn_cancelar;
             this.ClientSize = new System.Drawing.Size(454, 341);
             this.Controls.Add(this.lbl_fin);
             this.Controls.Add(this.lbl_inicio);

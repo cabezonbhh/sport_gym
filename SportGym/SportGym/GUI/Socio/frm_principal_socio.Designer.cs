@@ -55,14 +55,8 @@
             this.lbl_gym = new System.Windows.Forms.Label();
             this.btn_nuevo = new System.Windows.Forms.Button();
             this.pic_gym = new System.Windows.Forms.PictureBox();
-            this.panel_titulo = new System.Windows.Forms.Panel();
-            this.btn_refresh_socio = new System.Windows.Forms.Button();
-            this.pic_restaurar = new System.Windows.Forms.PictureBox();
-            this.pic_maximizar = new System.Windows.Forms.PictureBox();
-            this.pic_min = new System.Windows.Forms.PictureBox();
-            this.pic_close = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.panel_filtros = new System.Windows.Forms.Panel();
+            this.btn_actualizar = new System.Windows.Forms.Button();
             this.txt_filtro_apellido = new System.Windows.Forms.TextBox();
             this.txt_filtro_nombre = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -77,12 +71,6 @@
             this.panel_botones_socio.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_inscripciones)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_gym)).BeginInit();
-            this.panel_titulo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_restaurar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_maximizar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_min)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_close)).BeginInit();
-            this.panel1.SuspendLayout();
             this.panel_filtros.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_socios)).BeginInit();
             this.SuspendLayout();
@@ -100,11 +88,12 @@
             this.panel_main.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_main.Location = new System.Drawing.Point(0, 0);
             this.panel_main.Name = "panel_main";
-            this.panel_main.Size = new System.Drawing.Size(260, 580);
+            this.panel_main.Size = new System.Drawing.Size(260, 581);
             this.panel_main.TabIndex = 1;
             // 
             // btn_atras
             // 
+            this.btn_atras.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_atras.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btn_atras.FlatAppearance.BorderSize = 0;
             this.btn_atras.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
@@ -113,7 +102,7 @@
             this.btn_atras.ForeColor = System.Drawing.SystemColors.Control;
             this.btn_atras.Image = global::SportGym.Properties.Resources.icons8_left_52px;
             this.btn_atras.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_atras.Location = new System.Drawing.Point(0, 516);
+            this.btn_atras.Location = new System.Drawing.Point(0, 517);
             this.btn_atras.Name = "btn_atras";
             this.btn_atras.Size = new System.Drawing.Size(260, 64);
             this.btn_atras.TabIndex = 5;
@@ -131,7 +120,7 @@
             this.panel_cuota.Controls.Add(this.dgv_inscripciones);
             this.panel_cuota.Location = new System.Drawing.Point(270, 50);
             this.panel_cuota.Name = "panel_cuota";
-            this.panel_cuota.Size = new System.Drawing.Size(1000, 530);
+            this.panel_cuota.Size = new System.Drawing.Size(1000, 531);
             this.panel_cuota.TabIndex = 4;
             // 
             // panel_botones_socio
@@ -145,7 +134,7 @@
             this.panel_botones_socio.Controls.Add(this.lbl_apellido);
             this.panel_botones_socio.Controls.Add(this.lbl_nombre);
             this.panel_botones_socio.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_botones_socio.Location = new System.Drawing.Point(0, 394);
+            this.panel_botones_socio.Location = new System.Drawing.Point(0, 395);
             this.panel_botones_socio.Name = "panel_botones_socio";
             this.panel_botones_socio.Size = new System.Drawing.Size(1000, 136);
             this.panel_botones_socio.TabIndex = 5;
@@ -253,7 +242,7 @@
             this.dgv_inscripciones.RowHeadersVisible = false;
             this.dgv_inscripciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgv_inscripciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_inscripciones.Size = new System.Drawing.Size(973, 393);
+            this.dgv_inscripciones.Size = new System.Drawing.Size(973, 394);
             this.dgv_inscripciones.TabIndex = 4;
             // 
             // col_nro_socio
@@ -357,120 +346,39 @@
             this.pic_gym.TabIndex = 0;
             this.pic_gym.TabStop = false;
             // 
-            // panel_titulo
-            // 
-            this.panel_titulo.BackColor = System.Drawing.SystemColors.Control;
-            this.panel_titulo.Controls.Add(this.btn_refresh_socio);
-            this.panel_titulo.Controls.Add(this.pic_restaurar);
-            this.panel_titulo.Controls.Add(this.pic_maximizar);
-            this.panel_titulo.Controls.Add(this.pic_min);
-            this.panel_titulo.Controls.Add(this.pic_close);
-            this.panel_titulo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_titulo.Location = new System.Drawing.Point(260, 0);
-            this.panel_titulo.Name = "panel_titulo";
-            this.panel_titulo.Size = new System.Drawing.Size(730, 50);
-            this.panel_titulo.TabIndex = 2;
-            this.panel_titulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_titulo_MouseDown);
-            // 
-            // btn_refresh_socio
-            // 
-            this.btn_refresh_socio.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btn_refresh_socio.FlatAppearance.BorderSize = 0;
-            this.btn_refresh_socio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btn_refresh_socio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_refresh_socio.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_refresh_socio.ForeColor = System.Drawing.SystemColors.Control;
-            this.btn_refresh_socio.Image = global::SportGym.Properties.Resources.icons8_restart_26px;
-            this.btn_refresh_socio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_refresh_socio.Location = new System.Drawing.Point(15, 6);
-            this.btn_refresh_socio.Name = "btn_refresh_socio";
-            this.btn_refresh_socio.Size = new System.Drawing.Size(36, 38);
-            this.btn_refresh_socio.TabIndex = 20;
-            this.btn_refresh_socio.UseVisualStyleBackColor = false;
-            this.btn_refresh_socio.Click += new System.EventHandler(this.btn_refresh_socio_Click);
-            // 
-            // pic_restaurar
-            // 
-            this.pic_restaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pic_restaurar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pic_restaurar.Image = global::SportGym.Properties.Resources.icons8_restore_down_32px;
-            this.pic_restaurar.Location = new System.Drawing.Point(648, 12);
-            this.pic_restaurar.Name = "pic_restaurar";
-            this.pic_restaurar.Size = new System.Drawing.Size(32, 32);
-            this.pic_restaurar.TabIndex = 3;
-            this.pic_restaurar.TabStop = false;
-            this.pic_restaurar.Visible = false;
-            this.pic_restaurar.Click += new System.EventHandler(this.pic_restaurar_Click);
-            // 
-            // pic_maximizar
-            // 
-            this.pic_maximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pic_maximizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pic_maximizar.Image = global::SportGym.Properties.Resources.icons8_maximize_button_32px;
-            this.pic_maximizar.Location = new System.Drawing.Point(648, 12);
-            this.pic_maximizar.Name = "pic_maximizar";
-            this.pic_maximizar.Size = new System.Drawing.Size(32, 32);
-            this.pic_maximizar.TabIndex = 2;
-            this.pic_maximizar.TabStop = false;
-            this.pic_maximizar.Click += new System.EventHandler(this.pic_maximizar_Click);
-            // 
-            // pic_min
-            // 
-            this.pic_min.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pic_min.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pic_min.Image = global::SportGym.Properties.Resources.icons8_minimize_window_32px;
-            this.pic_min.Location = new System.Drawing.Point(610, 12);
-            this.pic_min.Name = "pic_min";
-            this.pic_min.Size = new System.Drawing.Size(32, 32);
-            this.pic_min.TabIndex = 1;
-            this.pic_min.TabStop = false;
-            this.pic_min.Click += new System.EventHandler(this.pic_min_Click);
-            // 
-            // pic_close
-            // 
-            this.pic_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pic_close.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pic_close.Image = global::SportGym.Properties.Resources.icons8_delete_32px;
-            this.pic_close.Location = new System.Drawing.Point(686, 12);
-            this.pic_close.Name = "pic_close";
-            this.pic_close.Size = new System.Drawing.Size(32, 32);
-            this.pic_close.TabIndex = 0;
-            this.pic_close.TabStop = false;
-            this.pic_close.Click += new System.EventHandler(this.pic_close_Click);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Control;
-            this.panel1.Controls.Add(this.panel_filtros);
-            this.panel1.Controls.Add(this.dgv_socios);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(260, 50);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(730, 530);
-            this.panel1.TabIndex = 4;
-            // 
             // panel_filtros
             // 
+            this.panel_filtros.Controls.Add(this.btn_actualizar);
             this.panel_filtros.Controls.Add(this.txt_filtro_apellido);
             this.panel_filtros.Controls.Add(this.txt_filtro_nombre);
             this.panel_filtros.Controls.Add(this.label3);
             this.panel_filtros.Controls.Add(this.label4);
             this.panel_filtros.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_filtros.Location = new System.Drawing.Point(0, 478);
+            this.panel_filtros.Location = new System.Drawing.Point(260, 529);
             this.panel_filtros.Name = "panel_filtros";
-            this.panel_filtros.Size = new System.Drawing.Size(730, 52);
-            this.panel_filtros.TabIndex = 5;
+            this.panel_filtros.Size = new System.Drawing.Size(724, 52);
+            this.panel_filtros.TabIndex = 7;
+            // 
+            // btn_actualizar
+            // 
+            this.btn_actualizar.Location = new System.Drawing.Point(627, 14);
+            this.btn_actualizar.Name = "btn_actualizar";
+            this.btn_actualizar.Size = new System.Drawing.Size(75, 23);
+            this.btn_actualizar.TabIndex = 22;
+            this.btn_actualizar.Text = "Actualizar";
+            this.btn_actualizar.UseVisualStyleBackColor = true;
+            this.btn_actualizar.Click += new System.EventHandler(this.btn_actualizar_Click_1);
             // 
             // txt_filtro_apellido
             // 
             this.txt_filtro_apellido.Enabled = false;
             this.txt_filtro_apellido.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_filtro_apellido.Location = new System.Drawing.Point(408, 14);
+            this.txt_filtro_apellido.Location = new System.Drawing.Point(376, 14);
             this.txt_filtro_apellido.Name = "txt_filtro_apellido";
             this.txt_filtro_apellido.Size = new System.Drawing.Size(202, 23);
             this.txt_filtro_apellido.TabIndex = 8;
-            this.txt_filtro_apellido.TextChanged += new System.EventHandler(this.txt_filtro_apellido_TextChanged);
-            this.txt_filtro_apellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_filtro_apellido_KeyPress);
+            this.txt_filtro_apellido.TextChanged += new System.EventHandler(this.txt_filtro_apellido_TextChanged_1);
+            this.txt_filtro_apellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_filtro_apellido_KeyPress_1);
             // 
             // txt_filtro_nombre
             // 
@@ -480,14 +388,14 @@
             this.txt_filtro_nombre.Name = "txt_filtro_nombre";
             this.txt_filtro_nombre.Size = new System.Drawing.Size(202, 23);
             this.txt_filtro_nombre.TabIndex = 7;
-            this.txt_filtro_nombre.TextChanged += new System.EventHandler(this.txt_filtro_nombre_TextChanged);
-            this.txt_filtro_nombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_filtro_nombre_KeyPress);
+            this.txt_filtro_nombre.TextChanged += new System.EventHandler(this.txt_filtro_nombre_TextChanged_1);
+            this.txt_filtro_nombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_filtro_nombre_KeyPress_1);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(346, 17);
+            this.label3.Location = new System.Drawing.Point(314, 17);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(56, 15);
             this.label3.TabIndex = 2;
@@ -535,15 +443,15 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv_socios.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dgv_socios.Location = new System.Drawing.Point(10, 6);
+            this.dgv_socios.Location = new System.Drawing.Point(270, 12);
             this.dgv_socios.MultiSelect = false;
             this.dgv_socios.Name = "dgv_socios";
             this.dgv_socios.ReadOnly = true;
             this.dgv_socios.RowHeadersVisible = false;
             this.dgv_socios.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgv_socios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_socios.Size = new System.Drawing.Size(708, 461);
-            this.dgv_socios.TabIndex = 4;
+            this.dgv_socios.Size = new System.Drawing.Size(702, 506);
+            this.dgv_socios.TabIndex = 6;
             // 
             // col_nro
             // 
@@ -576,12 +484,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(990, 580);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel_titulo);
+            this.AutoSize = true;
+            this.CancelButton = this.btn_atras;
+            this.ClientSize = new System.Drawing.Size(984, 581);
+            this.Controls.Add(this.panel_filtros);
+            this.Controls.Add(this.dgv_socios);
             this.Controls.Add(this.panel_main);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(1000, 620);
             this.Name = "frm_principal_socio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Socios";
@@ -593,12 +503,6 @@
             this.panel_botones_socio.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_inscripciones)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_gym)).EndInit();
-            this.panel_titulo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pic_restaurar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_maximizar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_min)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_close)).EndInit();
-            this.panel1.ResumeLayout(false);
             this.panel_filtros.ResumeLayout(false);
             this.panel_filtros.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_socios)).EndInit();
@@ -613,11 +517,6 @@
         private System.Windows.Forms.Label lbl_gym;
         private System.Windows.Forms.Button btn_nuevo;
         private System.Windows.Forms.PictureBox pic_gym;
-        private System.Windows.Forms.Panel panel_titulo;
-        private System.Windows.Forms.PictureBox pic_restaurar;
-        private System.Windows.Forms.PictureBox pic_maximizar;
-        private System.Windows.Forms.PictureBox pic_min;
-        private System.Windows.Forms.PictureBox pic_close;
         private System.Windows.Forms.Button btn_eliminar;
         private System.Windows.Forms.Panel panel_cuota;
         private System.Windows.Forms.Panel panel_botones_socio;
@@ -634,8 +533,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_apellido;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_dni;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btn_atras;
         private System.Windows.Forms.Panel panel_filtros;
+        private System.Windows.Forms.Button btn_actualizar;
         private System.Windows.Forms.TextBox txt_filtro_apellido;
         private System.Windows.Forms.TextBox txt_filtro_nombre;
         private System.Windows.Forms.Label label3;
@@ -645,7 +545,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_nombre_socio;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_apellido_socio;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_dni_socio;
-        private System.Windows.Forms.Button btn_refresh_socio;
-        private System.Windows.Forms.Button btn_atras;
     }
 }

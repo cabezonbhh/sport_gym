@@ -47,6 +47,40 @@ namespace SportGym.Service
             }
             return listaDTO;
         }
+        public IList<DTO_Inscripcion> getInscripcionesPorNombre(string nombre)
+        {
+            IList<DTO_Inscripcion> listaDTO = new List<DTO_Inscripcion>();
+            IList<Inscripcion> listaInscripciones = daoInscripcion.getInscripcionesActivasPorNombre(nombre);
+            Socio socio = null;
+            Cuota cuota = null;
+            if (listaInscripciones != null)
+            {
+                foreach (Inscripcion inscripcion in listaInscripciones)
+                {
+                    socio = daoSocio.getSocioPorNumero(inscripcion.NroSocio);
+                    cuota = inscripcion.getUltimoPago();
+                    listaDTO.Add(mapInscripcion.getDtoInscripcion(inscripcion, socio, cuota));
+                }
+            }
+            return listaDTO;
+        }
+        public IList<DTO_Inscripcion> getInscripcionesPorApellido(string apellido)
+        {
+            IList<DTO_Inscripcion> listaDTO = new List<DTO_Inscripcion>();
+            IList<Inscripcion> listaInscripciones = daoInscripcion.getInscripcionesActivasPorApellido(apellido);
+            Socio socio = null;
+            Cuota cuota = null;
+            if (listaInscripciones != null)
+            {
+                foreach (Inscripcion inscripcion in listaInscripciones)
+                {
+                    socio = daoSocio.getSocioPorNumero(inscripcion.NroSocio);
+                    cuota = inscripcion.getUltimoPago();
+                    listaDTO.Add(mapInscripcion.getDtoInscripcion(inscripcion, socio, cuota));
+                }
+            }
+            return listaDTO;
+        }
         public IList<DTO_Inscripcion> getInscripcionesVencidas()
         {
             IList<DTO_Inscripcion> listaDTO = new List<DTO_Inscripcion>();

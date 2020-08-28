@@ -44,15 +44,15 @@
             this.btn_socios = new System.Windows.Forms.Button();
             this.pic_gym = new System.Windows.Forms.PictureBox();
             this.panel_titulo = new System.Windows.Forms.Panel();
-            this.btn_refresh_socio = new System.Windows.Forms.Button();
-            this.btn_covid = new System.Windows.Forms.Button();
-            this.pic_restaurar = new System.Windows.Forms.PictureBox();
-            this.pic_maximizar = new System.Windows.Forms.PictureBox();
-            this.pic_min = new System.Windows.Forms.PictureBox();
-            this.pic_close = new System.Windows.Forms.PictureBox();
+            this.btn_exportar_excel = new System.Windows.Forms.Button();
+            this.btn_actualizar = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel_cuota = new System.Windows.Forms.Panel();
             this.panel_botones_cuota = new System.Windows.Forms.Panel();
+            this.txt_filtro_apellido = new System.Windows.Forms.TextBox();
+            this.txt_filtro_nombre = new System.Windows.Forms.TextBox();
+            this.lbl_filtro_apellido = new System.Windows.Forms.Label();
+            this.lbl_filtro_nombre = new System.Windows.Forms.Label();
             this.btn_pagar_cuota = new System.Windows.Forms.Button();
             this.txt_monto_pagar = new System.Windows.Forms.TextBox();
             this.lbl_monto = new System.Windows.Forms.Label();
@@ -70,10 +70,6 @@
             this.panel_main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_gym)).BeginInit();
             this.panel_titulo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_restaurar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_maximizar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_min)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_close)).BeginInit();
             this.panel_cuota.SuspendLayout();
             this.panel_botones_cuota.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_inscripciones)).BeginInit();
@@ -95,7 +91,7 @@
             this.panel_main.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_main.Location = new System.Drawing.Point(0, 0);
             this.panel_main.Name = "panel_main";
-            this.panel_main.Size = new System.Drawing.Size(260, 580);
+            this.panel_main.Size = new System.Drawing.Size(260, 581);
             this.panel_main.TabIndex = 0;
             // 
             // btn_estadisticas
@@ -165,6 +161,7 @@
             // 
             // btn_salir
             // 
+            this.btn_salir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btn_salir.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btn_salir.FlatAppearance.BorderSize = 0;
             this.btn_salir.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
@@ -173,7 +170,7 @@
             this.btn_salir.ForeColor = System.Drawing.SystemColors.Control;
             this.btn_salir.Image = global::SportGym.Properties.Resources.icons8_exit_sign_52px;
             this.btn_salir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_salir.Location = new System.Drawing.Point(0, 516);
+            this.btn_salir.Location = new System.Drawing.Point(0, 517);
             this.btn_salir.Name = "btn_salir";
             this.btn_salir.Size = new System.Drawing.Size(260, 64);
             this.btn_salir.TabIndex = 3;
@@ -252,102 +249,35 @@
             // 
             this.panel_titulo.AutoSize = true;
             this.panel_titulo.BackColor = System.Drawing.SystemColors.Control;
-            this.panel_titulo.Controls.Add(this.btn_refresh_socio);
-            this.panel_titulo.Controls.Add(this.btn_covid);
-            this.panel_titulo.Controls.Add(this.pic_restaurar);
-            this.panel_titulo.Controls.Add(this.pic_maximizar);
-            this.panel_titulo.Controls.Add(this.pic_min);
-            this.panel_titulo.Controls.Add(this.pic_close);
+            this.panel_titulo.Controls.Add(this.btn_exportar_excel);
+            this.panel_titulo.Controls.Add(this.btn_actualizar);
             this.panel_titulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel_titulo.Location = new System.Drawing.Point(260, 0);
             this.panel_titulo.Name = "panel_titulo";
-            this.panel_titulo.Size = new System.Drawing.Size(730, 47);
+            this.panel_titulo.Size = new System.Drawing.Size(724, 38);
             this.panel_titulo.TabIndex = 1;
-            this.panel_titulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel_titulo_MouseDown);
+            this.panel_titulo.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_titulo_Paint);
             // 
-            // btn_refresh_socio
+            // btn_exportar_excel
             // 
-            this.btn_refresh_socio.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btn_refresh_socio.FlatAppearance.BorderSize = 0;
-            this.btn_refresh_socio.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btn_refresh_socio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_refresh_socio.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_refresh_socio.ForeColor = System.Drawing.SystemColors.Control;
-            this.btn_refresh_socio.Image = global::SportGym.Properties.Resources.icons8_restart_26px;
-            this.btn_refresh_socio.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_refresh_socio.Location = new System.Drawing.Point(59, 6);
-            this.btn_refresh_socio.Name = "btn_refresh_socio";
-            this.btn_refresh_socio.Size = new System.Drawing.Size(36, 38);
-            this.btn_refresh_socio.TabIndex = 21;
-            this.btn_refresh_socio.UseVisualStyleBackColor = false;
-            this.btn_refresh_socio.Click += new System.EventHandler(this.btn_refresh_socio_Click);
+            this.btn_exportar_excel.Location = new System.Drawing.Point(116, 12);
+            this.btn_exportar_excel.Name = "btn_exportar_excel";
+            this.btn_exportar_excel.Size = new System.Drawing.Size(111, 23);
+            this.btn_exportar_excel.TabIndex = 24;
+            this.btn_exportar_excel.Text = "Exportar a excel";
+            this.btn_exportar_excel.UseVisualStyleBackColor = true;
+            this.btn_exportar_excel.Click += new System.EventHandler(this.btn_exportar_excel_Click);
             // 
-            // btn_covid
+            // btn_actualizar
             // 
-            this.btn_covid.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.btn_covid.Enabled = false;
-            this.btn_covid.FlatAppearance.BorderSize = 0;
-            this.btn_covid.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.btn_covid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_covid.Font = new System.Drawing.Font("Microsoft YaHei", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_covid.ForeColor = System.Drawing.SystemColors.Control;
-            this.btn_covid.Image = global::SportGym.Properties.Resources.icons8_coronavirus_26px;
-            this.btn_covid.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_covid.Location = new System.Drawing.Point(15, 6);
-            this.btn_covid.Name = "btn_covid";
-            this.btn_covid.Size = new System.Drawing.Size(38, 38);
-            this.btn_covid.TabIndex = 20;
-            this.btn_covid.UseVisualStyleBackColor = false;
-            this.btn_covid.Click += new System.EventHandler(this.btn_covid_Click);
-            // 
-            // pic_restaurar
-            // 
-            this.pic_restaurar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pic_restaurar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pic_restaurar.Image = global::SportGym.Properties.Resources.icons8_restore_down_32px;
-            this.pic_restaurar.Location = new System.Drawing.Point(642, 12);
-            this.pic_restaurar.Name = "pic_restaurar";
-            this.pic_restaurar.Size = new System.Drawing.Size(32, 32);
-            this.pic_restaurar.TabIndex = 3;
-            this.pic_restaurar.TabStop = false;
-            this.pic_restaurar.Visible = false;
-            this.pic_restaurar.Click += new System.EventHandler(this.pic_restaurar_Click);
-            // 
-            // pic_maximizar
-            // 
-            this.pic_maximizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pic_maximizar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pic_maximizar.Image = global::SportGym.Properties.Resources.icons8_maximize_button_32px;
-            this.pic_maximizar.Location = new System.Drawing.Point(642, 12);
-            this.pic_maximizar.Name = "pic_maximizar";
-            this.pic_maximizar.Size = new System.Drawing.Size(32, 32);
-            this.pic_maximizar.TabIndex = 2;
-            this.pic_maximizar.TabStop = false;
-            this.pic_maximizar.Click += new System.EventHandler(this.pic_maximizar_Click);
-            // 
-            // pic_min
-            // 
-            this.pic_min.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pic_min.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pic_min.Image = global::SportGym.Properties.Resources.icons8_minimize_window_32px;
-            this.pic_min.Location = new System.Drawing.Point(604, 12);
-            this.pic_min.Name = "pic_min";
-            this.pic_min.Size = new System.Drawing.Size(32, 32);
-            this.pic_min.TabIndex = 1;
-            this.pic_min.TabStop = false;
-            this.pic_min.Click += new System.EventHandler(this.pic_min_Click);
-            // 
-            // pic_close
-            // 
-            this.pic_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pic_close.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pic_close.Image = global::SportGym.Properties.Resources.icons8_delete_32px;
-            this.pic_close.Location = new System.Drawing.Point(680, 12);
-            this.pic_close.Name = "pic_close";
-            this.pic_close.Size = new System.Drawing.Size(32, 32);
-            this.pic_close.TabIndex = 0;
-            this.pic_close.TabStop = false;
-            this.pic_close.Click += new System.EventHandler(this.pic_close_Click);
+            this.btn_actualizar.Enabled = false;
+            this.btn_actualizar.Location = new System.Drawing.Point(10, 12);
+            this.btn_actualizar.Name = "btn_actualizar";
+            this.btn_actualizar.Size = new System.Drawing.Size(75, 23);
+            this.btn_actualizar.TabIndex = 23;
+            this.btn_actualizar.Text = "Actualizar";
+            this.btn_actualizar.UseVisualStyleBackColor = true;
+            this.btn_actualizar.Click += new System.EventHandler(this.btn_actualizar_Click);
             // 
             // timer1
             // 
@@ -357,16 +287,21 @@
             // 
             this.panel_cuota.AutoSize = true;
             this.panel_cuota.BackColor = System.Drawing.SystemColors.Control;
+            this.panel_cuota.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel_cuota.Controls.Add(this.panel_botones_cuota);
             this.panel_cuota.Controls.Add(this.dgv_inscripciones);
             this.panel_cuota.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_cuota.Location = new System.Drawing.Point(260, 47);
+            this.panel_cuota.Location = new System.Drawing.Point(260, 38);
             this.panel_cuota.Name = "panel_cuota";
-            this.panel_cuota.Size = new System.Drawing.Size(730, 533);
+            this.panel_cuota.Size = new System.Drawing.Size(724, 543);
             this.panel_cuota.TabIndex = 2;
             // 
             // panel_botones_cuota
             // 
+            this.panel_botones_cuota.Controls.Add(this.txt_filtro_apellido);
+            this.panel_botones_cuota.Controls.Add(this.txt_filtro_nombre);
+            this.panel_botones_cuota.Controls.Add(this.lbl_filtro_apellido);
+            this.panel_botones_cuota.Controls.Add(this.lbl_filtro_nombre);
             this.panel_botones_cuota.Controls.Add(this.btn_pagar_cuota);
             this.panel_botones_cuota.Controls.Add(this.txt_monto_pagar);
             this.panel_botones_cuota.Controls.Add(this.lbl_monto);
@@ -375,16 +310,56 @@
             this.panel_botones_cuota.Controls.Add(this.lbl_fecha_inicio);
             this.panel_botones_cuota.Controls.Add(this.dtp_fecha_inicio);
             this.panel_botones_cuota.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_botones_cuota.Location = new System.Drawing.Point(0, 478);
+            this.panel_botones_cuota.Location = new System.Drawing.Point(0, 448);
             this.panel_botones_cuota.Name = "panel_botones_cuota";
-            this.panel_botones_cuota.Size = new System.Drawing.Size(730, 55);
+            this.panel_botones_cuota.Size = new System.Drawing.Size(722, 93);
             this.panel_botones_cuota.TabIndex = 5;
+            // 
+            // txt_filtro_apellido
+            // 
+            this.txt_filtro_apellido.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_filtro_apellido.Location = new System.Drawing.Point(395, 12);
+            this.txt_filtro_apellido.Name = "txt_filtro_apellido";
+            this.txt_filtro_apellido.Size = new System.Drawing.Size(202, 26);
+            this.txt_filtro_apellido.TabIndex = 23;
+            this.txt_filtro_apellido.TextChanged += new System.EventHandler(this.txt_filtro_apellido_TextChanged);
+            this.txt_filtro_apellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_filtro_apellido_KeyPress);
+            // 
+            // txt_filtro_nombre
+            // 
+            this.txt_filtro_nombre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_filtro_nombre.Location = new System.Drawing.Point(94, 12);
+            this.txt_filtro_nombre.Name = "txt_filtro_nombre";
+            this.txt_filtro_nombre.Size = new System.Drawing.Size(202, 26);
+            this.txt_filtro_nombre.TabIndex = 22;
+            this.txt_filtro_nombre.TextChanged += new System.EventHandler(this.txt_filtro_nombre_TextChanged);
+            this.txt_filtro_nombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_filtro_nombre_KeyPress);
+            // 
+            // lbl_filtro_apellido
+            // 
+            this.lbl_filtro_apellido.AutoSize = true;
+            this.lbl_filtro_apellido.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_filtro_apellido.Location = new System.Drawing.Point(333, 15);
+            this.lbl_filtro_apellido.Name = "lbl_filtro_apellido";
+            this.lbl_filtro_apellido.Size = new System.Drawing.Size(65, 18);
+            this.lbl_filtro_apellido.TabIndex = 21;
+            this.lbl_filtro_apellido.Text = "Apellido:";
+            // 
+            // lbl_filtro_nombre
+            // 
+            this.lbl_filtro_nombre.AutoSize = true;
+            this.lbl_filtro_nombre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_filtro_nombre.Location = new System.Drawing.Point(32, 15);
+            this.lbl_filtro_nombre.Name = "lbl_filtro_nombre";
+            this.lbl_filtro_nombre.Size = new System.Drawing.Size(63, 18);
+            this.lbl_filtro_nombre.TabIndex = 20;
+            this.lbl_filtro_nombre.Text = "Nombre:";
             // 
             // btn_pagar_cuota
             // 
-            this.btn_pagar_cuota.Location = new System.Drawing.Point(637, 4);
+            this.btn_pagar_cuota.Location = new System.Drawing.Point(639, 12);
             this.btn_pagar_cuota.Name = "btn_pagar_cuota";
-            this.btn_pagar_cuota.Size = new System.Drawing.Size(75, 43);
+            this.btn_pagar_cuota.Size = new System.Drawing.Size(78, 70);
             this.btn_pagar_cuota.TabIndex = 19;
             this.btn_pagar_cuota.Text = "Registrar cobro";
             this.btn_pagar_cuota.UseVisualStyleBackColor = true;
@@ -394,7 +369,7 @@
             // 
             this.txt_monto_pagar.Enabled = false;
             this.txt_monto_pagar.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_monto_pagar.Location = new System.Drawing.Point(515, 13);
+            this.txt_monto_pagar.Location = new System.Drawing.Point(515, 55);
             this.txt_monto_pagar.MaxLength = 10;
             this.txt_monto_pagar.Name = "txt_monto_pagar";
             this.txt_monto_pagar.Size = new System.Drawing.Size(100, 26);
@@ -405,7 +380,7 @@
             // 
             this.lbl_monto.AutoSize = true;
             this.lbl_monto.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_monto.Location = new System.Drawing.Point(455, 16);
+            this.lbl_monto.Location = new System.Drawing.Point(455, 58);
             this.lbl_monto.Name = "lbl_monto";
             this.lbl_monto.Size = new System.Drawing.Size(54, 18);
             this.lbl_monto.TabIndex = 17;
@@ -415,7 +390,7 @@
             // 
             this.lbl_fecha_fin.AutoSize = true;
             this.lbl_fecha_fin.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_fecha_fin.Location = new System.Drawing.Point(236, 16);
+            this.lbl_fecha_fin.Location = new System.Drawing.Point(236, 58);
             this.lbl_fecha_fin.Name = "lbl_fecha_fin";
             this.lbl_fecha_fin.Size = new System.Drawing.Size(70, 18);
             this.lbl_fecha_fin.TabIndex = 16;
@@ -426,7 +401,7 @@
             this.dtp_fecha_vto.Enabled = false;
             this.dtp_fecha_vto.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_fecha_vto.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_fecha_vto.Location = new System.Drawing.Point(312, 13);
+            this.dtp_fecha_vto.Location = new System.Drawing.Point(312, 55);
             this.dtp_fecha_vto.Name = "dtp_fecha_vto";
             this.dtp_fecha_vto.Size = new System.Drawing.Size(132, 26);
             this.dtp_fecha_vto.TabIndex = 15;
@@ -435,7 +410,7 @@
             // 
             this.lbl_fecha_inicio.AutoSize = true;
             this.lbl_fecha_inicio.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_fecha_inicio.Location = new System.Drawing.Point(6, 16);
+            this.lbl_fecha_inicio.Location = new System.Drawing.Point(6, 58);
             this.lbl_fecha_inicio.Name = "lbl_fecha_inicio";
             this.lbl_fecha_inicio.Size = new System.Drawing.Size(85, 18);
             this.lbl_fecha_inicio.TabIndex = 14;
@@ -447,7 +422,7 @@
             this.dtp_fecha_inicio.Enabled = false;
             this.dtp_fecha_inicio.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_fecha_inicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_fecha_inicio.Location = new System.Drawing.Point(94, 13);
+            this.dtp_fecha_inicio.Location = new System.Drawing.Point(94, 55);
             this.dtp_fecha_inicio.Name = "dtp_fecha_inicio";
             this.dtp_fecha_inicio.Size = new System.Drawing.Size(132, 26);
             this.dtp_fecha_inicio.TabIndex = 13;
@@ -486,14 +461,14 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgv_inscripciones.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgv_inscripciones.Location = new System.Drawing.Point(6, 6);
+            this.dgv_inscripciones.Location = new System.Drawing.Point(9, 6);
             this.dgv_inscripciones.MultiSelect = false;
             this.dgv_inscripciones.Name = "dgv_inscripciones";
             this.dgv_inscripciones.ReadOnly = true;
             this.dgv_inscripciones.RowHeadersVisible = false;
             this.dgv_inscripciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgv_inscripciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_inscripciones.Size = new System.Drawing.Size(714, 466);
+            this.dgv_inscripciones.Size = new System.Drawing.Size(706, 436);
             this.dgv_inscripciones.TabIndex = 4;
             this.dgv_inscripciones.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_inscripciones_CellFormatting_1);
             this.dgv_inscripciones.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_inscripciones_CellMouseClick);
@@ -542,15 +517,16 @@
             // 
             // frm_principal
             // 
+            this.AcceptButton = this.btn_pagar_cuota;
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(990, 580);
+            this.CancelButton = this.btn_salir;
+            this.ClientSize = new System.Drawing.Size(984, 581);
             this.Controls.Add(this.panel_cuota);
             this.Controls.Add(this.panel_titulo);
             this.Controls.Add(this.panel_main);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(1000, 620);
             this.Name = "frm_principal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Principal";
@@ -559,10 +535,6 @@
             this.panel_main.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_gym)).EndInit();
             this.panel_titulo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pic_restaurar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_maximizar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_min)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_close)).EndInit();
             this.panel_cuota.ResumeLayout(false);
             this.panel_botones_cuota.ResumeLayout(false);
             this.panel_botones_cuota.PerformLayout();
@@ -578,21 +550,15 @@
         private System.Windows.Forms.Panel panel_titulo;
         private System.Windows.Forms.PictureBox pic_gym;
         private System.Windows.Forms.Label lbl_gym;
-        private System.Windows.Forms.PictureBox pic_min;
-        private System.Windows.Forms.PictureBox pic_close;
         private System.Windows.Forms.Button btn_socios;
-        private System.Windows.Forms.PictureBox pic_restaurar;
-        private System.Windows.Forms.PictureBox pic_maximizar;
         private System.Windows.Forms.Button btn_historial_pago_socio;
         private System.Windows.Forms.Button btn_salir;
         private System.Windows.Forms.Label lbl_hora_chico;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lbl_fecha;
         private System.Windows.Forms.Button btn_horarios;
-        private System.Windows.Forms.Button btn_covid;
         private System.Windows.Forms.Button btn_vencidos;
         private System.Windows.Forms.Button btn_estadisticas;
-        private System.Windows.Forms.Button btn_refresh_socio;
         private System.Windows.Forms.Panel panel_cuota;
         private System.Windows.Forms.Panel panel_botones_cuota;
         private System.Windows.Forms.TextBox txt_monto_pagar;
@@ -609,5 +575,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_ultimo_pago;
         private System.Windows.Forms.Button btn_pagar_cuota;
+        private System.Windows.Forms.Button btn_actualizar;
+        private System.Windows.Forms.Button btn_exportar_excel;
+        private System.Windows.Forms.TextBox txt_filtro_apellido;
+        private System.Windows.Forms.TextBox txt_filtro_nombre;
+        private System.Windows.Forms.Label lbl_filtro_apellido;
+        private System.Windows.Forms.Label lbl_filtro_nombre;
     }
 }

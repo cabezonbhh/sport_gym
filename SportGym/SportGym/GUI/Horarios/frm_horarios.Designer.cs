@@ -94,7 +94,6 @@
             // 
             // btn_filtrar
             // 
-            this.btn_filtrar.Dock = System.Windows.Forms.DockStyle.Right;
             this.btn_filtrar.Location = new System.Drawing.Point(639, 0);
             this.btn_filtrar.Name = "btn_filtrar";
             this.btn_filtrar.Size = new System.Drawing.Size(75, 54);

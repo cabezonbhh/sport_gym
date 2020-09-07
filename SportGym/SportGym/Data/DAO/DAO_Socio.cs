@@ -129,7 +129,7 @@ namespace SportGym.Data
             SqlParameter[] parametros = new SqlParameter[9];
 
             var param1 = new SqlParameter("@nroSocio", socio.NumeroSocio);
-            param1.SqlDbType = SqlDbType.VarChar;
+            param1.SqlDbType = SqlDbType.Int;
             parametros[0] = param1;
 
             var param2 = new SqlParameter("@nombre", socio.Nombre);
@@ -157,11 +157,11 @@ namespace SportGym.Data
             parametros[6] = param7;
 
             var param8 = new SqlParameter("@horaInicio", socio.HoraInicio);
-            param8.SqlDbType = SqlDbType.Time;
+            param8.SqlDbType = SqlDbType.VarChar;
             parametros[7] = param8;
 
             var param9 = new SqlParameter("@horaFin", socio.HoraFin);
-            param9.SqlDbType = SqlDbType.Time;
+            param9.SqlDbType = SqlDbType.VarChar;
             parametros[8] = param9;
 
             return helper.ejecutarStoredProcedureConParametros(sp, parametros);
@@ -249,6 +249,57 @@ namespace SportGym.Data
             return listaSocios;
         }
 
-       
+        public int registrarSocioConPago(Socio socio, double monto, DateTime inicio, DateTime fin)
+        {
+            string sp = "sp_registrar_socio_con_pago";
+            SqlParameter[] parametros = new SqlParameter[11];
+
+            var param1 = new SqlParameter("@nombre", socio.Nombre);
+            param1.SqlDbType = SqlDbType.VarChar;
+            parametros[0] = param1;
+
+            var param2 = new SqlParameter("@apellido", socio.Apellido);
+            param2.SqlDbType = SqlDbType.VarChar;
+            parametros[1] = param2;
+
+            var param3 = new SqlParameter("@email", socio.Email);
+            param3.SqlDbType = SqlDbType.VarChar;
+            parametros[2] = param3;
+
+            var param4 = new SqlParameter("@telefono", socio.Telefono);
+            param4.SqlDbType = SqlDbType.VarChar;
+            parametros[3] = param4;
+
+            var param5 = new SqlParameter("@celular", socio.Celular);
+            param5.SqlDbType = SqlDbType.VarChar;
+            parametros[4] = param5;
+
+            var param6 = new SqlParameter("@dni", socio.Dni);
+            param6.SqlDbType = SqlDbType.VarChar;
+            parametros[5] = param6;
+
+            var param7 = new SqlParameter("@horaInicio", socio.HoraInicio);
+            param7.SqlDbType = SqlDbType.VarChar;
+            parametros[6] = param7;
+
+            var param8 = new SqlParameter("@horaFin", socio.HoraFin);
+            param8.SqlDbType = SqlDbType.VarChar;
+            parametros[7] = param8;
+
+            var param9 = new SqlParameter("@inicio", inicio);
+            param9.SqlDbType = SqlDbType.Date;
+            parametros[8] = param9;
+
+            var param10 = new SqlParameter("@fin", fin);
+            param10.SqlDbType = SqlDbType.Date;
+            parametros[9] = param10;
+
+            var param11= new SqlParameter("@monto", monto);
+            param11.SqlDbType = SqlDbType.Float;
+            parametros[10] = param11;
+
+
+            return helper.ejecutarStoredProcedureConParametros(sp, parametros);
+        }
     }
 }

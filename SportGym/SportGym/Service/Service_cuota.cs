@@ -54,5 +54,28 @@ namespace SportGym.Service
             return listaDto;
         }
 
+        public DTO_Cuota getUltimaCuota(int nro)
+        {
+            Cuota cuota = daoCuota.getUltimaCuotaPorInscripcion(nro); 
+            if(cuota !=null)
+            {
+                return mapCuota.getDtoCuota(cuota);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+
+        public bool actualizarCuota(DTO_Cuota dto)
+        {
+            double monto = Convert.ToDouble(dto.Monto);
+            DateTime inicio = Convert.ToDateTime(dto.FechaInicio);
+            DateTime fin = Convert.ToDateTime(dto.FechaFin);
+            int nro = Convert.ToInt32(dto.NroCuota);
+            return daoCuota.actualizarCuota(nro,monto,inicio,fin);
+        }
+
     }
 }

@@ -124,9 +124,6 @@
   <data name="icons8_general_ledger_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8_general_ledger_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8_expired_52px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8_expired_52px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="icons8_restart_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8_restart_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -169,11 +166,14 @@
   <data name="icons8_weightlifting_52px_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8_weightlifting_52px_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8_weightlifting_96px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8_weightlifting_96px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8_expired_52px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8_expired_52px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8_menu_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8_menu_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8_statistics_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8_statistics_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="icons8_average_2_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8_average_2_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -214,7 +214,10 @@
   <data name="icons8_error_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\icons8_error_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="icons8_statistics_52px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\icons8_statistics_52px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="icons8_weightlifting_96px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8_weightlifting_96px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="icons8_shopping_cart_52px_2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\icons8_shopping_cart_52px_2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

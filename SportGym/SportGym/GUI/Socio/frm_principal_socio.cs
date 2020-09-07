@@ -1,5 +1,6 @@
 ﻿using SportGym.DataTransferObject;
 using SportGym.GUI.Cuota;
+using SportGym.Interface;
 using SportGym.Service;
 using System;
 using System.Collections.Generic;
@@ -14,16 +15,17 @@ using System.Windows.Forms;
 
 namespace SportGym.GUI.Socio
 {
-    public partial class frm_principal_socio : Form
+    public partial class frm_principal_socio : Form, IForm
     {
        
         Service_socio svSocio;
         Support support = Support.GetSupport();
-
-        public frm_principal_socio()
+        Form principal = null;
+        public frm_principal_socio(Form principal)
         {
             InitializeComponent();
             svSocio = new Service_socio();
+            this.principal = principal;
         }
       
         private void pic_close_Click(object sender, EventArgs e)
@@ -38,7 +40,7 @@ namespace SportGym.GUI.Socio
             if(frm != null || frm.IsDisposed==false)
             {
                 
-                Form nuevo = new frm_nuevo_socio();
+                Form nuevo = new frm_nuevo_socio(principal,this);
                 nuevo.ShowDialog();
             }
            
@@ -52,7 +54,7 @@ namespace SportGym.GUI.Socio
                 DTO_Socio dto = svSocio.getSocio(id);
                 if(dto != null)
                 {
-                    Form editarVer = new frm_editar_socio(dto);
+                    Form editarVer = new frm_editar_socio(dto,this);
                     editarVer.ShowDialog();
                 }
                 else
@@ -81,7 +83,7 @@ namespace SportGym.GUI.Socio
             }
         }
         
-        public  void cargarGrilla(IList<DTO_Socio> lista)
+        public void cargarGrilla(IList<DTO_Socio> lista)
         {
             dgv_socios.Rows.Clear();
             if (lista != null && lista.Count > 0)
@@ -103,6 +105,7 @@ namespace SportGym.GUI.Socio
       
         private void frm_principal_socio_Load(object sender, EventArgs e)
         {
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             cargarGrilla(svSocio.getSocios());
         }
         
@@ -164,6 +167,11 @@ namespace SportGym.GUI.Socio
         private void txt_filtro_apellido_KeyPress_1(object sender, KeyPressEventArgs e)
         {
             support.soloLetrasSiEspacio(sender, e);
+        }
+
+        public void actualizarDatos()
+        {
+            cargarGrilla(svSocio.getSocios());
         }
     }
 }

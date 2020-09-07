@@ -32,6 +32,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_horarios));
             this.panel_hora_filtro = new System.Windows.Forms.Panel();
+            this.lbl_cantidad_resultado = new System.Windows.Forms.Label();
+            this.lbl_cantidad = new System.Windows.Forms.Label();
             this.combo_fin = new System.Windows.Forms.ComboBox();
             this.combo_inicio = new System.Windows.Forms.ComboBox();
             this.lbl_hora_fin = new System.Windows.Forms.Label();
@@ -44,6 +46,7 @@
             this.col_apellido_socio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_horario_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_horario_fin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_socio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel_hora_filtro.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_horarios)).BeginInit();
@@ -51,23 +54,45 @@
             // 
             // panel_hora_filtro
             // 
+            this.panel_hora_filtro.Controls.Add(this.lbl_cantidad_resultado);
+            this.panel_hora_filtro.Controls.Add(this.lbl_cantidad);
             this.panel_hora_filtro.Controls.Add(this.combo_fin);
             this.panel_hora_filtro.Controls.Add(this.combo_inicio);
             this.panel_hora_filtro.Controls.Add(this.lbl_hora_fin);
             this.panel_hora_filtro.Controls.Add(this.btn_filtrar);
             this.panel_hora_filtro.Controls.Add(this.lbl_hora_inicio);
             this.panel_hora_filtro.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_hora_filtro.Location = new System.Drawing.Point(0, 397);
+            this.panel_hora_filtro.Location = new System.Drawing.Point(0, 374);
             this.panel_hora_filtro.Name = "panel_hora_filtro";
-            this.panel_hora_filtro.Size = new System.Drawing.Size(714, 54);
+            this.panel_hora_filtro.Size = new System.Drawing.Size(714, 86);
             this.panel_hora_filtro.TabIndex = 6;
+            // 
+            // lbl_cantidad_resultado
+            // 
+            this.lbl_cantidad_resultado.AutoSize = true;
+            this.lbl_cantidad_resultado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_cantidad_resultado.Location = new System.Drawing.Point(255, 19);
+            this.lbl_cantidad_resultado.Name = "lbl_cantidad_resultado";
+            this.lbl_cantidad_resultado.Size = new System.Drawing.Size(68, 16);
+            this.lbl_cantidad_resultado.TabIndex = 7;
+            this.lbl_cantidad_resultado.Text = "cantidad";
+            // 
+            // lbl_cantidad
+            // 
+            this.lbl_cantidad.AutoSize = true;
+            this.lbl_cantidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_cantidad.Location = new System.Drawing.Point(12, 19);
+            this.lbl_cantidad.Name = "lbl_cantidad";
+            this.lbl_cantidad.Size = new System.Drawing.Size(237, 16);
+            this.lbl_cantidad.TabIndex = 6;
+            this.lbl_cantidad.Text = "Cantidad de lugares disponibles:";
             // 
             // combo_fin
             // 
             this.combo_fin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_fin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combo_fin.FormattingEnabled = true;
-            this.combo_fin.Location = new System.Drawing.Point(366, 14);
+            this.combo_fin.Location = new System.Drawing.Point(367, 56);
             this.combo_fin.Name = "combo_fin";
             this.combo_fin.Size = new System.Drawing.Size(121, 24);
             this.combo_fin.TabIndex = 5;
@@ -77,16 +102,17 @@
             this.combo_inicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.combo_inicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.combo_inicio.FormattingEnabled = true;
-            this.combo_inicio.Location = new System.Drawing.Point(105, 14);
+            this.combo_inicio.Location = new System.Drawing.Point(106, 56);
             this.combo_inicio.Name = "combo_inicio";
             this.combo_inicio.Size = new System.Drawing.Size(121, 24);
             this.combo_inicio.TabIndex = 4;
+            this.combo_inicio.SelectedIndexChanged += new System.EventHandler(this.combo_inicio_SelectedIndexChanged);
             // 
             // lbl_hora_fin
             // 
             this.lbl_hora_fin.AutoSize = true;
             this.lbl_hora_fin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_hora_fin.Location = new System.Drawing.Point(289, 17);
+            this.lbl_hora_fin.Location = new System.Drawing.Point(290, 59);
             this.lbl_hora_fin.Name = "lbl_hora_fin";
             this.lbl_hora_fin.Size = new System.Drawing.Size(71, 16);
             this.lbl_hora_fin.TabIndex = 3;
@@ -94,7 +120,7 @@
             // 
             // btn_filtrar
             // 
-            this.btn_filtrar.Location = new System.Drawing.Point(639, 0);
+            this.btn_filtrar.Location = new System.Drawing.Point(627, 19);
             this.btn_filtrar.Name = "btn_filtrar";
             this.btn_filtrar.Size = new System.Drawing.Size(75, 54);
             this.btn_filtrar.TabIndex = 2;
@@ -106,7 +132,7 @@
             // 
             this.lbl_hora_inicio.AutoSize = true;
             this.lbl_hora_inicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_hora_inicio.Location = new System.Drawing.Point(12, 17);
+            this.lbl_hora_inicio.Location = new System.Drawing.Point(13, 59);
             this.lbl_hora_inicio.Name = "lbl_hora_inicio";
             this.lbl_hora_inicio.Size = new System.Drawing.Size(87, 16);
             this.lbl_hora_inicio.TabIndex = 0;
@@ -114,13 +140,11 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.Controls.Add(this.dgv_horarios);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(714, 399);
+            this.panel1.Size = new System.Drawing.Size(714, 374);
             this.panel1.TabIndex = 7;
             // 
             // dgv_horarios
@@ -147,7 +171,8 @@
             this.col_nombre_socio,
             this.col_apellido_socio,
             this.col_horario_inicio,
-            this.col_horario_fin});
+            this.col_horario_fin,
+            this.col_socio});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -163,8 +188,10 @@
             this.dgv_horarios.RowHeadersVisible = false;
             this.dgv_horarios.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgv_horarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_horarios.Size = new System.Drawing.Size(696, 379);
+            this.dgv_horarios.Size = new System.Drawing.Size(696, 356);
             this.dgv_horarios.TabIndex = 7;
+            this.dgv_horarios.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_horarios_CellDoubleClick);
+            this.dgv_horarios.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_horarios_CellFormatting);
             // 
             // col_orden
             // 
@@ -192,22 +219,29 @@
             // col_horario_inicio
             // 
             this.col_horario_inicio.FillWeight = 113.9086F;
-            this.col_horario_inicio.HeaderText = "Hora inicio";
+            this.col_horario_inicio.HeaderText = "Hora ingreso";
             this.col_horario_inicio.Name = "col_horario_inicio";
             this.col_horario_inicio.ReadOnly = true;
             // 
             // col_horario_fin
             // 
             this.col_horario_fin.FillWeight = 113.9086F;
-            this.col_horario_fin.HeaderText = "Horario fin";
+            this.col_horario_fin.HeaderText = "Horario egreso";
             this.col_horario_fin.Name = "col_horario_fin";
             this.col_horario_fin.ReadOnly = true;
+            // 
+            // col_socio
+            // 
+            this.col_socio.HeaderText = "Socio";
+            this.col_socio.Name = "col_socio";
+            this.col_socio.ReadOnly = true;
+            this.col_socio.Visible = false;
             // 
             // frm_horarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(714, 451);
+            this.ClientSize = new System.Drawing.Size(714, 460);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel_hora_filtro);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -239,5 +273,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_apellido_socio;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_horario_inicio;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_horario_fin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_socio;
+        private System.Windows.Forms.Label lbl_cantidad_resultado;
+        private System.Windows.Forms.Label lbl_cantidad;
     }
 }

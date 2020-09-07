@@ -133,7 +133,7 @@
             this.btn_salir_editar.Location = new System.Drawing.Point(371, 306);
             this.btn_salir_editar.Name = "btn_salir_editar";
             this.btn_salir_editar.Size = new System.Drawing.Size(75, 23);
-            this.btn_salir_editar.TabIndex = 34;
+            this.btn_salir_editar.TabIndex = 11;
             this.btn_salir_editar.Text = "Salir";
             this.btn_salir_editar.UseVisualStyleBackColor = true;
             this.btn_salir_editar.Click += new System.EventHandler(this.btn_salir_editar_Click);
@@ -145,7 +145,7 @@
             this.txt_celular.Name = "txt_celular";
             this.txt_celular.ReadOnly = true;
             this.txt_celular.Size = new System.Drawing.Size(100, 20);
-            this.txt_celular.TabIndex = 33;
+            this.txt_celular.TabIndex = 6;
             this.txt_celular.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_celular_KeyPress);
             // 
             // txt_telefono
@@ -155,7 +155,7 @@
             this.txt_telefono.Name = "txt_telefono";
             this.txt_telefono.ReadOnly = true;
             this.txt_telefono.Size = new System.Drawing.Size(100, 20);
-            this.txt_telefono.TabIndex = 32;
+            this.txt_telefono.TabIndex = 5;
             this.txt_telefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_telefono_KeyPress);
             // 
             // txt_dni
@@ -165,7 +165,7 @@
             this.txt_dni.Name = "txt_dni";
             this.txt_dni.ReadOnly = true;
             this.txt_dni.Size = new System.Drawing.Size(100, 20);
-            this.txt_dni.TabIndex = 31;
+            this.txt_dni.TabIndex = 4;
             this.txt_dni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_dni_KeyPress);
             // 
             // txt_mail
@@ -175,7 +175,7 @@
             this.txt_mail.Name = "txt_mail";
             this.txt_mail.ReadOnly = true;
             this.txt_mail.Size = new System.Drawing.Size(245, 20);
-            this.txt_mail.TabIndex = 30;
+            this.txt_mail.TabIndex = 3;
             // 
             // txt_apellido
             // 
@@ -184,7 +184,7 @@
             this.txt_apellido.Name = "txt_apellido";
             this.txt_apellido.ReadOnly = true;
             this.txt_apellido.Size = new System.Drawing.Size(245, 20);
-            this.txt_apellido.TabIndex = 29;
+            this.txt_apellido.TabIndex = 2;
             this.txt_apellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_apellido_KeyPress);
             // 
             // lbl_celular
@@ -239,7 +239,7 @@
             this.txt_nombre.Name = "txt_nombre";
             this.txt_nombre.ReadOnly = true;
             this.txt_nombre.Size = new System.Drawing.Size(245, 20);
-            this.txt_nombre.TabIndex = 23;
+            this.txt_nombre.TabIndex = 1;
             this.txt_nombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_nombre_KeyPress);
             // 
             // lbl_nombre
@@ -260,7 +260,7 @@
             this.btn_guardar.Location = new System.Drawing.Point(280, 306);
             this.btn_guardar.Name = "btn_guardar";
             this.btn_guardar.Size = new System.Drawing.Size(75, 23);
-            this.btn_guardar.TabIndex = 21;
+            this.btn_guardar.TabIndex = 10;
             this.btn_guardar.Text = "Guardar";
             this.btn_guardar.UseVisualStyleBackColor = true;
             this.btn_guardar.Visible = false;
@@ -302,7 +302,8 @@
             this.combo_fin.Location = new System.Drawing.Point(70, 265);
             this.combo_fin.Name = "combo_fin";
             this.combo_fin.Size = new System.Drawing.Size(60, 21);
-            this.combo_fin.TabIndex = 44;
+            this.combo_fin.TabIndex = 9;
+            this.combo_fin.SelectedIndexChanged += new System.EventHandler(this.combo_fin_SelectedIndexChanged);
             // 
             // combo_inicio
             // 
@@ -311,7 +312,8 @@
             this.combo_inicio.Location = new System.Drawing.Point(70, 228);
             this.combo_inicio.Name = "combo_inicio";
             this.combo_inicio.Size = new System.Drawing.Size(60, 21);
-            this.combo_inicio.TabIndex = 43;
+            this.combo_inicio.TabIndex = 8;
+            this.combo_inicio.SelectedIndexChanged += new System.EventHandler(this.combo_inicio_SelectedIndexChanged);
             // 
             // frm_editar_socio
             // 

@@ -130,6 +130,10 @@ namespace SportGym.Service
         {
             return dao.registrarSocio(mapSocio.getSocio(dto));
         }
+        public int registrarSocioConPago(DTO_Socio dto, double monto, DateTime inicio, DateTime fin)
+        {
+            return dao.registrarSocioConPago(mapSocio.getSocio(dto),monto,inicio,fin);
+        }
 
         public bool modificarSocio(DTO_Socio dto)
         {

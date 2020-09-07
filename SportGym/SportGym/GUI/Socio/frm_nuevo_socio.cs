@@ -1,5 +1,6 @@
 ﻿using SportGym.DataTransferObject;
 using SportGym.GUI.Socio;
+using SportGym.Interface;
 using SportGym.Service;
 using System;
 using System.Collections.Generic;
@@ -16,42 +17,27 @@ namespace SportGym.GUI
     public partial class frm_nuevo_socio : Form
     {
         Service_socio service = null;
-        public frm_nuevo_socio()
+        Form principal = null;
+        Form subPrincipal = null;
+        public frm_nuevo_socio(Form principal, Form subPrincipal)
         {
             InitializeComponent();
             service = new Service_socio();// inicializo el service que se va a comunicar con el dao
-           
+            this.principal = principal;
+            this.subPrincipal = subPrincipal;           
         }
         private void llenarCombos()
         {
-            //combo de inicio
-            combo_inicio.Items.Add("08:00");
-            combo_inicio.Items.Add("09:00");
-            combo_inicio.Items.Add("10:00");
-            combo_inicio.Items.Add("11:00");
-            combo_inicio.Items.Add("16:00");
-            combo_inicio.Items.Add("17:00");
-            combo_inicio.Items.Add("18:00");
-            combo_inicio.Items.Add("19:00");
-            combo_inicio.Items.Add("20:00");
-            combo_inicio.Items.Add("21:00");
-            //combo de fin
-            combo_fin.Items.Add("09:00");
-            combo_fin.Items.Add("10:00");
-            combo_fin.Items.Add("11:00");
-            combo_fin.Items.Add("12:00");
-            combo_fin.Items.Add("17:00");
-            combo_fin.Items.Add("18:00");
-            combo_fin.Items.Add("19:00");
-            combo_fin.Items.Add("20:00");
-            combo_fin.Items.Add("21:00");
-            combo_fin.Items.Add("22:00");
+            Support support = Support.GetSupport();
+            support.cargarComboHorarios(combo_inicio, combo_fin);
         }
 
         private void frm_nuevo_socio_Load(object sender, EventArgs e)
         {
             this.limpiarCampos();
             llenarCombos();
+            dtp_fecha_inicio.Value = DateTime.Now.ToLocalTime();
+            dtp_fecha_vto.Value = DateTime.Now.AddMonths(1);
         }
 
         private void limpiarCampos()//metodo para limpiar los campos
@@ -76,11 +62,7 @@ namespace SportGym.GUI
                 if (String.IsNullOrWhiteSpace(txt_apellido.Text))
                 {
                     return "Apellido";
-                }
-                if (String.IsNullOrWhiteSpace(txt_dni.Text))
-                {
-                    return "DNI";
-                }
+                }              
                 if (combo_inicio.SelectedIndex == -1)
                 {
                     return "Hora Inicio";
@@ -88,6 +70,10 @@ namespace SportGym.GUI
                 if (combo_fin.SelectedIndex == -1)
                 {
                     return "Hora Fin";
+                }
+                if (String.IsNullOrWhiteSpace(txt_monto_pagar.Text))
+                {
+                    return "Monto";
                 }
                 return null;
             }
@@ -146,63 +132,33 @@ namespace SportGym.GUI
             {
                 if (support.esUnNumeroSinAdvertencia(txt_dni.Text) == true && support.esUnNumeroSinAdvertencia(txt_celular.Text) == true && support.esUnNumeroSinAdvertencia(txt_telefono.Text) == true)
                 {
-                    if (service.existeSocioConDni(txt_dni.Text) == false)
+                    DTO_Socio dto = new DTO_Socio();
+                    dto.Nombre = txt_nombre.Text;
+                    dto.Apellido = txt_apellido.Text;
+                    dto.Dni = txt_dni.Text;
+                    dto.Email = txt_mail.Text;
+                    dto.Celular = txt_celular.Text;
+                    dto.Telefono = txt_telefono.Text;
+                    dto.HoraInicio = combo_inicio.SelectedItem.ToString();
+                    dto.HoraFin = combo_fin.SelectedItem.ToString();
+
+                    retorno = (service.registrarSocio(dto) > 0);
+                    if (retorno == true)
                     {
-
-                        DTO_Socio dto = new DTO_Socio();
-                        dto.Nombre = txt_nombre.Text;
-                        dto.Apellido = txt_apellido.Text;
-                        dto.Dni = txt_dni.Text;
-                        dto.Email = txt_mail.Text;
-                        dto.Celular = txt_celular.Text;
-                        dto.Telefono = txt_telefono.Text;
-                        dto.HoraInicio = combo_inicio.SelectedItem.ToString();
-                        dto.HoraFin = combo_fin.SelectedItem.ToString();
-
-                        retorno = (service.registrarSocio(dto) > 0);
-                        if (retorno == true)
+                        IForm frm_p = principal as IForm;
+                        IForm frm_ps = subPrincipal as IForm;
+                        if (frm_p != null && frm_ps != null)
                         {
-                            MessageBox.Show("Socio registrado con exito", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            this.limpiarCampos();                         
+                            frm_p.actualizarDatos();
+                            frm_ps.actualizarDatos();
                         }
-                        else
-                        {
-                            MessageBox.Show("Hubo un problema al registrar al socio, intente nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            this.limpiarCampos();
-                        }
-
+                        MessageBox.Show("Socio registrado con exito", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.limpiarCampos();
                     }
                     else
                     {
-                        DialogResult aux = MessageBox.Show("Existe un socio con ese dni, ¿desea registrarlo de todas formas?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                        if(aux == DialogResult.Yes)
-                        {
-                            DTO_Socio dto = new DTO_Socio();
-                            dto.Nombre = txt_nombre.Text;
-                            dto.Apellido = txt_apellido.Text;
-                            dto.Dni = txt_dni.Text;
-                            dto.Email = txt_mail.Text;
-                            dto.Celular = txt_celular.Text;
-                            dto.Telefono = txt_telefono.Text;
-                            dto.HoraInicio = combo_inicio.SelectedItem.ToString();
-                            dto.HoraFin = combo_fin.SelectedItem.ToString();
-
-                            retorno = (service.registrarSocio(dto) > 0);
-                            if (retorno == true)
-                            {
-                                MessageBox.Show("Socio registrado con exito", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                this.limpiarCampos();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Hubo un problema al registrar al socio, intente nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                this.limpiarCampos();
-                            }
-                        }
-                        else
-                        {
-                            this.limpiarCampos();
-                        }                                          
+                        MessageBox.Show("Hubo un problema al registrar al socio, intente nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.limpiarCampos();
                     }
                 }
                 else
@@ -221,6 +177,88 @@ namespace SportGym.GUI
             {
                 this.Dispose();              
             }
+        }
+
+        private void combo_inicio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (combo_inicio.SelectedIndex != -1)
+            {
+                combo_fin.SelectedItem = (Convert.ToDateTime(combo_inicio.SelectedItem.ToString()).AddHours(1)).ToString("HH:mm");
+            }
+        }
+
+        private void txt_monto_pagar_TextChanged(object sender, EventArgs e)
+        {
+            if(!String.IsNullOrWhiteSpace(txt_monto_pagar.Text))
+            {
+                btn_guardar_pagar.Enabled = true;
+            }
+            else
+            {
+                btn_guardar_pagar.Enabled = false;
+            }
+        }
+
+        private void btn_guardar_pagar_Click(object sender, EventArgs e)
+        {
+            bool retorno = false;
+            Support support = Support.GetSupport();
+            if (validarCampos() != null)
+            {
+                MessageBox.Show("Ha dejado el campo " + validarCampos() + " vacio", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                if (support.esUnNumeroSinAdvertencia(txt_dni.Text) == true && support.esUnNumeroSinAdvertencia(txt_celular.Text) == true && support.esUnNumeroSinAdvertencia(txt_telefono.Text) == true && support.esUnNumeroSinAdvertencia(txt_telefono.Text) == true)
+                {
+                    DTO_Socio dto = new DTO_Socio();
+                    dto.Nombre = txt_nombre.Text;
+                    dto.Apellido = txt_apellido.Text;
+                    dto.Dni = txt_dni.Text;
+                    dto.Email = txt_mail.Text;
+                    dto.Celular = txt_celular.Text;
+                    dto.Telefono = txt_telefono.Text;
+                    dto.HoraInicio = combo_inicio.SelectedItem.ToString();
+                    dto.HoraFin = combo_fin.SelectedItem.ToString();
+                    DateTime inicio = dtp_fecha_inicio.Value;
+                    DateTime fin = dtp_fecha_vto.Value;
+                    double monto = Convert.ToDouble(txt_monto_pagar.Text);
+                    retorno = (service.registrarSocioConPago(dto,monto,inicio,fin) > 0);
+                    if (retorno == true)
+                    {
+                        IForm frm_p = principal as IForm;
+                        IForm frm_ps = subPrincipal as IForm;
+                        if (frm_p != null && frm_ps != null)
+                        {
+                            frm_p.actualizarDatos();
+                            frm_ps.actualizarDatos();
+                        }
+                        MessageBox.Show("Socio registrado con exito", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.limpiarCampos();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Hubo un problema al registrar al socio, intente nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        this.limpiarCampos();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Hay un problema con alguno de los formatos de los campos", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.limpiarCampos();
+                }
+            }
+
+        }
+
+        private void dtp_fecha_inicio_ValueChanged(object sender, EventArgs e)
+        {
+            dtp_fecha_vto.Value = dtp_fecha_inicio.Value.AddMonths(1);
+        }
+
+        private void txt_monto_pagar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Support.GetSupport().soloNumeros(sender,e);
         }
     }
 }

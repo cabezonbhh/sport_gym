@@ -40,6 +40,7 @@
             this.col_fecha_pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_fecha_fin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_celular = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel_info.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_cuotas)).BeginInit();
             this.SuspendLayout();
@@ -48,9 +49,9 @@
             // 
             this.panel_info.Controls.Add(this.lbl_cantidad);
             this.panel_info.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_info.Location = new System.Drawing.Point(0, 480);
+            this.panel_info.Location = new System.Drawing.Point(0, 350);
             this.panel_info.Name = "panel_info";
-            this.panel_info.Size = new System.Drawing.Size(784, 61);
+            this.panel_info.Size = new System.Drawing.Size(684, 61);
             this.panel_info.TabIndex = 0;
             // 
             // lbl_cantidad
@@ -84,7 +85,8 @@
             this.col_apellido,
             this.col_fecha_pago,
             this.col_fecha_fin,
-            this.col_estado});
+            this.col_estado,
+            this.col_celular});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -108,7 +110,7 @@
             this.dgv_cuotas.RowHeadersVisible = false;
             this.dgv_cuotas.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgv_cuotas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_cuotas.Size = new System.Drawing.Size(784, 480);
+            this.dgv_cuotas.Size = new System.Drawing.Size(684, 350);
             this.dgv_cuotas.TabIndex = 6;
             // 
             // col_nombre
@@ -142,11 +144,17 @@
             this.col_estado.Name = "col_estado";
             this.col_estado.ReadOnly = true;
             // 
+            // col_celular
+            // 
+            this.col_celular.HeaderText = "Celular";
+            this.col_celular.Name = "col_celular";
+            this.col_celular.ReadOnly = true;
+            // 
             // frm_vencidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(784, 541);
+            this.ClientSize = new System.Drawing.Size(684, 411);
             this.Controls.Add(this.dgv_cuotas);
             this.Controls.Add(this.panel_info);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -170,5 +178,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn col_fecha_pago;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_fecha_fin;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_celular;
     }
 }

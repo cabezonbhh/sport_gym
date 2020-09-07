@@ -333,6 +333,16 @@ namespace SportGym.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_shopping_cart_52px_2 {
+            get {
+                object obj = ResourceManager.GetObject("icons8_shopping_cart_52px_2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_statistics_52px {
             get {
                 object obj = ResourceManager.GetObject("icons8_statistics_52px", resourceCulture);

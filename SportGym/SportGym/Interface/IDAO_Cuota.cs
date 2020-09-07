@@ -10,7 +10,9 @@ namespace SportGym.Interface
     {
         IList<Cuota> getCuotas(int nroInscripcion);
         IList<Cuota> getCuotasPorSocio(int nro);
+        Cuota getUltimaCuotaPorInscripcion(int nro);
         bool registrarCuota(int nroSocio, int nroInscripcion, double monto ,DateTime inicio, DateTime fin);
+        bool actualizarCuota(int nroCuota, double monto, DateTime inicio, DateTime fin);
         
     }
 }

@@ -12,10 +12,13 @@ using SportGym.Service;
 using SportGym.DataTransferObject;
 using SportGym.GUI.Socio;
 using SportGym.GUI.Cuota;
+using System.IO;
+using System.Globalization;
+using SportGym.Interface;
 
 namespace SportGym.GUI
 {
-    public partial class frm_principal : Form
+    public partial class frm_principal : Form, IForm
     {
 
         Support support = Support.GetSupport();
@@ -25,15 +28,18 @@ namespace SportGym.GUI
         private Service_cuota svCuota;
         private Service_socio svSocio;
 
+
         public frm_principal()
         {
             InitializeComponent();
             svInscripcion = new Service_Inscripcion();
             svCuota = new Service_cuota();
             svSocio = new Service_socio();
-            this.cargarGrillaInscripciones(svInscripcion.getInscripciones());
         }
-
+        private void llenarCombos()
+        {
+            support.cargarComboHorarios(combo_inicio,combo_fin);
+        }
 
         private void pic_close_Click(object sender, EventArgs e)
         {
@@ -45,51 +51,44 @@ namespace SportGym.GUI
         }
 
 
-        private void pic_min_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-
-        private void btn_cuotas_Click(object sender, EventArgs e)
-        {
-            panel_botones_cuota.Visible = true;
-
-        }
-
         private void cargarGrillaInscripciones(IList<DTO_Inscripcion> lista)
         {
             IList<DTO_Inscripcion> inscripciones = lista;
             dgv_inscripciones.Rows.Clear();
             if (inscripciones != null && inscripciones.Count > 0)
             {
+                int contador = 1;
                 habilitarBotonesNoError();
                 foreach (DTO_Inscripcion dto in inscripciones)
                 {
                     dgv_inscripciones.Rows.Add(new Object[]
                             {
-                            Convert.ToInt32(dto.NroSocio.ToString()),
-                            dto.NombreSocio.ToString(),
-                            dto.ApellidoSocio.ToString(),
-                            dto.UltimoVencimiento.ToString(),
-                            dto.EstadoCuota.ToString(),
-                            dto.UltimoPago.ToString()
+                                dto.CodInscripcion.ToString(),
+                                contador.ToString(),
+                                Convert.ToInt32(dto.NroSocio).ToString(),
+                                dto.NombreSocio.ToString(),
+                                dto.ApellidoSocio.ToString(),
+                                dto.UltimoVencimiento.ToString(),
+                                dto.EstadoCuota.ToString(),
+                                dto.UltimoPago.ToString(),
+                                dto.HoraInicio.ToString(),
+                                dto.HoraFin.ToString()
                             }
                         );
+                    contador++;
                 }
             }        
         }
-        
+
 
         private void dgv_inscripciones_CellFormatting_1(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            //este primer if es para pintar la columna de estado del socio col_deuda
             if (dgv_inscripciones.Columns[e.ColumnIndex].Name == "col_estado")
             {
                 if (String.Equals(e.Value, "VENCIDA") == true)
                 {
                     e.CellStyle.BackColor = Color.LightPink;
-
-
                 }
                 else
                 {
@@ -112,7 +111,6 @@ namespace SportGym.GUI
                 }
             }
         }
-
         private void dgv_inscripciones_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             habilitarBotonesCuota();
@@ -158,12 +156,11 @@ namespace SportGym.GUI
 
         private void btn_socios_Click(object sender, EventArgs e)
         {
-
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frm_principal_socio);
             if (frm == null || frm.IsDisposed == true)
             {
-                frm = new frm_principal_socio();
-                frm.Show();
+                frm = new frm_principal_socio(this);
+                frm.ShowDialog();
             }
             else
             {
@@ -209,6 +206,21 @@ namespace SportGym.GUI
 
         private void frm_principal_Load(object sender, EventArgs e)
         {
+            bool resultado;
+            this.llenarCombos();
+            this.cargarGrillaInscripciones(svInscripcion.getInscripciones());
+            resultado = support.respaldarInfo();
+            if (resultado == true)
+                MessageBox.Show("El respaldo se realizo correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            else
+            {
+                if(support.existeElRespaldo() == false)
+                {
+                    MessageBox.Show("Error al realizar el respaldo, por favor realice un respaldo manual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+                
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             timer1.Start();
         }
 
@@ -217,7 +229,7 @@ namespace SportGym.GUI
             Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frm_horarios);
             if (frm == null || frm.IsDisposed == true)
             {
-                frm = new frm_horarios();
+                frm = new frm_horarios(this);
                 frm.Show();
             }
             else
@@ -244,20 +256,7 @@ namespace SportGym.GUI
 
 
 
-        private void btn_estadisticas_Click(object sender, EventArgs e)
-        {
-           
-            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frm_estadisticas);
-            if (frm == null || frm.IsDisposed == true)
-            {
-                frm = new frm_estadisticas();
-                frm.Show();
-            }
-            else
-            {
-                frm.BringToFront();
-            }
-        }
+
 
         private void btn_pagar_cuota_Click(object sender, EventArgs e)
         {
@@ -270,8 +269,62 @@ namespace SportGym.GUI
                 int nroI = Convert.ToInt32(svSocio.getSocio(nroS).Inscripcion);
                 if (svCuota.tieneQuePagar(nroS) == false)//valido que el socio tenga la cuota vencida
                 {
-                    MessageBox.Show("La ultima cuota no se encuentra vencida", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    txt_monto_pagar.Clear();
+                    DialogResult respuesta = MessageBox.Show("La cuota no se encuentra vencida. ¿ Desea registrar el cobro de igual forma?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if(respuesta == DialogResult.Yes)
+                    {
+                        if (support.esUnNumero(txt_monto_pagar.Text) == true)
+                        {
+                            if (String.IsNullOrEmpty(txt_monto_pagar.Text) || Convert.ToDouble(txt_monto_pagar.Text) < 0)
+                            {
+                                MessageBox.Show("No ingreso un monto valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                txt_monto_pagar.Clear();
+                            }
+                            else
+                            {
+                                if (dtp_fecha_vto.Value < dtp_fecha_inicio.Value)
+                                {
+                                    MessageBox.Show("No selecciono fechas o la fecha de vencimiento es anterior a la de inicio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                else
+                                {
+                                    respuesta = MessageBox.Show("¿Desea registrar el pago de " + nombre + " " + apellido + "?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (respuesta == DialogResult.Yes)
+                                    {
+                                        DTO_Pagar_Cuota dtoNuevaCuota = new DTO_Pagar_Cuota();
+                                        dtoNuevaCuota.NroSocio = nroS.ToString();
+                                        dtoNuevaCuota.NroInscripcion = nroI.ToString();
+                                        dtoNuevaCuota.FechaInicio = dtp_fecha_inicio.Value.ToString();
+                                        dtoNuevaCuota.FechaFin = dtp_fecha_vto.Value.ToString();
+                                        dtoNuevaCuota.Monto = txt_monto_pagar.Text;
+                                        control = svCuota.registrarNuevaCuota(dtoNuevaCuota);
+                                        if (control == true)
+                                        {
+                                            MessageBox.Show("Pago registrado con exito", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            dgv_inscripciones.Rows.Clear();
+                                            if (combo_inicio.SelectedIndex != -1 && combo_fin.SelectedIndex != -1)
+                                            {
+                                                this.cargarGrillaInscripciones(svInscripcion.getInscripcionesPorHora(combo_inicio.SelectedItem.ToString(), combo_fin.SelectedItem.ToString()));
+                                            }
+                                            else
+                                            {
+                                                cargarGrillaInscripciones(svInscripcion.getInscripciones());
+                                            }
+                                            txt_monto_pagar.Clear();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Error al registrar el pago, intente nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            txt_monto_pagar.Clear();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        txt_monto_pagar.Clear();
+                    }
                 }
                 else
                 {
@@ -304,7 +357,14 @@ namespace SportGym.GUI
                                     {
                                         MessageBox.Show("Pago registrado con exito", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                         dgv_inscripciones.Rows.Clear();
-                                        cargarGrillaInscripciones(svInscripcion.getInscripciones());
+                                        if(combo_inicio.SelectedIndex != -1 && combo_fin.SelectedIndex != -1)
+                                        {
+                                            this.cargarGrillaInscripciones(svInscripcion.getInscripcionesPorHora(combo_inicio.SelectedItem.ToString(), combo_fin.SelectedItem.ToString()));
+                                        }
+                                        else
+                                        {
+                                            cargarGrillaInscripciones(svInscripcion.getInscripciones());
+                                        }                                      
                                         txt_monto_pagar.Clear();
                                     }
                                     else
@@ -331,56 +391,40 @@ namespace SportGym.GUI
 
         private void btn_actualizar_Click(object sender, EventArgs e)
         {
-            cargarGrillaInscripciones(svInscripcion.getInscripciones());
+            if (combo_inicio.SelectedIndex != -1 && combo_fin.SelectedIndex != -1)
+            {
+                this.cargarGrillaInscripciones(svInscripcion.getInscripcionesPorHora(combo_inicio.SelectedItem.ToString(), combo_fin.SelectedItem.ToString()));
+            }
+            else
+            {
+                cargarGrillaInscripciones(svInscripcion.getInscripciones());
+            }
+            txt_filtro_apellido.Clear();
+            txt_filtro_nombre.Clear();
         }
 
         private void btn_exportar_excel_Click(object sender, EventArgs e)
         {
-            SaveFileDialog fichero = new SaveFileDialog();
-            fichero.Filter = "Excel (*.xls)|*.xls";
+            bool resultado = false;
+
             IList<DTO_Inscripcion> inscripciones = svInscripcion.getInscripciones();
-
-            if (fichero.ShowDialog() == DialogResult.OK)
+            if(inscripciones != null && inscripciones.Count > 0)
             {
-                if(inscripciones != null && inscripciones.Count > 0 )
+                SaveFileDialog fichero = new SaveFileDialog();
+                fichero.Filter = "Excel (*.xls)|*.xls";
+                if (fichero.ShowDialog() == DialogResult.OK)
                 {
-                    Microsoft.Office.Interop.Excel.Application aplicacion;
-                    Microsoft.Office.Interop.Excel.Workbook libros_trabajo;
-                    Microsoft.Office.Interop.Excel.Worksheet hoja_trabajo;
-                    aplicacion = new Microsoft.Office.Interop.Excel.Application();
-                    libros_trabajo = aplicacion.Workbooks.Add();
-                    hoja_trabajo =
-                        (Microsoft.Office.Interop.Excel.Worksheet)libros_trabajo.Worksheets.get_Item(1);
-
-                    for (int i = 0; i < dgv_inscripciones.Rows.Count; i++)
-                    {
-                        for (int j = 0; j < dgv_inscripciones.Columns.Count; j++)
-                        {
-                            hoja_trabajo.Cells[i + 2, j + 1] = dgv_inscripciones.Rows[i].Cells[j].Value.ToString();
-                        }
-                    }
-                    hoja_trabajo.Cells[1, "A"] = "Socio";
-                    hoja_trabajo.Cells[1, "B"] = "Nombre";
-                    hoja_trabajo.Cells[1, "C"] = "Apellido";
-                    hoja_trabajo.Cells[1, "D"] = "Vencimiento";
-                    hoja_trabajo.Cells[1, "E"] = "Estado";
-                    hoja_trabajo.Cells[1, "F"] = "Fecha Pago";
-
-                    libros_trabajo.SaveAs(fichero.FileName,
-                        Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal);
-                    libros_trabajo.Close(true);
-                    aplicacion.Quit();
-                }
-                else
-                {
-                    MessageBox.Show("No hay datos para guardar","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    resultado = support.guardarEnExcel(inscripciones, fichero.FileName);
+                    if (resultado == true)
+                        MessageBox.Show("Se creo el Archivo Excel exitosamente","Excel",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    else
+                        MessageBox.Show("Error al crear el archivo Excel, intente nuevamente", "Excel", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-
-        private void panel_titulo_Paint(object sender, PaintEventArgs e)
-        {
-
+        else
+            {
+                MessageBox.Show("No hay datos para guardar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void txt_filtro_nombre_TextChanged(object sender, EventArgs e)
@@ -388,11 +432,19 @@ namespace SportGym.GUI
             if (!String.IsNullOrWhiteSpace(txt_filtro_nombre.Text))
             {
                 this.cargarGrillaInscripciones(svInscripcion.getInscripcionesPorNombre(txt_filtro_nombre.Text));
+                combo_inicio.SelectedIndex = -1;
+                combo_inicio.Enabled = false;
+                combo_fin.SelectedIndex = -1;
+                combo_fin.Enabled = false;
             }
             else
             {
                 dgv_inscripciones.Rows.Clear();
                 this.cargarGrillaInscripciones(svInscripcion.getInscripciones());
+                combo_inicio.SelectedIndex = -1;
+                combo_inicio.Enabled = true;
+                combo_fin.SelectedIndex = -1;
+                combo_fin.Enabled = true;
             }
         }
 
@@ -417,6 +469,108 @@ namespace SportGym.GUI
         private void txt_filtro_apellido_KeyPress(object sender, KeyPressEventArgs e)
         {
             support.soloLetrasSiEspacio(sender, e);
+        }
+
+        private void btn_estadisticas_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frm_estadisticas);
+            if (frm == null || frm.IsDisposed == true)
+            {
+                frm = new frm_estadisticas();
+                frm.Show();
+            }
+            else
+            {
+                frm.BringToFront();
+            }
+        }
+
+        private void dgv_inscripciones_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgv_inscripciones.CurrentRow != null)
+            {
+                int id = Convert.ToInt32(dgv_inscripciones.CurrentRow.Cells["col_cod_inscripcion"].Value.ToString());
+                if (id > 0)
+                {
+                    Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frm_detalle_cuota);
+                    if (frm == null || frm.IsDisposed == true)
+                    {
+                        frm = new frm_detalle_cuota(id,this);
+                        frm.Show();
+                    }
+                    else
+                    {
+                        frm.BringToFront();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Inscripcion no valida", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No selecciono ningun socio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private void btn_filtrar_Click(object sender, EventArgs e)
+        {
+            if (combo_inicio.SelectedIndex != -1 && combo_fin.SelectedIndex != -1)
+            {
+                txt_filtro_nombre.Clear();
+
+                txt_filtro_apellido.Clear();
+
+                this.cargarGrillaInscripciones(svInscripcion.getInscripcionesPorHora(combo_inicio.SelectedItem.ToString(), combo_fin.SelectedItem.ToString()));
+            }
+            else
+            {
+                MessageBox.Show("Falta la Hora de Inicio o Fin", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void actualizarDatos()
+        {
+            if (combo_inicio.SelectedIndex != -1 && combo_fin.SelectedIndex != -1)
+            {
+                this.cargarGrillaInscripciones(svInscripcion.getInscripcionesPorHora(combo_inicio.SelectedItem.ToString(), combo_fin.SelectedItem.ToString()));
+            }
+            else
+            {
+                cargarGrillaInscripciones(svInscripcion.getInscripciones());
+            }
+        }
+
+        private void combo_inicio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(combo_inicio.SelectedIndex != -1)
+            {
+                combo_fin.SelectedItem = (Convert.ToDateTime(combo_inicio.SelectedItem.ToString()).AddHours(1)).ToString("HH:mm");
+            }
+        }
+
+        private void dgv_inscripciones_CurrentCellChanged(object sender, EventArgs e)
+        {
+            if (dgv_inscripciones.CurrentRow != null && dgv_inscripciones.CurrentRow.Cells["col_fecha_vto"].Value.ToString().Equals("N/D") != true)
+            {
+                dtp_fecha_inicio.Value = Convert.ToDateTime(dgv_inscripciones.CurrentRow.Cells["col_fecha_vto"].Value.ToString());
+                dtp_fecha_vto.Value = dtp_fecha_inicio.Value.AddMonths(1);
+            }
+            else
+            {
+                dtp_fecha_inicio.Value = DateTime.Now;
+                dtp_fecha_vto.Value = dtp_fecha_inicio.Value.AddMonths(1);
+            }
+        }
+
+        private void dtp_fecha_inicio_ValueChanged(object sender, EventArgs e)
+        {
+            if(dtp_fecha_inicio.Value != null)
+            {
+                dtp_fecha_vto.Value = dtp_fecha_inicio.Value.AddMonths(1);
+            }
         }
     }
 }

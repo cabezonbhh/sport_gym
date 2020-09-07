@@ -77,7 +77,13 @@
     <Compile Include="Data\DAO\DAO_Cuota.cs" />
     <Compile Include="Data\DAO\DAO_Inscripcion.cs" />
     <Compile Include="Data\DAO\DAO_Socio.cs" />
-    <Compile Include="Data\DBHelper.cs" />
+    <Compile Include="Data\Helper\DBHelper.cs" />
+    <Compile Include="GUI\Cuota\frm_detalle_cuota.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUI\Cuota\frm_detalle_cuota.Designer.cs">
+      <DependentUpon>frm_detalle_cuota.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUI\Cuota\frm_vencidos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +143,7 @@
     <Compile Include="Interface\IDAO_Estadisticas.cs" />
     <Compile Include="Interface\IDAO_Inscripcion.cs" />
     <Compile Include="Interface\IDAO_Socio.cs" />
+    <Compile Include="Interface\IForm.cs" />
     <Compile Include="Mapper\MapperCuota.cs" />
     <Compile Include="Mapper\MapperInscripcion.cs" />
     <Compile Include="Mapper\MapperSocio.cs" />
@@ -146,6 +153,9 @@
     <Compile Include="Service\Service_estadisticas.cs" />
     <Compile Include="Service\Service_Inscripcion.cs" />
     <Compile Include="Service\Service_socio.cs" />
+    <EmbeddedResource Include="GUI\Cuota\frm_detalle_cuota.resx">
+      <DependentUpon>frm_detalle_cuota.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUI\Cuota\frm_vencidos.resx">
       <DependentUpon>frm_vencidos.cs</DependentUpon>
     </EmbeddedResource>
@@ -196,9 +206,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\Helper\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\icons8_menu_32px.png" />
   </ItemGroup>
@@ -302,6 +310,7 @@
     <Content Include="icons8_dumbbell_3.ico" />
     <Content Include="icons8_person_lifting_weights.ico" />
     <Content Include="icons8_weightlifting.ico" />
+    <None Include="Resources\icons8_shopping_cart_52px_2.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

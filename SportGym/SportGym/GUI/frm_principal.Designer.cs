@@ -44,6 +44,11 @@
             this.btn_socios = new System.Windows.Forms.Button();
             this.pic_gym = new System.Windows.Forms.PictureBox();
             this.panel_titulo = new System.Windows.Forms.Panel();
+            this.btn_filtrar = new System.Windows.Forms.Button();
+            this.combo_fin = new System.Windows.Forms.ComboBox();
+            this.combo_inicio = new System.Windows.Forms.ComboBox();
+            this.lbl_hora_fin = new System.Windows.Forms.Label();
+            this.lbl_hora_inicio = new System.Windows.Forms.Label();
             this.btn_exportar_excel = new System.Windows.Forms.Button();
             this.btn_actualizar = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
@@ -61,12 +66,16 @@
             this.lbl_fecha_inicio = new System.Windows.Forms.Label();
             this.dtp_fecha_inicio = new System.Windows.Forms.DateTimePicker();
             this.dgv_inscripciones = new System.Windows.Forms.DataGridView();
+            this.col_cod_inscripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_orden = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_nro_socio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_apellido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_fecha_vto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_ultimo_pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.col_fin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel_main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_gym)).BeginInit();
             this.panel_titulo.SuspendLayout();
@@ -91,7 +100,7 @@
             this.panel_main.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_main.Location = new System.Drawing.Point(0, 0);
             this.panel_main.Name = "panel_main";
-            this.panel_main.Size = new System.Drawing.Size(260, 581);
+            this.panel_main.Size = new System.Drawing.Size(254, 581);
             this.panel_main.TabIndex = 0;
             // 
             // btn_estadisticas
@@ -106,7 +115,7 @@
             this.btn_estadisticas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_estadisticas.Location = new System.Drawing.Point(0, 435);
             this.btn_estadisticas.Name = "btn_estadisticas";
-            this.btn_estadisticas.Size = new System.Drawing.Size(270, 64);
+            this.btn_estadisticas.Size = new System.Drawing.Size(260, 64);
             this.btn_estadisticas.TabIndex = 8;
             this.btn_estadisticas.Text = "     Estadisticas";
             this.btn_estadisticas.UseVisualStyleBackColor = true;
@@ -124,7 +133,7 @@
             this.btn_vencidos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_vencidos.Location = new System.Drawing.Point(0, 365);
             this.btn_vencidos.Name = "btn_vencidos";
-            this.btn_vencidos.Size = new System.Drawing.Size(270, 64);
+            this.btn_vencidos.Size = new System.Drawing.Size(260, 64);
             this.btn_vencidos.TabIndex = 7;
             this.btn_vencidos.Text = "     Vencidos";
             this.btn_vencidos.UseVisualStyleBackColor = true;
@@ -172,7 +181,7 @@
             this.btn_salir.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_salir.Location = new System.Drawing.Point(0, 517);
             this.btn_salir.Name = "btn_salir";
-            this.btn_salir.Size = new System.Drawing.Size(260, 64);
+            this.btn_salir.Size = new System.Drawing.Size(254, 64);
             this.btn_salir.TabIndex = 3;
             this.btn_salir.Text = "     Salir";
             this.btn_salir.UseVisualStyleBackColor = true;
@@ -249,20 +258,74 @@
             // 
             this.panel_titulo.AutoSize = true;
             this.panel_titulo.BackColor = System.Drawing.SystemColors.Control;
+            this.panel_titulo.Controls.Add(this.btn_filtrar);
+            this.panel_titulo.Controls.Add(this.combo_fin);
+            this.panel_titulo.Controls.Add(this.combo_inicio);
+            this.panel_titulo.Controls.Add(this.lbl_hora_fin);
+            this.panel_titulo.Controls.Add(this.lbl_hora_inicio);
             this.panel_titulo.Controls.Add(this.btn_exportar_excel);
-            this.panel_titulo.Controls.Add(this.btn_actualizar);
             this.panel_titulo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel_titulo.Location = new System.Drawing.Point(260, 0);
+            this.panel_titulo.Location = new System.Drawing.Point(254, 0);
             this.panel_titulo.Name = "panel_titulo";
-            this.panel_titulo.Size = new System.Drawing.Size(724, 38);
+            this.panel_titulo.Size = new System.Drawing.Size(730, 35);
             this.panel_titulo.TabIndex = 1;
-            this.panel_titulo.Paint += new System.Windows.Forms.PaintEventHandler(this.panel_titulo_Paint);
+            // 
+            // btn_filtrar
+            // 
+            this.btn_filtrar.Location = new System.Drawing.Point(176, 6);
+            this.btn_filtrar.Name = "btn_filtrar";
+            this.btn_filtrar.Size = new System.Drawing.Size(72, 26);
+            this.btn_filtrar.TabIndex = 3;
+            this.btn_filtrar.Text = "Listar";
+            this.btn_filtrar.UseVisualStyleBackColor = true;
+            this.btn_filtrar.Click += new System.EventHandler(this.btn_filtrar_Click);
+            // 
+            // combo_fin
+            // 
+            this.combo_fin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combo_fin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combo_fin.FormattingEnabled = true;
+            this.combo_fin.Location = new System.Drawing.Point(537, 8);
+            this.combo_fin.Name = "combo_fin";
+            this.combo_fin.Size = new System.Drawing.Size(79, 24);
+            this.combo_fin.TabIndex = 28;
+            // 
+            // combo_inicio
+            // 
+            this.combo_inicio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.combo_inicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.combo_inicio.FormattingEnabled = true;
+            this.combo_inicio.Location = new System.Drawing.Point(345, 8);
+            this.combo_inicio.Name = "combo_inicio";
+            this.combo_inicio.Size = new System.Drawing.Size(79, 24);
+            this.combo_inicio.TabIndex = 27;
+            this.combo_inicio.SelectedIndexChanged += new System.EventHandler(this.combo_inicio_SelectedIndexChanged);
+            // 
+            // lbl_hora_fin
+            // 
+            this.lbl_hora_fin.AutoSize = true;
+            this.lbl_hora_fin.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_hora_fin.Location = new System.Drawing.Point(460, 11);
+            this.lbl_hora_fin.Name = "lbl_hora_fin";
+            this.lbl_hora_fin.Size = new System.Drawing.Size(71, 16);
+            this.lbl_hora_fin.TabIndex = 26;
+            this.lbl_hora_fin.Text = "Hora Fin:";
+            // 
+            // lbl_hora_inicio
+            // 
+            this.lbl_hora_inicio.AutoSize = true;
+            this.lbl_hora_inicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_hora_inicio.Location = new System.Drawing.Point(252, 11);
+            this.lbl_hora_inicio.Name = "lbl_hora_inicio";
+            this.lbl_hora_inicio.Size = new System.Drawing.Size(87, 16);
+            this.lbl_hora_inicio.TabIndex = 25;
+            this.lbl_hora_inicio.Text = "Hora Inicio:";
             // 
             // btn_exportar_excel
             // 
-            this.btn_exportar_excel.Location = new System.Drawing.Point(116, 12);
+            this.btn_exportar_excel.Location = new System.Drawing.Point(6, 6);
             this.btn_exportar_excel.Name = "btn_exportar_excel";
-            this.btn_exportar_excel.Size = new System.Drawing.Size(111, 23);
+            this.btn_exportar_excel.Size = new System.Drawing.Size(111, 26);
             this.btn_exportar_excel.TabIndex = 24;
             this.btn_exportar_excel.Text = "Exportar a excel";
             this.btn_exportar_excel.UseVisualStyleBackColor = true;
@@ -271,9 +334,9 @@
             // btn_actualizar
             // 
             this.btn_actualizar.Enabled = false;
-            this.btn_actualizar.Location = new System.Drawing.Point(10, 12);
+            this.btn_actualizar.Location = new System.Drawing.Point(515, 12);
             this.btn_actualizar.Name = "btn_actualizar";
-            this.btn_actualizar.Size = new System.Drawing.Size(75, 23);
+            this.btn_actualizar.Size = new System.Drawing.Size(100, 26);
             this.btn_actualizar.TabIndex = 23;
             this.btn_actualizar.Text = "Actualizar";
             this.btn_actualizar.UseVisualStyleBackColor = true;
@@ -291,9 +354,9 @@
             this.panel_cuota.Controls.Add(this.panel_botones_cuota);
             this.panel_cuota.Controls.Add(this.dgv_inscripciones);
             this.panel_cuota.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_cuota.Location = new System.Drawing.Point(260, 38);
+            this.panel_cuota.Location = new System.Drawing.Point(254, 35);
             this.panel_cuota.Name = "panel_cuota";
-            this.panel_cuota.Size = new System.Drawing.Size(724, 543);
+            this.panel_cuota.Size = new System.Drawing.Size(730, 546);
             this.panel_cuota.TabIndex = 2;
             // 
             // panel_botones_cuota
@@ -304,23 +367,24 @@
             this.panel_botones_cuota.Controls.Add(this.lbl_filtro_nombre);
             this.panel_botones_cuota.Controls.Add(this.btn_pagar_cuota);
             this.panel_botones_cuota.Controls.Add(this.txt_monto_pagar);
+            this.panel_botones_cuota.Controls.Add(this.btn_actualizar);
             this.panel_botones_cuota.Controls.Add(this.lbl_monto);
             this.panel_botones_cuota.Controls.Add(this.lbl_fecha_fin);
             this.panel_botones_cuota.Controls.Add(this.dtp_fecha_vto);
             this.panel_botones_cuota.Controls.Add(this.lbl_fecha_inicio);
             this.panel_botones_cuota.Controls.Add(this.dtp_fecha_inicio);
             this.panel_botones_cuota.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel_botones_cuota.Location = new System.Drawing.Point(0, 448);
+            this.panel_botones_cuota.Location = new System.Drawing.Point(0, 451);
             this.panel_botones_cuota.Name = "panel_botones_cuota";
-            this.panel_botones_cuota.Size = new System.Drawing.Size(722, 93);
+            this.panel_botones_cuota.Size = new System.Drawing.Size(728, 93);
             this.panel_botones_cuota.TabIndex = 5;
             // 
             // txt_filtro_apellido
             // 
             this.txt_filtro_apellido.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_filtro_apellido.Location = new System.Drawing.Point(395, 12);
+            this.txt_filtro_apellido.Location = new System.Drawing.Point(312, 12);
             this.txt_filtro_apellido.Name = "txt_filtro_apellido";
-            this.txt_filtro_apellido.Size = new System.Drawing.Size(202, 26);
+            this.txt_filtro_apellido.Size = new System.Drawing.Size(132, 26);
             this.txt_filtro_apellido.TabIndex = 23;
             this.txt_filtro_apellido.TextChanged += new System.EventHandler(this.txt_filtro_apellido_TextChanged);
             this.txt_filtro_apellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_filtro_apellido_KeyPress);
@@ -330,7 +394,7 @@
             this.txt_filtro_nombre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_filtro_nombre.Location = new System.Drawing.Point(94, 12);
             this.txt_filtro_nombre.Name = "txt_filtro_nombre";
-            this.txt_filtro_nombre.Size = new System.Drawing.Size(202, 26);
+            this.txt_filtro_nombre.Size = new System.Drawing.Size(132, 26);
             this.txt_filtro_nombre.TabIndex = 22;
             this.txt_filtro_nombre.TextChanged += new System.EventHandler(this.txt_filtro_nombre_TextChanged);
             this.txt_filtro_nombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_filtro_nombre_KeyPress);
@@ -339,7 +403,7 @@
             // 
             this.lbl_filtro_apellido.AutoSize = true;
             this.lbl_filtro_apellido.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_filtro_apellido.Location = new System.Drawing.Point(333, 15);
+            this.lbl_filtro_apellido.Location = new System.Drawing.Point(241, 15);
             this.lbl_filtro_apellido.Name = "lbl_filtro_apellido";
             this.lbl_filtro_apellido.Size = new System.Drawing.Size(65, 18);
             this.lbl_filtro_apellido.TabIndex = 21;
@@ -426,6 +490,7 @@
             this.dtp_fecha_inicio.Name = "dtp_fecha_inicio";
             this.dtp_fecha_inicio.Size = new System.Drawing.Size(132, 26);
             this.dtp_fecha_inicio.TabIndex = 13;
+            this.dtp_fecha_inicio.ValueChanged += new System.EventHandler(this.dtp_fecha_inicio_ValueChanged);
             // 
             // dgv_inscripciones
             // 
@@ -447,12 +512,16 @@
             this.dgv_inscripciones.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_inscripciones.ColumnHeadersHeight = 30;
             this.dgv_inscripciones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.col_cod_inscripcion,
+            this.col_orden,
             this.col_nro_socio,
             this.col_nombre,
             this.col_apellido,
             this.col_fecha_vto,
             this.col_estado,
-            this.col_ultimo_pago});
+            this.col_ultimo_pago,
+            this.col_inicio,
+            this.col_fin});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -468,20 +537,39 @@
             this.dgv_inscripciones.RowHeadersVisible = false;
             this.dgv_inscripciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgv_inscripciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_inscripciones.Size = new System.Drawing.Size(706, 436);
+            this.dgv_inscripciones.Size = new System.Drawing.Size(712, 439);
             this.dgv_inscripciones.TabIndex = 4;
+            this.dgv_inscripciones.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_inscripciones_CellDoubleClick);
             this.dgv_inscripciones.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgv_inscripciones_CellFormatting_1);
             this.dgv_inscripciones.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgv_inscripciones_CellMouseClick);
+            this.dgv_inscripciones.CurrentCellChanged += new System.EventHandler(this.dgv_inscripciones_CurrentCellChanged);
+            // 
+            // col_cod_inscripcion
+            // 
+            this.col_cod_inscripcion.HeaderText = "Inscripcion";
+            this.col_cod_inscripcion.Name = "col_cod_inscripcion";
+            this.col_cod_inscripcion.ReadOnly = true;
+            this.col_cod_inscripcion.Visible = false;
+            // 
+            // col_orden
+            // 
+            this.col_orden.HeaderText = "Nº";
+            this.col_orden.Name = "col_orden";
+            this.col_orden.ReadOnly = true;
             // 
             // col_nro_socio
             // 
+            this.col_nro_socio.FillWeight = 91.37056F;
             this.col_nro_socio.HeaderText = "N° Socio";
             this.col_nro_socio.MinimumWidth = 10;
             this.col_nro_socio.Name = "col_nro_socio";
             this.col_nro_socio.ReadOnly = true;
+            this.col_nro_socio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.col_nro_socio.Visible = false;
             // 
             // col_nombre
             // 
+            this.col_nombre.FillWeight = 101.7259F;
             this.col_nombre.HeaderText = "Nombre";
             this.col_nombre.MinimumWidth = 10;
             this.col_nombre.Name = "col_nombre";
@@ -489,6 +577,7 @@
             // 
             // col_apellido
             // 
+            this.col_apellido.FillWeight = 101.7259F;
             this.col_apellido.HeaderText = "Apellido";
             this.col_apellido.MinimumWidth = 10;
             this.col_apellido.Name = "col_apellido";
@@ -496,6 +585,7 @@
             // 
             // col_fecha_vto
             // 
+            this.col_fecha_vto.FillWeight = 101.7259F;
             this.col_fecha_vto.HeaderText = "Fecha vto";
             this.col_fecha_vto.MinimumWidth = 10;
             this.col_fecha_vto.Name = "col_fecha_vto";
@@ -503,6 +593,7 @@
             // 
             // col_estado
             // 
+            this.col_estado.FillWeight = 101.7259F;
             this.col_estado.HeaderText = "Estado";
             this.col_estado.MinimumWidth = 10;
             this.col_estado.Name = "col_estado";
@@ -510,10 +601,24 @@
             // 
             // col_ultimo_pago
             // 
+            this.col_ultimo_pago.FillWeight = 101.7259F;
             this.col_ultimo_pago.HeaderText = "Ultimo pago";
             this.col_ultimo_pago.MinimumWidth = 10;
             this.col_ultimo_pago.Name = "col_ultimo_pago";
             this.col_ultimo_pago.ReadOnly = true;
+            this.col_ultimo_pago.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            // 
+            // col_inicio
+            // 
+            this.col_inicio.HeaderText = "Ingreso";
+            this.col_inicio.Name = "col_inicio";
+            this.col_inicio.ReadOnly = true;
+            // 
+            // col_fin
+            // 
+            this.col_fin.HeaderText = "Egreso";
+            this.col_fin.Name = "col_fin";
+            this.col_fin.ReadOnly = true;
             // 
             // frm_principal
             // 
@@ -535,6 +640,7 @@
             this.panel_main.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_gym)).EndInit();
             this.panel_titulo.ResumeLayout(false);
+            this.panel_titulo.PerformLayout();
             this.panel_cuota.ResumeLayout(false);
             this.panel_botones_cuota.ResumeLayout(false);
             this.panel_botones_cuota.PerformLayout();
@@ -561,19 +667,7 @@
         private System.Windows.Forms.Button btn_estadisticas;
         private System.Windows.Forms.Panel panel_cuota;
         private System.Windows.Forms.Panel panel_botones_cuota;
-        private System.Windows.Forms.TextBox txt_monto_pagar;
-        private System.Windows.Forms.Label lbl_monto;
-        private System.Windows.Forms.Label lbl_fecha_fin;
-        private System.Windows.Forms.DateTimePicker dtp_fecha_vto;
-        private System.Windows.Forms.Label lbl_fecha_inicio;
-        private System.Windows.Forms.DateTimePicker dtp_fecha_inicio;
         private System.Windows.Forms.DataGridView dgv_inscripciones;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_nro_socio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_apellido;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_fecha_vto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn col_ultimo_pago;
         private System.Windows.Forms.Button btn_pagar_cuota;
         private System.Windows.Forms.Button btn_actualizar;
         private System.Windows.Forms.Button btn_exportar_excel;
@@ -581,5 +675,26 @@
         private System.Windows.Forms.TextBox txt_filtro_nombre;
         private System.Windows.Forms.Label lbl_filtro_apellido;
         private System.Windows.Forms.Label lbl_filtro_nombre;
+        private System.Windows.Forms.ComboBox combo_fin;
+        private System.Windows.Forms.ComboBox combo_inicio;
+        private System.Windows.Forms.Label lbl_hora_fin;
+        private System.Windows.Forms.Label lbl_hora_inicio;
+        private System.Windows.Forms.Button btn_filtrar;
+        private System.Windows.Forms.TextBox txt_monto_pagar;
+        private System.Windows.Forms.Label lbl_monto;
+        private System.Windows.Forms.Label lbl_fecha_fin;
+        private System.Windows.Forms.DateTimePicker dtp_fecha_vto;
+        private System.Windows.Forms.Label lbl_fecha_inicio;
+        private System.Windows.Forms.DateTimePicker dtp_fecha_inicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_cod_inscripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_orden;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_nro_socio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_apellido;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_fecha_vto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_ultimo_pago;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_inicio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn col_fin;
     }
 }

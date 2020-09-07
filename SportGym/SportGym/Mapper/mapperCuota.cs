@@ -21,5 +21,6 @@ namespace SportGym.Mapper
             dto.Estado = cuota.getEstado();
             return dto;
         }
+        
     }
 }

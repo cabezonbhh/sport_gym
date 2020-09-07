@@ -27,7 +27,7 @@ namespace SportGym.Business
 
         public bool esVencida()
         {
-            return FechaFin.Date < DateTime.Now.Date;
+            return FechaFin.Date <= DateTime.Now.Date;
         }
 
         public bool venceHoy()

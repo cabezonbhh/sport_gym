@@ -31,13 +31,15 @@ namespace SportGym.GUI.Cuota
                 lbl_cantidad.ForeColor = Color.Red;
                 foreach (DTO_Inscripcion dto in inscripciones)
                 {
+
                     dgv_cuotas.Rows.Add(new Object[]
                             {
                                 dto.NombreSocio.ToString(),
                                 dto.ApellidoSocio.ToString(),
                                 dto.UltimoPago.ToString(),
                                 dto.UltimoVencimiento.ToString(),
-                                dto.EstadoCuota.ToString()
+                                dto.EstadoCuota.ToString(),
+                                dto.Celular.ToString()
                             }
                         );
                 }
@@ -53,5 +55,7 @@ namespace SportGym.GUI.Cuota
         {
             llenarGrilla();
         }
+
+
     }
 }

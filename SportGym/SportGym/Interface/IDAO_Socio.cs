@@ -10,6 +10,8 @@ namespace SportGym.Interface
     {
         IList<Socio> getSocios();
         int registrarSocio(Socio socio);
+
+        int registrarSocioConPago(Socio socio, double monto, DateTime inicio, DateTime fin);
         int modificarSocio(Socio socio);
         int darBajaSocio(int socio);
         Socio getSocioPorNumero(int nro);

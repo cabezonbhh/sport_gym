@@ -65,6 +65,33 @@ namespace SportGym.Data
             return listaInscripciones;
         }
 
+        public IList<Inscripcion> getInscripcionesActivasPorHora(string inicio, string fin)
+        {
+            string sp = "sp_listar_inscripciones_por_hora";
+            SqlParameter[] parametros = new SqlParameter[2];
+
+            var param1 = new SqlParameter("@horaInicio", inicio);
+            param1.SqlDbType = SqlDbType.VarChar;
+
+            var param2 = new SqlParameter("@horaFin", fin);
+            param2.SqlDbType = SqlDbType.VarChar;
+
+            parametros[0] = param1;
+            parametros[1] = param2;
+
+            IList<Inscripcion> listaInscripciones = new List<Inscripcion>();
+            DataTable tabla = helper.consultarStoredProcedureConParametros (sp, parametros);
+            Inscripcion inscripcion = new Inscripcion();
+            if (tabla != null)
+            {
+                foreach (DataRow fila in tabla.Rows)
+                {
+                    listaInscripciones.Add(mapper(fila));
+                }
+            }
+            return listaInscripciones;
+        }
+
         public IList<Inscripcion> getInscripcionesActivasPorNombre(string nombre)
         {
             string sp = "sp_inscripciones_por_nombre";

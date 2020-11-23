@@ -1,0 +1,69 @@
+D:\Programacion\C#\sport_gym\SportGym\SportGym\bin\Debug\SportGym.exe.config
+D:\Programacion\C#\sport_gym\SportGym\SportGym\bin\Debug\SportGym.exe
+D:\Programacion\C#\sport_gym\SportGym\SportGym\bin\Debug\SportGym.pdb
+D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csprojAssemblyReference.cache
+D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.Properties.Resources.resources
+D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.GenerateResource.cache
+D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.CoreCompileInputs.cache
+D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.exe
+D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.pdb
+D:\Programacion\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_prueba.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\bin\Debug\SportGym.exe.config
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\bin\Debug\SportGym.exe
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\bin\Debug\SportGym.pdb
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.ResolveComReference.cache
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Cuota.frm_detalle_cuota.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Cuota.frm_vencidos.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Cuota.frm_historial_pagos.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_estadisticas.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_horarios.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_editar_socio.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Socio.frm_eliminar_socio.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_nuevo_socio.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_principal.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Socio.frm_principal_socio.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.Properties.Resources.resources
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.GenerateResource.cache
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.CoreCompileInputs.cache
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.exe
+T:\Programacion\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.pdb
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\bin\Debug\SportGym.exe.config
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\bin\Debug\SportGym.exe
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\bin\Debug\SportGym.pdb
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csprojAssemblyReference.cache
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.ResolveComReference.cache
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Cuota.frm_detalle_cuota.resources
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Cuota.frm_vencidos.resources
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Cuota.frm_historial_pagos.resources
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_estadisticas.resources
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_horarios.resources
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_editar_socio.resources
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Socio.frm_eliminar_socio.resources
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_nuevo_socio.resources
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_principal.resources
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Socio.frm_principal_socio.resources
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.Properties.Resources.resources
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.GenerateResource.cache
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.CoreCompileInputs.cache
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.exe
+T:\Programacion y modelado\C#\SportGym\sport_gym\SportGym\SportGym\obj\Debug\SportGym.pdb
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\bin\Debug\SportGym.exe.config
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\bin\Debug\SportGym.exe
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\bin\Debug\SportGym.pdb
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csprojAssemblyReference.cache
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.ResolveComReference.cache
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Cuota.frm_detalle_cuota.resources
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Cuota.frm_vencidos.resources
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Cuota.frm_historial_pagos.resources
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_estadisticas.resources
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_horarios.resources
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_editar_socio.resources
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Socio.frm_eliminar_socio.resources
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_nuevo_socio.resources
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.frm_principal.resources
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Socio.frm_principal_socio.resources
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.Properties.Resources.resources
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.GenerateResource.cache
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.CoreCompileInputs.cache
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.exe
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.pdb

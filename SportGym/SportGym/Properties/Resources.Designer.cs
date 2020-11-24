@@ -63,6 +63,16 @@ namespace SportGym.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap camera {
+            get {
+                object obj = ResourceManager.GetObject("camera", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_add_user_male_52px {
             get {
                 object obj = ResourceManager.GetObject("icons8_add_user_male_52px", resourceCulture);
@@ -396,6 +406,16 @@ namespace SportGym.Properties {
         internal static System.Drawing.Bitmap icons8_weightlifting_96px {
             get {
                 object obj = ResourceManager.GetObject("icons8_weightlifting_96px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap imagen {
+            get {
+                object obj = ResourceManager.GetObject("imagen", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

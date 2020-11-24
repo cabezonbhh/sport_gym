@@ -9,5 +9,6 @@ namespace SportGym.Interface
     public interface IForm
     {
         void actualizarDatos();
+
     }
 }

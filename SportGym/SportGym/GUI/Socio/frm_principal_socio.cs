@@ -36,14 +36,17 @@ namespace SportGym.GUI.Socio
        
         private void btn_nuevo_Click(object sender, EventArgs e)
         {
-            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frm_principal_socio);
-            if(frm != null || frm.IsDisposed==false)
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frm_nuevo_socio);
+            if (frm == null || frm.IsDisposed == true)
             {
-                
-                Form nuevo = new frm_nuevo_socio(principal,this);
-                nuevo.ShowDialog();
+                frm = new frm_nuevo_socio(principal,this);
+                frm.ShowDialog();
             }
-           
+            else
+            {
+                frm.BringToFront();
+            }
+
         }
 
         private void btn_ver_editar_Click(object sender, EventArgs e)

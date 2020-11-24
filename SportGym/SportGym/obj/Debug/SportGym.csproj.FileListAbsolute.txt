@@ -67,3 +67,11 @@ T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csp
 T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.CoreCompileInputs.cache
 T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.exe
 T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.pdb
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\bin\Debug\AForge.dll
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\bin\Debug\AForge.Video.DirectShow.dll
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\bin\Debug\AForge.Video.dll
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\bin\Debug\AForge.xml
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\bin\Debug\AForge.Video.xml
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\bin\Debug\AForge.Video.DirectShow.xml
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.GUI.Socio.frm_foto.resources
+T:\Programacion y modelado\C#\sport_gym\SportGym\SportGym\obj\Debug\SportGym.csproj.CopyComplete

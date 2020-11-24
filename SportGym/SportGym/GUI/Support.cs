@@ -1,9 +1,12 @@
 ﻿using SportGym.Data;
 using SportGym.DataTransferObject;
+using SportGym.Properties;
 using SportGym.Service;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -17,6 +20,7 @@ namespace SportGym.GUI
     {
         private static Support instance = new Support();
         private DBHelper helper = DBHelper.getDBHelper();
+        private string path = "C:\\Fotos Sport Gym\\";
 
         public static Support GetSupport()
         {
@@ -24,6 +28,60 @@ namespace SportGym.GUI
                 instance = new Support();
             return instance;
         }
+
+        private string crearDirectorio()
+        {
+            if (!Directory.Exists(path))//valida que la carpeta no exista
+            {
+                Directory.CreateDirectory(path);//en caso de no existir se crea 
+                return path;
+            }
+            else
+            {
+                return path;
+            }
+        }
+
+        public void cargarFoto(string nombre, PictureBox pic)
+        {
+            if (Directory.Exists(path) && File.Exists(path + nombre + ".jpg"))//valida que la carpeta no exista
+            {
+                try
+                {
+                    pic.Image = Image.FromFile(path + nombre + ".jpg");
+                }
+                catch (Exception ex)
+                {
+                    pic.Image = Resources.camera;
+                }
+            }
+        }
+
+
+
+
+        public bool guardarFoto(Image foto, string nombre)
+        {
+            string path = crearDirectorio();
+            if(foto != null)
+            {
+                try
+                {
+                    foto.Save(path + nombre + ".jpg", ImageFormat.Jpeg);
+                    return true;
+                }
+                catch (Exception e)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        
         public void cargarComboHorarios(ComboBox combo_inicio, ComboBox combo_fin)
         {
             //combo de inicio
@@ -52,6 +110,7 @@ namespace SportGym.GUI
             combo_fin.Items.Add("22:00");
         }
 
+
         public bool existeElRespaldo()
         {
             string ruta = "C:\\Respaldo Sport Gym\\" + DateTime.Now.ToString("MMMM") + " " + DateTime.Now.Year.ToString();
@@ -73,7 +132,7 @@ namespace SportGym.GUI
             string excel = DateTime.Now.Day.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Year.ToString();
 
             //variable que junta la ruta de la carpeta + la ruta que deberia tener el archivo a crear.
-            string rutaFinal = ruta + "\\" + excel; 
+            string rutaFinal = ruta + "\\" + excel;
 
             IList<DTO_Inscripcion> inscripciones = service.getInscripcionesPorHora("07:00", "22:00");
 

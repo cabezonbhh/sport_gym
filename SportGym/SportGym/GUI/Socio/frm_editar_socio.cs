@@ -1,4 +1,5 @@
 ﻿using SportGym.DataTransferObject;
+using SportGym.GUI.Socio;
 using SportGym.Interface;
 using SportGym.Service;
 using System;
@@ -94,10 +95,7 @@ namespace SportGym.GUI
                 btn_guardar.Visible = false;
                 lbl_advertencia_nombre.Visible = false;
                 lbl_advertencia_apellido.Visible = false;
-                lbl_advertencia_dni.Visible = false;
                 lbl_advertencia_mail.Visible = false;
-                lbl_advertencia_celular.Visible = false;
-                lbl_advertencia_telefono.Visible = false;
                 lbl_info.Visible = false;
                 llenarCampos();
             }
@@ -112,10 +110,7 @@ namespace SportGym.GUI
                 btn_guardar.Visible = true;
                 lbl_advertencia_nombre.Visible = true;
                 lbl_advertencia_apellido.Visible = true;
-                lbl_advertencia_dni.Visible = true;
                 lbl_advertencia_mail.Visible = true;
-                lbl_advertencia_celular.Visible = true;
-                lbl_advertencia_telefono.Visible = true;
                 lbl_info.Visible = true;
                 llenarCombos();
                 //combo_inicio.SelectedIndex = 0;
@@ -126,8 +121,13 @@ namespace SportGym.GUI
         private void frm_editar_socio_Load(object sender, EventArgs e)
         {
             llenarCampos();
+            cargarFoto();            
         }
 
+        private void cargarFoto()
+        {
+            support.cargarFoto(txt_nombre.Text +"_"+ txt_apellido.Text, pic_socio);
+        }
         private void btn_salir_editar_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show("¿Desea salir de esta ventana?","Alerta!!!", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -172,7 +172,10 @@ namespace SportGym.GUI
                         if (control == true)
                         {
                             MessageBox.Show("Se aplicaron los cambios con exito", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
+                            if (support.guardarFoto(pic_socio.Image, txt_nombre.Text + "_" + txt_apellido.Text) == false)
+                            {
+                                MessageBox.Show("Error al guardar la foto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                             var aux = main as IForm;
                             var aux2 = caller as IForm;
                             if (aux != null)
@@ -246,6 +249,36 @@ namespace SportGym.GUI
             btn_guardar.Enabled = true;
         }
 
+        private void btn_tomar_foto_Click(object sender, EventArgs e)
+        {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frm_foto);
+            if (frm == null || frm.IsDisposed == true)
+            {
 
+                Form nuevo = new frm_foto(this);
+                nuevo.ShowDialog();
+            }
+            else
+            {
+                frm.BringToFront();
+            }
+        }
+        public void recibirFoto(Image imagen)
+        {
+            this.pic_socio.Image = imagen;
+        }
+
+        private void btn_foto_archivo_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog cargarImagen = new OpenFileDialog();
+
+            cargarImagen.InitialDirectory = "C:\\";
+            cargarImagen.Filter = "Archivos de Imagen (*.jpg)(*.jpeg)|*.jpg;*.jpeg|PNG (*.png)|*.png";
+
+            if (cargarImagen.ShowDialog() == DialogResult.OK)
+            {
+                pic_socio.ImageLocation = cargarImagen.FileName;
+            }
+        }
     }
 }

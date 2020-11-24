@@ -1,6 +1,7 @@
 ﻿using SportGym.DataTransferObject;
 using SportGym.GUI.Socio;
 using SportGym.Interface;
+using SportGym.Properties;
 using SportGym.Service;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace SportGym.GUI
         Service_socio service = null;
         Form principal = null;
         Form subPrincipal = null;
+        Bitmap foto = null;
         public frm_nuevo_socio(Form principal, Form subPrincipal)
         {
             InitializeComponent();
@@ -50,6 +52,8 @@ namespace SportGym.GUI
             txt_telefono.Clear();
             combo_inicio.SelectedIndex = -1;
             combo_fin.SelectedIndex = -1;
+            txt_monto_pagar.Clear();
+            pic_socio.Image = Resources.camera;
         }
 
         private string validarCampos()// metodo para validar que ingreso nombre y apellido, ya que ambos son obligatorios. Si alguno esta vacio retorna un string indicando el campo que falta
@@ -234,6 +238,10 @@ namespace SportGym.GUI
                             frm_ps.actualizarDatos();
                         }
                         MessageBox.Show("Socio registrado con exito", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        if(support.guardarFoto(pic_socio.Image,txt_nombre.Text+"_"+txt_apellido.Text)==false)
+                        {
+                            MessageBox.Show("Error al guardar la foto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                         this.limpiarCampos();
                     }
                     else
@@ -261,13 +269,37 @@ namespace SportGym.GUI
             Support.GetSupport().soloNumeros(sender,e);
         }
 
-        private void cargarFoto()
+        private void btn_tomar_foto_Click(object sender, EventArgs e)
         {
+            Form frm = Application.OpenForms.Cast<Form>().FirstOrDefault(x => x is frm_foto);
+            if (frm == null || frm.IsDisposed == true)
+            {
 
+                Form nuevo = new frm_foto(this);
+                nuevo.ShowDialog();
+            }
+            else
+            {
+                frm.BringToFront();
+            }
         }
-        private bool guardarFoto()
+
+        public void recibirFoto(Image imagen)
         {
-            return false;
+            this.pic_socio.Image = imagen;
+        }
+
+        private void btn_foto_archivo_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog cargarImagen = new OpenFileDialog();
+
+            cargarImagen.InitialDirectory = "C:\\";
+            cargarImagen.Filter = "Archivos de Imagen (*.jpg)(*.jpeg)|*.jpg;*.jpeg|PNG (*.png)|*.png";
+            
+            if(cargarImagen.ShowDialog()==DialogResult.OK)
+            {
+                pic_socio.ImageLocation = cargarImagen.FileName;
+            }
         }
     }
 }

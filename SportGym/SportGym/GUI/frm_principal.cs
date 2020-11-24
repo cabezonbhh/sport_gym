@@ -572,5 +572,46 @@ namespace SportGym.GUI
                 dtp_fecha_vto.Value = dtp_fecha_inicio.Value.AddMonths(1);
             }
         }
+
+        private void frm_principal_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                txt_filtro_nombre.Size = new Size(140, 26);
+                txt_filtro_nombre.Location = new Point(80, 35);
+                var x = txt_filtro_nombre.Location.X;
+                var y = txt_filtro_nombre.Location.Y;
+                lbl_filtro_nombre.Location = new Point(x - 70, y + 3);
+
+
+                txt_filtro_apellido.Size = new Size(140, 26);
+                txt_filtro_apellido.Location = new Point(x + 250, y);
+                x = txt_filtro_apellido.Location.X;
+                lbl_filtro_apellido.Location = new Point(x - 70, y + 3);
+
+                dtp_fecha_inicio.Location = new Point(x + 250, y);
+                x = dtp_fecha_inicio.Location.X;
+                lbl_fecha_inicio.Location = new Point(x - 85, y + 3);
+
+                dtp_fecha_vto.Location = new Point(x + 250, y);
+                x = dtp_fecha_vto.Location.X;
+                lbl_fecha_fin.Location = new Point(x - 70, y + 3);
+
+                txt_monto_pagar.Location = new Point(x + 250, y);
+                x = txt_monto_pagar.Location.X;
+                lbl_monto.Location = new Point(x - 70, y + 3);
+
+                btn_pagar_cuota.Location = new Point(x + 200, 12);
+                x = btn_pagar_cuota.Location.X;              
+            }
+            else
+            {
+
+
+            }
+        }
+  
+
+       
     }
 }

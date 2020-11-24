@@ -60,8 +60,8 @@
             this.dtp_fecha_inicio = new System.Windows.Forms.DateTimePicker();
             this.btn_guardar_pagar = new System.Windows.Forms.Button();
             this.pic_socio = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_tomar_foto = new System.Windows.Forms.Button();
+            this.btn_foto_archivo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pic_socio)).BeginInit();
             this.SuspendLayout();
             // 
@@ -351,38 +351,43 @@
             // 
             // pic_socio
             // 
+            this.pic_socio.Image = global::SportGym.Properties.Resources.camera;
+            this.pic_socio.InitialImage = global::SportGym.Properties.Resources.camera;
             this.pic_socio.Location = new System.Drawing.Point(12, 20);
             this.pic_socio.Name = "pic_socio";
             this.pic_socio.Size = new System.Drawing.Size(480, 386);
+            this.pic_socio.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pic_socio.TabIndex = 30;
             this.pic_socio.TabStop = false;
             // 
-            // button1
+            // btn_tomar_foto
             // 
-            this.button1.Location = new System.Drawing.Point(12, 412);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(71, 64);
-            this.button1.TabIndex = 31;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btn_tomar_foto.Location = new System.Drawing.Point(12, 412);
+            this.btn_tomar_foto.Name = "btn_tomar_foto";
+            this.btn_tomar_foto.Size = new System.Drawing.Size(210, 60);
+            this.btn_tomar_foto.TabIndex = 31;
+            this.btn_tomar_foto.Text = "Tomar Foto";
+            this.btn_tomar_foto.UseVisualStyleBackColor = true;
+            this.btn_tomar_foto.Click += new System.EventHandler(this.btn_tomar_foto_Click);
             // 
-            // button2
+            // btn_foto_archivo
             // 
-            this.button2.Location = new System.Drawing.Point(421, 412);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(71, 64);
-            this.button2.TabIndex = 32;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btn_foto_archivo.Location = new System.Drawing.Point(282, 412);
+            this.btn_foto_archivo.Name = "btn_foto_archivo";
+            this.btn_foto_archivo.Size = new System.Drawing.Size(210, 60);
+            this.btn_foto_archivo.TabIndex = 32;
+            this.btn_foto_archivo.Text = "Cargar Foto";
+            this.btn_foto_archivo.UseVisualStyleBackColor = true;
+            this.btn_foto_archivo.Click += new System.EventHandler(this.btn_foto_archivo_Click);
             // 
             // frm_nuevo_socio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.CancelButton = this.btn_cancelar;
-            this.ClientSize = new System.Drawing.Size(972, 507);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(964, 501);
+            this.Controls.Add(this.btn_foto_archivo);
+            this.Controls.Add(this.btn_tomar_foto);
             this.Controls.Add(this.pic_socio);
             this.Controls.Add(this.btn_guardar_pagar);
             this.Controls.Add(this.txt_monto_pagar);
@@ -460,7 +465,7 @@
         private System.Windows.Forms.DateTimePicker dtp_fecha_inicio;
         private System.Windows.Forms.Button btn_guardar_pagar;
         private System.Windows.Forms.PictureBox pic_socio;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_tomar_foto;
+        private System.Windows.Forms.Button btn_foto_archivo;
     }
 }

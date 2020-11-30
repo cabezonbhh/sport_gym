@@ -1,6 +1,7 @@
 ﻿using SportGym.Business;
 using SportGym.Data;
 using SportGym.DataTransferObject;
+using SportGym.GUI;
 using SportGym.Interface;
 using SportGym.Mapper;
 using System;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SportGym.Service
 {
@@ -29,6 +31,22 @@ namespace SportGym.Service
             mapSocio = new MapperSocio();
             mapInscripcion = new MapperInscripcion();
             mapCuota = new MapperCuota();
+        }
+
+        public void respaldar()
+        {
+            if(getInscripciones().Count > 0)
+            {
+                Support support = Support.GetSupport();
+                if (support.respaldarInfo() == false)
+                {
+                    MessageBox.Show("Error al realizar el respaldo en excel, por favor realice un respaldo manual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                if (support.respaldoAutomatico() == false)
+                {
+                    MessageBox.Show("Error al realizar el respaldo automatico, por favor realice un respaldo manual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }       
         }
         public IList<DTO_Inscripcion> getInscripciones()
         {

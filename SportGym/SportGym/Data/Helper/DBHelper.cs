@@ -372,5 +372,40 @@ namespace SportGym.Data
                 return resultado;
             }
         }
+
+        public int ejecutarStoredProcedureSinT(string sp)
+        {
+            SqlConnection cnn = new SqlConnection();
+            SqlCommand cmd = new SqlCommand();
+
+            if (!String.IsNullOrWhiteSpace(cadena))
+            {
+                try
+                {
+                    cnn.ConnectionString = string_conexion;
+                    cnn.Open();
+                    cmd.Connection = cnn;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = sp;
+                    cmd.ExecuteNonQuery();
+                    return 1;
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Codigo 02: " + "\n" + ex.ToString(), "Fallo critico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return 0;
+                }
+                finally
+                {
+                    this.CloseConnection(cnn);
+                }
+                
+            }
+            else
+            {
+                MessageBox.Show("Codigo 01: Error con la cadena de conexion", "Fallo critico", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+        }
     }
 }

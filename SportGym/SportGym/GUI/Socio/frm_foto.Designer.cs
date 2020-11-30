@@ -47,6 +47,7 @@
             this.combo_dispositivos.Name = "combo_dispositivos";
             this.combo_dispositivos.Size = new System.Drawing.Size(392, 28);
             this.combo_dispositivos.TabIndex = 2;
+            this.combo_dispositivos.SelectedIndexChanged += new System.EventHandler(this.combo_dispositivos_SelectedIndexChanged);
             // 
             // lbl_dispositivo
             // 

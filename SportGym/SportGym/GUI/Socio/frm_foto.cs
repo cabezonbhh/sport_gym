@@ -16,9 +16,9 @@ namespace SportGym.GUI.Socio
 {
     public partial class frm_foto : Form
     {
+        private bool hayDispositivos;
         private frm_editar_socio frm_editar;
         private frm_nuevo_socio frm_nuevo;
-        private bool hayDisp;
         private FilterInfoCollection lista_dispositivos;
         private VideoCaptureDevice dispositivo;
 
@@ -36,7 +36,11 @@ namespace SportGym.GUI.Socio
         private void frm_foto_Load(object sender, EventArgs e)
         {
             this.cargarDispositivos();
-            this.inicializarDispositivo();
+            if(hayDispositivos == true)
+            {
+                this.inicializarDispositivo();
+                combo_dispositivos.SelectedIndex = 0;
+            }
         }
 
         private void btn_tomar_foto_Click(object sender, EventArgs e)
@@ -60,16 +64,19 @@ namespace SportGym.GUI.Socio
         {
             try
             {
-                this.cerrarDispositivo();
-                int i = combo_dispositivos.SelectedIndex;
-                string nombreDispositivo = lista_dispositivos[i].MonikerString;
-                dispositivo = new VideoCaptureDevice(nombreDispositivo);
-                dispositivo.NewFrame += new NewFrameEventHandler(capturar);
-                dispositivo.Start();
+                cerrarDispositivo();
+                if(combo_dispositivos.SelectedIndex != -1)
+                {
+                    int i = combo_dispositivos.SelectedIndex;
+                    string nombreDispositivo = lista_dispositivos[i].MonikerString;
+                    dispositivo = new VideoCaptureDevice(nombreDispositivo);
+                    dispositivo.NewFrame += new NewFrameEventHandler(capturar);
+                    dispositivo.Start();
+                }
             }
             catch(Exception e)
             {
-
+                MessageBox.Show("Error al intentar inicializar la camara: Mensaje: " + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }         
         }
         private void cerrarDispositivo()
@@ -85,27 +92,40 @@ namespace SportGym.GUI.Socio
         //Metodo para cargar dispositivos de captura de video
         private void cargarDispositivos()
         {
-            this.lista_dispositivos = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-            if(lista_dispositivos.Count > 0)
+            try
             {
-                btn_tomar_foto.Enabled = true;
-                hayDisp = true;
-
-                //ciclo para cargar los dispositivos al comboBox.
-                for(int i = 0; i < lista_dispositivos.Count; i++)
+                lista_dispositivos = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+                if (lista_dispositivos.Count > 0)
                 {
-                    combo_dispositivos.Items.Add(lista_dispositivos[i].Name.ToString());
+                    btn_tomar_foto.Enabled = true;
+                    hayDispositivos = true;
+                    //ciclo para cargar los dispositivos al comboBox.
+                    for (int i = 0; i < lista_dispositivos.Count; i++)
+                    {
+                        combo_dispositivos.Items.Add(lista_dispositivos[i].Name.ToString());
+                    }
                 }
-                combo_dispositivos.SelectedIndex = 1;
+                else
+                {
+                    hayDispositivos = false;
+                }
             }
-            else
+            catch(Exception e)
             {
-                hayDisp = false;
+                MessageBox.Show("Error al intentar cargar la camara: Mensaje: "+e.Message,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
+            
         }
 
         private void capturar(object sender, NewFrameEventArgs eventArgs)
         {
+            try
+            {
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show("Error al intentar cargar la imagen: " + e.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             //para copiar la imagen y cargarla en el pictureBox 
             Bitmap imagen = (Bitmap)eventArgs.Frame.Clone();
             pic_foto_vivo.Image = imagen;
@@ -121,5 +141,13 @@ namespace SportGym.GUI.Socio
         {
             this.cerrarDispositivo();
         }
+
+        private void combo_dispositivos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(hayDispositivos == true && combo_dispositivos.SelectedIndex != -1)
+            inicializarDispositivo();
+        }
+
+        
     }
 }

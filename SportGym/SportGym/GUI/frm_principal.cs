@@ -206,21 +206,10 @@ namespace SportGym.GUI
 
         private void frm_principal_Load(object sender, EventArgs e)
         {
-            bool resultado;
-            this.llenarCombos();
-            this.cargarGrillaInscripciones(svInscripcion.getInscripciones());
-            resultado = support.respaldarInfo();
-            if (resultado == true)
-                MessageBox.Show("El respaldo se realizo correctamente", "Exito", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            else
-            {
-                if(support.existeElRespaldo() == false)
-                {
-                    MessageBox.Show("Error al realizar el respaldo, por favor realice un respaldo manual.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-                
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            llenarCombos();
+            cargarGrillaInscripciones(svInscripcion.getInscripciones());
+            svInscripcion.respaldar();
+            WindowState = System.Windows.Forms.FormWindowState.Maximized;
             timer1.Start();
         }
 
@@ -253,141 +242,6 @@ namespace SportGym.GUI
                 frm.BringToFront();
             }
         }
-
-
-
-
-
-        private void btn_pagar_cuota_Click(object sender, EventArgs e)
-        {
-            bool control = false; //variable para controlar el resultado 
-            if (dgv_inscripciones.CurrentRow != null)//valido que haya seleccionado una fila
-            {
-                int nroS = Convert.ToInt32(dgv_inscripciones.CurrentRow.Cells["col_nro_socio"].Value.ToString());
-                string nombre = dgv_inscripciones.CurrentRow.Cells["col_nombre"].Value.ToString();
-                string apellido = dgv_inscripciones.CurrentRow.Cells["col_apellido"].Value.ToString();
-                int nroI = Convert.ToInt32(svSocio.getSocio(nroS).Inscripcion);
-                if (svCuota.tieneQuePagar(nroS) == false)//valido que el socio tenga la cuota vencida
-                {
-                    DialogResult respuesta = MessageBox.Show("La cuota no se encuentra vencida. ¿ Desea registrar el cobro de igual forma?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if(respuesta == DialogResult.Yes)
-                    {
-                        if (support.esUnNumero(txt_monto_pagar.Text) == true)
-                        {
-                            if (String.IsNullOrEmpty(txt_monto_pagar.Text) || Convert.ToDouble(txt_monto_pagar.Text) < 0)
-                            {
-                                MessageBox.Show("No ingreso un monto valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                txt_monto_pagar.Clear();
-                            }
-                            else
-                            {
-                                if (dtp_fecha_vto.Value < dtp_fecha_inicio.Value)
-                                {
-                                    MessageBox.Show("No selecciono fechas o la fecha de vencimiento es anterior a la de inicio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                                else
-                                {
-                                    respuesta = MessageBox.Show("¿Desea registrar el pago de " + nombre + " " + apellido + "?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                    if (respuesta == DialogResult.Yes)
-                                    {
-                                        DTO_Pagar_Cuota dtoNuevaCuota = new DTO_Pagar_Cuota();
-                                        dtoNuevaCuota.NroSocio = nroS.ToString();
-                                        dtoNuevaCuota.NroInscripcion = nroI.ToString();
-                                        dtoNuevaCuota.FechaInicio = dtp_fecha_inicio.Value.ToString();
-                                        dtoNuevaCuota.FechaFin = dtp_fecha_vto.Value.ToString();
-                                        dtoNuevaCuota.Monto = txt_monto_pagar.Text;
-                                        control = svCuota.registrarNuevaCuota(dtoNuevaCuota);
-                                        if (control == true)
-                                        {
-                                            MessageBox.Show("Pago registrado con exito", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            dgv_inscripciones.Rows.Clear();
-                                            if (combo_inicio.SelectedIndex != -1 && combo_fin.SelectedIndex != -1)
-                                            {
-                                                this.cargarGrillaInscripciones(svInscripcion.getInscripcionesPorHora(combo_inicio.SelectedItem.ToString(), combo_fin.SelectedItem.ToString()));
-                                            }
-                                            else
-                                            {
-                                                cargarGrillaInscripciones(svInscripcion.getInscripciones());
-                                            }
-                                            txt_monto_pagar.Clear();
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show("Error al registrar el pago, intente nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                            txt_monto_pagar.Clear();
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        txt_monto_pagar.Clear();
-                    }
-                }
-                else
-                {
-                    if (support.esUnNumero(txt_monto_pagar.Text) == true)
-                    {
-                        if (String.IsNullOrEmpty(txt_monto_pagar.Text) || Convert.ToDouble(txt_monto_pagar.Text) < 0)
-                        {
-                            MessageBox.Show("No ingreso un monto valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            txt_monto_pagar.Clear();
-                        }
-                        else
-                        {
-                            if (dtp_fecha_vto.Value < dtp_fecha_inicio.Value)
-                            {
-                                MessageBox.Show("No selecciono fechas o la fecha de vencimiento es anterior a la de inicio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                            else
-                            {
-                                DialogResult respuesta = MessageBox.Show("¿Desea registrar el pago de " + nombre + " " + apellido + "?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                if (respuesta == DialogResult.Yes)
-                                {
-                                    DTO_Pagar_Cuota dtoNuevaCuota = new DTO_Pagar_Cuota();
-                                    dtoNuevaCuota.NroSocio = nroS.ToString();
-                                    dtoNuevaCuota.NroInscripcion = nroI.ToString();
-                                    dtoNuevaCuota.FechaInicio = dtp_fecha_inicio.Value.ToString();
-                                    dtoNuevaCuota.FechaFin = dtp_fecha_vto.Value.ToString();
-                                    dtoNuevaCuota.Monto = txt_monto_pagar.Text;
-                                    control = svCuota.registrarNuevaCuota(dtoNuevaCuota);
-                                    if (control == true)
-                                    {
-                                        MessageBox.Show("Pago registrado con exito", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        dgv_inscripciones.Rows.Clear();
-                                        if(combo_inicio.SelectedIndex != -1 && combo_fin.SelectedIndex != -1)
-                                        {
-                                            this.cargarGrillaInscripciones(svInscripcion.getInscripcionesPorHora(combo_inicio.SelectedItem.ToString(), combo_fin.SelectedItem.ToString()));
-                                        }
-                                        else
-                                        {
-                                            cargarGrillaInscripciones(svInscripcion.getInscripciones());
-                                        }                                      
-                                        txt_monto_pagar.Clear();
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("Error al registrar el pago, intente nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        txt_monto_pagar.Clear();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        txt_monto_pagar.Clear();
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("No selecciono ningun socio", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
 
         private void btn_actualizar_Click(object sender, EventArgs e)
         {
@@ -578,40 +432,185 @@ namespace SportGym.GUI
             if (this.WindowState == FormWindowState.Maximized)
             {
                 txt_filtro_nombre.Size = new Size(140, 26);
-                txt_filtro_nombre.Location = new Point(80, 35);
+                txt_filtro_nombre.Location = new Point(80, 25);
                 var x = txt_filtro_nombre.Location.X;
                 var y = txt_filtro_nombre.Location.Y;
-                lbl_filtro_nombre.Location = new Point(x - 70, y + 3);
+                lbl_filtro_nombre.Location = new Point(x - 65, y + 3);
 
 
                 txt_filtro_apellido.Size = new Size(140, 26);
-                txt_filtro_apellido.Location = new Point(x + 250, y);
+                txt_filtro_apellido.Location = new Point(x + 210, y);
                 x = txt_filtro_apellido.Location.X;
-                lbl_filtro_apellido.Location = new Point(x - 70, y + 3);
+                lbl_filtro_apellido.Location = new Point(x - 65, y + 3);
 
-                dtp_fecha_inicio.Location = new Point(x + 250, y);
+                dtp_fecha_inicio.Location = new Point(x + 230, y);
                 x = dtp_fecha_inicio.Location.X;
                 lbl_fecha_inicio.Location = new Point(x - 85, y + 3);
 
-                dtp_fecha_vto.Location = new Point(x + 250, y);
+                dtp_fecha_vto.Location = new Point(x + 215, y);
                 x = dtp_fecha_vto.Location.X;
                 lbl_fecha_fin.Location = new Point(x - 70, y + 3);
 
-                txt_monto_pagar.Location = new Point(x + 250, y);
+                txt_monto_pagar.Location = new Point(x + 210, y);
                 x = txt_monto_pagar.Location.X;
-                lbl_monto.Location = new Point(x - 70, y + 3);
+                lbl_monto.Location = new Point(x - 60, y + 3);
 
-                btn_pagar_cuota.Location = new Point(x + 200, 12);
+                btn_pagar_cuota.Location = new Point(x, 60);
+                btn_pagar_cuota.Size = new Size(100, 26);
                 x = btn_pagar_cuota.Location.X;              
             }
             else
             {
+                txt_filtro_nombre.Size = new Size(140, 26);
+                txt_filtro_nombre.Location = new Point(78, 12);
+                lbl_filtro_nombre.Location = new Point(11,15);
 
+                txt_filtro_apellido.Size = new Size(140, 26);
+                txt_filtro_apellido.Location = new Point(78, 52);
+                lbl_filtro_apellido.Location = new Point(11, 55);
 
+                dtp_fecha_inicio.Location = new Point(324,12);
+                lbl_fecha_inicio.Location = new Point(235,15);
+
+                dtp_fecha_vto.Location = new Point(324,52);
+                lbl_fecha_fin.Location = new Point(250,55);
+
+                txt_monto_pagar.Location = new Point(533,35);
+                lbl_monto.Location = new Point(473,38);
+                btn_pagar_cuota.Location = new Point(639,12);
+                btn_pagar_cuota.Size = new Size(78, 70);
             }
         }
-  
 
-       
+        private void btn_pagar_cuota_Click(object sender, EventArgs e)
+        {
+            bool control = false; //variable para controlar el resultado 
+            if (dgv_inscripciones.CurrentRow != null)//valido que haya seleccionado una fila
+            {
+                int nroS = Convert.ToInt32(dgv_inscripciones.CurrentRow.Cells["col_nro_socio"].Value.ToString());
+                string nombre = dgv_inscripciones.CurrentRow.Cells["col_nombre"].Value.ToString();
+                string apellido = dgv_inscripciones.CurrentRow.Cells["col_apellido"].Value.ToString();
+                int nroI = Convert.ToInt32(svSocio.getSocio(nroS).Inscripcion);
+                if (svCuota.tieneQuePagar(nroS) == false)//valido que el socio tenga la cuota vencida
+                {
+                    DialogResult respuesta = MessageBox.Show("La cuota no se encuentra vencida. ¿ Desea registrar el cobro de igual forma?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (respuesta == DialogResult.Yes)
+                    {
+                        if (support.esUnNumero(txt_monto_pagar.Text) == true)
+                        {
+                            if (String.IsNullOrEmpty(txt_monto_pagar.Text) || Convert.ToDouble(txt_monto_pagar.Text) < 0)
+                            {
+                                MessageBox.Show("No ingreso un monto valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                txt_monto_pagar.Clear();
+                            }
+                            else
+                            {
+                                if (dtp_fecha_vto.Value < dtp_fecha_inicio.Value)
+                                {
+                                    MessageBox.Show("No selecciono fechas o la fecha de vencimiento es anterior a la de inicio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                else
+                                {
+                                    respuesta = MessageBox.Show("¿Desea registrar el pago de " + nombre + " " + apellido + "?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (respuesta == DialogResult.Yes)
+                                    {
+                                        DTO_Pagar_Cuota dtoNuevaCuota = new DTO_Pagar_Cuota();
+                                        dtoNuevaCuota.NroSocio = nroS.ToString();
+                                        dtoNuevaCuota.NroInscripcion = nroI.ToString();
+                                        dtoNuevaCuota.FechaInicio = dtp_fecha_inicio.Value.ToString();
+                                        dtoNuevaCuota.FechaFin = dtp_fecha_vto.Value.ToString();
+                                        dtoNuevaCuota.Monto = txt_monto_pagar.Text;
+                                        control = svCuota.registrarNuevaCuota(dtoNuevaCuota);
+                                        if (control == true)
+                                        {
+                                            MessageBox.Show("Pago registrado con exito", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            dgv_inscripciones.Rows.Clear();
+                                            if (combo_inicio.SelectedIndex != -1 && combo_fin.SelectedIndex != -1)
+                                            {
+                                                this.cargarGrillaInscripciones(svInscripcion.getInscripcionesPorHora(combo_inicio.SelectedItem.ToString(), combo_fin.SelectedItem.ToString()));
+                                            }
+                                            else
+                                            {
+                                                cargarGrillaInscripciones(svInscripcion.getInscripciones());
+                                            }
+                                            txt_monto_pagar.Clear();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Error al registrar el pago, intente nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            txt_monto_pagar.Clear();
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        txt_monto_pagar.Clear();
+                    }
+                }
+                else
+                {
+                    if (support.esUnNumero(txt_monto_pagar.Text) == true)
+                    {
+                        if (String.IsNullOrEmpty(txt_monto_pagar.Text) || Convert.ToDouble(txt_monto_pagar.Text) < 0)
+                        {
+                            MessageBox.Show("No ingreso un monto valido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            txt_monto_pagar.Clear();
+                        }
+                        else
+                        {
+                            if (dtp_fecha_vto.Value < dtp_fecha_inicio.Value)
+                            {
+                                MessageBox.Show("No selecciono fechas o la fecha de vencimiento es anterior a la de inicio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                DialogResult respuesta = MessageBox.Show("¿Desea registrar el pago de " + nombre + " " + apellido + "?", "Atencion", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (respuesta == DialogResult.Yes)
+                                {
+                                    DTO_Pagar_Cuota dtoNuevaCuota = new DTO_Pagar_Cuota();
+                                    dtoNuevaCuota.NroSocio = nroS.ToString();
+                                    dtoNuevaCuota.NroInscripcion = nroI.ToString();
+                                    dtoNuevaCuota.FechaInicio = dtp_fecha_inicio.Value.ToString();
+                                    dtoNuevaCuota.FechaFin = dtp_fecha_vto.Value.ToString();
+                                    dtoNuevaCuota.Monto = txt_monto_pagar.Text;
+                                    control = svCuota.registrarNuevaCuota(dtoNuevaCuota);
+                                    if (control == true)
+                                    {
+                                        MessageBox.Show("Pago registrado con exito", "Exito!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        dgv_inscripciones.Rows.Clear();
+                                        if (combo_inicio.SelectedIndex != -1 && combo_fin.SelectedIndex != -1)
+                                        {
+                                            this.cargarGrillaInscripciones(svInscripcion.getInscripcionesPorHora(combo_inicio.SelectedItem.ToString(), combo_fin.SelectedItem.ToString()));
+                                        }
+                                        else
+                                        {
+                                            cargarGrillaInscripciones(svInscripcion.getInscripciones());
+                                        }
+                                        txt_monto_pagar.Clear();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("Error al registrar el pago, intente nuevamente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        txt_monto_pagar.Clear();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        txt_monto_pagar.Clear();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No selecciono ningun socio", "Atencion", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        
+        }
     }
 }

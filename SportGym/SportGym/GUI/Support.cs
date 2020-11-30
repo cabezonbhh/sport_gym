@@ -5,6 +5,7 @@ using SportGym.Service;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Globalization;
@@ -21,6 +22,7 @@ namespace SportGym.GUI
         private static Support instance = new Support();
         private DBHelper helper = DBHelper.getDBHelper();
         private string path = "C:\\Fotos Sport Gym\\";
+
 
         public static Support GetSupport()
         {
@@ -53,6 +55,7 @@ namespace SportGym.GUI
                 catch (Exception ex)
                 {
                     pic.Image = Resources.camera;
+
                 }
             }
         }
@@ -119,6 +122,41 @@ namespace SportGym.GUI
 
             return File.Exists(rutaFinal + ".xls");
         }
+
+
+        public bool respaldoAutomatico()
+        {
+            string pathRespaldo = "C:\\Respaldo Sport Gym\\Respaldo Base de datos\\";
+            string pathArchivo = "C:\\Respaldo Sport Gym\\Respaldo Base de datos\\Respaldo Diario.bak";
+            string sp = "SP_Respaldo_Automatico";
+   
+
+            if (!Directory.Exists(pathRespaldo))//valida que la carpeta no exista
+            {              
+                Directory.CreateDirectory(pathRespaldo);//en caso de no existir se crea
+                return helper.ejecutarStoredProcedureSinT(sp) == 1;
+            }
+            else
+            {
+                if (!File.Exists(pathArchivo))//valida que el archivo no haya sido creado ya
+                {
+                    return helper.ejecutarStoredProcedureSinT(sp) == 1;
+                }
+                else
+                {
+                    try
+                    {
+                        File.Delete(pathArchivo);
+                        return helper.ejecutarStoredProcedureSinT(sp) == 1;
+                    }
+                    catch(Exception e)
+                    {
+                        return false;
+                    }
+                }
+            }
+        }
+
         public bool respaldarInfo()
         {
             Service_Inscripcion service = new Service_Inscripcion();
@@ -151,7 +189,18 @@ namespace SportGym.GUI
                         return crearExcel(inscripciones, rutaFinal);
                     }
                     else
-                        return false;
+                    {
+                        try
+                        {
+                            File.Delete(rutaFinal + ".xls");
+                            return crearExcel(inscripciones, rutaFinal);
+                        }
+                        catch(Exception e)
+                        {
+                            return false;
+                        }
+                        
+                    }
                 }
             }
             else

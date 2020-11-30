@@ -47,6 +47,7 @@
             this.btn_filtrar = new System.Windows.Forms.Button();
             this.combo_fin = new System.Windows.Forms.ComboBox();
             this.combo_inicio = new System.Windows.Forms.ComboBox();
+            this.btn_actualizar = new System.Windows.Forms.Button();
             this.lbl_hora_fin = new System.Windows.Forms.Label();
             this.lbl_hora_inicio = new System.Windows.Forms.Label();
             this.btn_exportar_excel = new System.Windows.Forms.Button();
@@ -55,12 +56,15 @@
             this.panel_botones_cuota = new System.Windows.Forms.Panel();
             this.btn_pagar_cuota = new System.Windows.Forms.Button();
             this.txt_monto_pagar = new System.Windows.Forms.TextBox();
-            this.lbl_monto = new System.Windows.Forms.Label();
-            this.btn_actualizar = new System.Windows.Forms.Button();
             this.txt_filtro_nombre = new System.Windows.Forms.TextBox();
-            this.lbl_filtro_nombre = new System.Windows.Forms.Label();
-            this.lbl_filtro_apellido = new System.Windows.Forms.Label();
+            this.lbl_monto = new System.Windows.Forms.Label();
             this.txt_filtro_apellido = new System.Windows.Forms.TextBox();
+            this.lbl_fecha_inicio = new System.Windows.Forms.Label();
+            this.lbl_filtro_apellido = new System.Windows.Forms.Label();
+            this.lbl_filtro_nombre = new System.Windows.Forms.Label();
+            this.dtp_fecha_vto = new System.Windows.Forms.DateTimePicker();
+            this.dtp_fecha_inicio = new System.Windows.Forms.DateTimePicker();
+            this.lbl_fecha_fin = new System.Windows.Forms.Label();
             this.dgv_inscripciones = new System.Windows.Forms.DataGridView();
             this.col_cod_inscripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_orden = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,10 +76,6 @@
             this.col_ultimo_pago = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_inicio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col_fin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtp_fecha_inicio = new System.Windows.Forms.DateTimePicker();
-            this.lbl_fecha_fin = new System.Windows.Forms.Label();
-            this.dtp_fecha_vto = new System.Windows.Forms.DateTimePicker();
-            this.lbl_fecha_inicio = new System.Windows.Forms.Label();
             this.panel_main.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_gym)).BeginInit();
             this.panel_titulo.SuspendLayout();
@@ -302,6 +302,16 @@
             this.combo_inicio.TabIndex = 9;
             this.combo_inicio.SelectedIndexChanged += new System.EventHandler(this.combo_inicio_SelectedIndexChanged);
             // 
+            // btn_actualizar
+            // 
+            this.btn_actualizar.Enabled = false;
+            this.btn_actualizar.Location = new System.Drawing.Point(618, 6);
+            this.btn_actualizar.Name = "btn_actualizar";
+            this.btn_actualizar.Size = new System.Drawing.Size(100, 26);
+            this.btn_actualizar.TabIndex = 11;
+            this.btn_actualizar.Text = "Actualizar";
+            this.btn_actualizar.UseVisualStyleBackColor = true;
+            // 
             // lbl_hora_fin
             // 
             this.lbl_hora_fin.AutoSize = true;
@@ -376,6 +386,7 @@
             this.btn_pagar_cuota.TabIndex = 17;
             this.btn_pagar_cuota.Text = "Registrar cobro";
             this.btn_pagar_cuota.UseVisualStyleBackColor = true;
+            this.btn_pagar_cuota.Click += new System.EventHandler(this.btn_pagar_cuota_Click);
             // 
             // txt_monto_pagar
             // 
@@ -387,26 +398,6 @@
             this.txt_monto_pagar.Size = new System.Drawing.Size(100, 26);
             this.txt_monto_pagar.TabIndex = 16;
             // 
-            // lbl_monto
-            // 
-            this.lbl_monto.AutoSize = true;
-            this.lbl_monto.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_monto.Location = new System.Drawing.Point(473, 38);
-            this.lbl_monto.Name = "lbl_monto";
-            this.lbl_monto.Size = new System.Drawing.Size(54, 18);
-            this.lbl_monto.TabIndex = 24;
-            this.lbl_monto.Text = "Monto:";
-            // 
-            // btn_actualizar
-            // 
-            this.btn_actualizar.Enabled = false;
-            this.btn_actualizar.Location = new System.Drawing.Point(618, 6);
-            this.btn_actualizar.Name = "btn_actualizar";
-            this.btn_actualizar.Size = new System.Drawing.Size(100, 26);
-            this.btn_actualizar.TabIndex = 11;
-            this.btn_actualizar.Text = "Actualizar";
-            this.btn_actualizar.UseVisualStyleBackColor = true;
-            // 
             // txt_filtro_nombre
             // 
             this.txt_filtro_nombre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -417,15 +408,35 @@
             this.txt_filtro_nombre.TextChanged += new System.EventHandler(this.txt_filtro_nombre_TextChanged);
             this.txt_filtro_nombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_filtro_nombre_KeyPress);
             // 
-            // lbl_filtro_nombre
+            // lbl_monto
             // 
-            this.lbl_filtro_nombre.AutoSize = true;
-            this.lbl_filtro_nombre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_filtro_nombre.Location = new System.Drawing.Point(11, 15);
-            this.lbl_filtro_nombre.Name = "lbl_filtro_nombre";
-            this.lbl_filtro_nombre.Size = new System.Drawing.Size(21, 18);
-            this.lbl_filtro_nombre.TabIndex = 20;
-            this.lbl_filtro_nombre.Text = "cv";
+            this.lbl_monto.AutoSize = true;
+            this.lbl_monto.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_monto.Location = new System.Drawing.Point(473, 38);
+            this.lbl_monto.Name = "lbl_monto";
+            this.lbl_monto.Size = new System.Drawing.Size(54, 18);
+            this.lbl_monto.TabIndex = 24;
+            this.lbl_monto.Text = "Monto:";
+            // 
+            // txt_filtro_apellido
+            // 
+            this.txt_filtro_apellido.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_filtro_apellido.Location = new System.Drawing.Point(78, 52);
+            this.txt_filtro_apellido.Name = "txt_filtro_apellido";
+            this.txt_filtro_apellido.Size = new System.Drawing.Size(140, 26);
+            this.txt_filtro_apellido.TabIndex = 13;
+            this.txt_filtro_apellido.TextChanged += new System.EventHandler(this.txt_filtro_apellido_TextChanged);
+            this.txt_filtro_apellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_filtro_apellido_KeyPress);
+            // 
+            // lbl_fecha_inicio
+            // 
+            this.lbl_fecha_inicio.AutoSize = true;
+            this.lbl_fecha_inicio.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_fecha_inicio.Location = new System.Drawing.Point(235, 15);
+            this.lbl_fecha_inicio.Name = "lbl_fecha_inicio";
+            this.lbl_fecha_inicio.Size = new System.Drawing.Size(85, 18);
+            this.lbl_fecha_inicio.TabIndex = 14;
+            this.lbl_fecha_inicio.Text = "Fecha Inicio:";
             // 
             // lbl_filtro_apellido
             // 
@@ -437,15 +448,47 @@
             this.lbl_filtro_apellido.TabIndex = 21;
             this.lbl_filtro_apellido.Text = "Apellido:";
             // 
-            // txt_filtro_apellido
+            // lbl_filtro_nombre
             // 
-            this.txt_filtro_apellido.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_filtro_apellido.Location = new System.Drawing.Point(78, 52);
-            this.txt_filtro_apellido.Name = "txt_filtro_apellido";
-            this.txt_filtro_apellido.Size = new System.Drawing.Size(140, 26);
-            this.txt_filtro_apellido.TabIndex = 13;
-            this.txt_filtro_apellido.TextChanged += new System.EventHandler(this.txt_filtro_apellido_TextChanged);
-            this.txt_filtro_apellido.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_filtro_apellido_KeyPress);
+            this.lbl_filtro_nombre.AutoSize = true;
+            this.lbl_filtro_nombre.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_filtro_nombre.Location = new System.Drawing.Point(11, 15);
+            this.lbl_filtro_nombre.Name = "lbl_filtro_nombre";
+            this.lbl_filtro_nombre.Size = new System.Drawing.Size(63, 18);
+            this.lbl_filtro_nombre.TabIndex = 20;
+            this.lbl_filtro_nombre.Text = "Nombre:";
+            // 
+            // dtp_fecha_vto
+            // 
+            this.dtp_fecha_vto.Enabled = false;
+            this.dtp_fecha_vto.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtp_fecha_vto.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_fecha_vto.Location = new System.Drawing.Point(324, 52);
+            this.dtp_fecha_vto.Name = "dtp_fecha_vto";
+            this.dtp_fecha_vto.Size = new System.Drawing.Size(140, 26);
+            this.dtp_fecha_vto.TabIndex = 15;
+            // 
+            // dtp_fecha_inicio
+            // 
+            this.dtp_fecha_inicio.CalendarFont = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtp_fecha_inicio.Enabled = false;
+            this.dtp_fecha_inicio.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtp_fecha_inicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtp_fecha_inicio.Location = new System.Drawing.Point(324, 12);
+            this.dtp_fecha_inicio.Name = "dtp_fecha_inicio";
+            this.dtp_fecha_inicio.Size = new System.Drawing.Size(140, 26);
+            this.dtp_fecha_inicio.TabIndex = 14;
+            this.dtp_fecha_inicio.ValueChanged += new System.EventHandler(this.dtp_fecha_inicio_ValueChanged);
+            // 
+            // lbl_fecha_fin
+            // 
+            this.lbl_fecha_fin.AutoSize = true;
+            this.lbl_fecha_fin.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_fecha_fin.Location = new System.Drawing.Point(250, 55);
+            this.lbl_fecha_fin.Name = "lbl_fecha_fin";
+            this.lbl_fecha_fin.Size = new System.Drawing.Size(70, 18);
+            this.lbl_fecha_fin.TabIndex = 16;
+            this.lbl_fecha_fin.Text = "Fecha Fin:";
             // 
             // dgv_inscripciones
             // 
@@ -572,48 +615,6 @@
             this.col_fin.HeaderText = "Egreso";
             this.col_fin.Name = "col_fin";
             this.col_fin.ReadOnly = true;
-            // 
-            // dtp_fecha_inicio
-            // 
-            this.dtp_fecha_inicio.CalendarFont = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_fecha_inicio.Enabled = false;
-            this.dtp_fecha_inicio.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_fecha_inicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_fecha_inicio.Location = new System.Drawing.Point(324, 12);
-            this.dtp_fecha_inicio.Name = "dtp_fecha_inicio";
-            this.dtp_fecha_inicio.Size = new System.Drawing.Size(140, 26);
-            this.dtp_fecha_inicio.TabIndex = 14;
-            this.dtp_fecha_inicio.ValueChanged += new System.EventHandler(this.dtp_fecha_inicio_ValueChanged);
-            // 
-            // lbl_fecha_fin
-            // 
-            this.lbl_fecha_fin.AutoSize = true;
-            this.lbl_fecha_fin.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_fecha_fin.Location = new System.Drawing.Point(250, 55);
-            this.lbl_fecha_fin.Name = "lbl_fecha_fin";
-            this.lbl_fecha_fin.Size = new System.Drawing.Size(70, 18);
-            this.lbl_fecha_fin.TabIndex = 16;
-            this.lbl_fecha_fin.Text = "Fecha Fin:";
-            // 
-            // dtp_fecha_vto
-            // 
-            this.dtp_fecha_vto.Enabled = false;
-            this.dtp_fecha_vto.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtp_fecha_vto.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtp_fecha_vto.Location = new System.Drawing.Point(324, 52);
-            this.dtp_fecha_vto.Name = "dtp_fecha_vto";
-            this.dtp_fecha_vto.Size = new System.Drawing.Size(140, 26);
-            this.dtp_fecha_vto.TabIndex = 15;
-            // 
-            // lbl_fecha_inicio
-            // 
-            this.lbl_fecha_inicio.AutoSize = true;
-            this.lbl_fecha_inicio.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_fecha_inicio.Location = new System.Drawing.Point(235, 15);
-            this.lbl_fecha_inicio.Name = "lbl_fecha_inicio";
-            this.lbl_fecha_inicio.Size = new System.Drawing.Size(85, 18);
-            this.lbl_fecha_inicio.TabIndex = 14;
-            this.lbl_fecha_inicio.Text = "Fecha Inicio:";
             // 
             // frm_principal
             // 

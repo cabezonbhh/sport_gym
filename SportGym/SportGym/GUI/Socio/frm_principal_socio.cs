@@ -73,12 +73,13 @@ namespace SportGym.GUI.Socio
 
         private void btn_eliminar_Click(object sender, EventArgs e)
         {
-            if(dgv_socios.CurrentRow != null)
+            if (dgv_socios.CurrentRow != null)
             {
                 int id = Convert.ToInt32(dgv_socios.CurrentRow.Cells["col_nro"].Value.ToString());
                 DTO_Socio dto = svSocio.getSocio(id);
-                Form eliminar = new frm_eliminar_socio(dto,this);
-                eliminar.ShowDialog();
+                frm_eliminar_socio eliminar = new frm_eliminar_socio(dto, this);
+                eliminar.txt_nro_socio_eliminar.Text = id.ToString();
+                eliminar.btn_borrar_Click(sender,e);
             }
             else
             {

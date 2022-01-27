@@ -53,8 +53,6 @@
             this.txt_nro_socio_eliminar.Name = "txt_nro_socio_eliminar";
             this.txt_nro_socio_eliminar.Size = new System.Drawing.Size(99, 20);
             this.txt_nro_socio_eliminar.TabIndex = 1;
-            this.txt_nro_socio_eliminar.TextChanged += new System.EventHandler(this.txt_nro_socio_eliminar_TextChanged);
-            this.txt_nro_socio_eliminar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_nro_socio_eliminar_KeyPress);
             // 
             // lbl_nro_borrar
             // 
@@ -113,7 +111,7 @@
         #endregion
 
         private System.Windows.Forms.Label lbl_info_borrar;
-        private System.Windows.Forms.TextBox txt_nro_socio_eliminar;
+        public System.Windows.Forms.TextBox txt_nro_socio_eliminar;
         private System.Windows.Forms.Label lbl_nro_borrar;
         private System.Windows.Forms.Label lbl_socio_borrar;
         private System.Windows.Forms.Button btn_borrar;

@@ -331,11 +331,11 @@
             // lbl_gym
             // 
             this.lbl_gym.AutoSize = true;
-            this.lbl_gym.Font = new System.Drawing.Font("ROG Fonts v1.6", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_gym.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_gym.ForeColor = System.Drawing.Color.White;
             this.lbl_gym.Location = new System.Drawing.Point(118, 12);
             this.lbl_gym.Name = "lbl_gym";
-            this.lbl_gym.Size = new System.Drawing.Size(138, 29);
+            this.lbl_gym.Size = new System.Drawing.Size(135, 29);
             this.lbl_gym.TabIndex = 0;
             this.lbl_gym.Text = "Sport Gym";
             // 
@@ -499,6 +499,7 @@
             this.col_nro.MinimumWidth = 10;
             this.col_nro.Name = "col_nro";
             this.col_nro.ReadOnly = true;
+            this.col_nro.Visible = false;
             // 
             // col_dni_socio
             // 
@@ -567,11 +568,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.DataGridView dgv_socios;
+        private System.Windows.Forms.Button btn_vencidos;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_numero;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_nombre_socio;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_apellido_socio;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_nro;
         private System.Windows.Forms.DataGridViewTextBoxColumn col_dni_socio;
-        private System.Windows.Forms.Button btn_vencidos;
     }
 }

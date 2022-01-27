@@ -207,6 +207,37 @@ namespace SportGym.GUI
                 return false;
         }
 
+        public void obtenerDatosRespaldo()
+        {
+            Service_Inscripcion inscripciones = new Service_Inscripcion();
+            Service_cuota cuotas = new Service_cuota();
+            Service_socio socios = new Service_socio();
+        }
+        public void crearRespaldoTexto(String ruta)
+        {
+            if (!File.Exists(ruta))//valida que el archivo no haya sido creado ya
+            {
+                respaldoEnTexto(null, ruta);
+            }
+            else
+            {
+                try
+                {
+                    File.Delete(ruta);
+                    respaldoEnTexto(null, ruta); ;
+                }
+                catch (Exception e)
+                {
+                }
+
+            }
+
+        }
+        public void respaldoEnTexto(IList<String> lista, String ruta)
+        {
+        }
+        
+
         public bool guardarEnExcel(IList<DTO_Inscripcion> inscripciones, string rutaFinal)
         {
             try
